@@ -62,13 +62,13 @@ export function ContactForm() {
         throw new Error(`No pudimos guardar tu consulta: ${insertError.message}`);
       }
 
-      const { error: fnError } = await supabase.functions.invoke("notify-lead", {
+      const { error: fnError } = await supabase.functions.invoke("clever-endpoint", {
         body: { record: inserted ?? leadData },
       });
 
       if (fnError) {
         // Lead was saved — log notification failure but don't block the user
-        console.error("[ContactForm] notify-lead error:", fnError);
+        console.error("[ContactForm] clever-endpoint error:", fnError);
       }
 
       setDone(true);
