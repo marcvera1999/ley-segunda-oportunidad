@@ -51,11 +51,20 @@ export function ContactForm() {
         mensaje: mensaje || null,
       };
 
-      const { error: insertError } = await supabase
-        .from('leads')
-        .insert(leadData);
+      console.log('[DEBUG] Intentando insertar:', leadData);
 
-      if (insertError) throw new Error(insertError.message);
+const { error: insertError } = await supabase
+  .from('leads')
+  .insert(leadData);
+
+console.log('[DEBUG] Resultado insert:', { insertError });
+
+if (insertError) {
+  console.error('[DEBUG] Error detallado:', JSON.stringify(insertError));
+  throw new Error(insertError.message);
+}
+
+console.log('[DEBUG] Insert exitoso');
 
       // Notificar a Make.com (Google Sheets + Gmail + Twilio)
       try {
