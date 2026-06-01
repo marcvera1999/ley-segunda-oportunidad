@@ -57,6 +57,17 @@ export function ContactForm() {
 
       if (insertError) throw new Error(insertError.message);
 
+      // Send to Make.com webhook (Google Sheets, etc.) — non-blocking
+      try {
+        await fetch('https://hook.eu1.make.com/a4on4mqss2urfx8f5cfwphdjukao917r', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...leadData, created_at: new Date().toISOString() }),
+        });
+      } catch (webhookErr) {
+        console.error('[ContactForm] Make webhook error:', webhookErr);
+      }
+
       setDone(true);
     } catch (err) {
       console.error("[ContactForm] submission error:", err);
