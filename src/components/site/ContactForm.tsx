@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useServerFn } from "@tanstack/react-start";
 import { Lock, Check, Phone, MessageCircle, Mail } from "lucide-react";
-import { submitLead } from "@/lib/leads.functions";
+import { supabase } from "@/integrations/supabase/client";
 
 const SITUACIONES = [
   "No puedo pagar mis préstamos o tarjetas",
@@ -23,7 +22,6 @@ const DEUDAS = [
 type ContactoTipo = "telefono" | "whatsapp" | "email";
 
 export function ContactForm() {
-  const submit = useServerFn(submitLead);
   const [nombre, setNombre] = useState("");
   const [situacion, setSituacion] = useState("");
   const [deuda, setDeuda] = useState("");
@@ -44,21 +42,38 @@ export function ContactForm() {
     }
     setLoading(true);
     try {
-      await submit({
-        data: {
-          nombre,
-          situacion,
-          deuda_aproximada: deuda,
-          contacto_tipo: contactoTipo,
-          contacto_valor: contactoValor,
-          mensaje: mensaje || null,
-        },
+      const leadData = {
+        nombre,
+        situacion,
+        deuda_aproximada: deuda,
+        contacto_tipo: contactoTipo,
+        contacto_valor: contactoValor,
+        mensaje: mensaje || null,
+      };
+
+      const { data: inserted, error: insertError } = await supabase
+        .from("leads")
+        .insert(leadData)
+        .select()
+        .single();
+
+      if (insertError) {
+        console.error("[ContactForm] insert error:", insertError);
+        throw new Error(`No pudimos guardar tu consulta: ${insertError.message}`);
+      }
+
+      const { error: fnError } = await supabase.functions.invoke("notify-lead", {
+        body: { record: inserted ?? leadData },
       });
+
+      if (fnError) {
+        // Lead was saved — log notification failure but don't block the user
+        console.error("[ContactForm] notify-lead error:", fnError);
+      }
+
       setDone(true);
     } catch (err) {
-      console.error("[ContactForm] submission error (full object):", err);
-      console.error("[ContactForm] error message:", (err as Error)?.message);
-      console.error("[ContactForm] error stack:", (err as Error)?.stack);
+      console.error("[ContactForm] submission error:", err);
       const msg = (err as Error)?.message || "Error desconocido";
       setError(`Ha ocurrido un error: ${msg}`);
     } finally {
