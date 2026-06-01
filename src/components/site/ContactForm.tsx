@@ -51,11 +51,9 @@ export function ContactForm() {
         mensaje: mensaje || null,
       };
 
-      const { data: inserted, error: insertError } = await supabase
+      const { error: insertError } = await supabase
         .from("leads")
-        .insert(leadData)
-        .select()
-        .single();
+        .insert(leadData);
 
       if (insertError) {
         console.error("[ContactForm] insert error:", insertError);
@@ -63,7 +61,7 @@ export function ContactForm() {
       }
 
       const { error: fnError } = await supabase.functions.invoke("clever-endpoint", {
-        body: { record: inserted ?? leadData },
+        body: { record: leadData },
       });
 
       if (fnError) {
