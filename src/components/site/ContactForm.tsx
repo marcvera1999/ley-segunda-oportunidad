@@ -56,8 +56,11 @@ export function ContactForm() {
       });
       setDone(true);
     } catch (err) {
-      setError("Ha ocurrido un error. Por favor inténtalo de nuevo.");
-      console.error(err);
+      console.error("[ContactForm] submission error (full object):", err);
+      console.error("[ContactForm] error message:", (err as Error)?.message);
+      console.error("[ContactForm] error stack:", (err as Error)?.stack);
+      const msg = (err as Error)?.message || "Error desconocido";
+      setError(`Ha ocurrido un error: ${msg}`);
     } finally {
       setLoading(false);
     }
