@@ -9,8 +9,65 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frecuentes'
+import { Route as PoliticaPrivacidadRouteImport } from './routes/politica-privacidad'
+import { Route as PoliticaCookiesRouteImport } from './routes/politica-cookies'
+import { Route as LeySegundaOportunidadBarcelonaRouteImport } from './routes/ley-segunda-oportunidad-barcelona'
+import { Route as CancelarDeudasHaciendaBarcelonaRouteImport } from './routes/cancelar-deudas-hacienda-barcelona'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
+import { Route as AutonomosLeySegundaOportunidadBarcelonaRouteImport } from './routes/autonomos-ley-segunda-oportunidad-barcelona'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreguntasFrecuentesRoute = PreguntasFrecuentesRouteImport.update({
+  id: '/preguntas-frecuentes',
+  path: '/preguntas-frecuentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaPrivacidadRoute = PoliticaPrivacidadRouteImport.update({
+  id: '/politica-privacidad',
+  path: '/politica-privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaCookiesRoute = PoliticaCookiesRouteImport.update({
+  id: '/politica-cookies',
+  path: '/politica-cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeySegundaOportunidadBarcelonaRoute =
+  LeySegundaOportunidadBarcelonaRouteImport.update({
+    id: '/ley-segunda-oportunidad-barcelona',
+    path: '/ley-segunda-oportunidad-barcelona',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CancelarDeudasHaciendaBarcelonaRoute =
+  CancelarDeudasHaciendaBarcelonaRouteImport.update({
+    id: '/cancelar-deudas-hacienda-barcelona',
+    path: '/cancelar-deudas-hacienda-barcelona',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AvisoLegalRoute = AvisoLegalRouteImport.update({
+  id: '/aviso-legal',
+  path: '/aviso-legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutonomosLeySegundaOportunidadBarcelonaRoute =
+  AutonomosLeySegundaOportunidadBarcelonaRouteImport.update({
+    id: '/autonomos-ley-segunda-oportunidad-barcelona',
+    path: '/autonomos-ley-segunda-oportunidad-barcelona',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +76,158 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/autonomos-ley-segunda-oportunidad-barcelona': typeof AutonomosLeySegundaOportunidadBarcelonaRoute
+  '/aviso-legal': typeof AvisoLegalRoute
+  '/blog': typeof BlogRoute
+  '/cancelar-deudas-hacienda-barcelona': typeof CancelarDeudasHaciendaBarcelonaRoute
+  '/ley-segunda-oportunidad-barcelona': typeof LeySegundaOportunidadBarcelonaRoute
+  '/politica-cookies': typeof PoliticaCookiesRoute
+  '/politica-privacidad': typeof PoliticaPrivacidadRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/autonomos-ley-segunda-oportunidad-barcelona': typeof AutonomosLeySegundaOportunidadBarcelonaRoute
+  '/aviso-legal': typeof AvisoLegalRoute
+  '/blog': typeof BlogRoute
+  '/cancelar-deudas-hacienda-barcelona': typeof CancelarDeudasHaciendaBarcelonaRoute
+  '/ley-segunda-oportunidad-barcelona': typeof LeySegundaOportunidadBarcelonaRoute
+  '/politica-cookies': typeof PoliticaCookiesRoute
+  '/politica-privacidad': typeof PoliticaPrivacidadRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/autonomos-ley-segunda-oportunidad-barcelona': typeof AutonomosLeySegundaOportunidadBarcelonaRoute
+  '/aviso-legal': typeof AvisoLegalRoute
+  '/blog': typeof BlogRoute
+  '/cancelar-deudas-hacienda-barcelona': typeof CancelarDeudasHaciendaBarcelonaRoute
+  '/ley-segunda-oportunidad-barcelona': typeof LeySegundaOportunidadBarcelonaRoute
+  '/politica-cookies': typeof PoliticaCookiesRoute
+  '/politica-privacidad': typeof PoliticaPrivacidadRoute
+  '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/autonomos-ley-segunda-oportunidad-barcelona'
+    | '/aviso-legal'
+    | '/blog'
+    | '/cancelar-deudas-hacienda-barcelona'
+    | '/ley-segunda-oportunidad-barcelona'
+    | '/politica-cookies'
+    | '/politica-privacidad'
+    | '/preguntas-frecuentes'
+    | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/autonomos-ley-segunda-oportunidad-barcelona'
+    | '/aviso-legal'
+    | '/blog'
+    | '/cancelar-deudas-hacienda-barcelona'
+    | '/ley-segunda-oportunidad-barcelona'
+    | '/politica-cookies'
+    | '/politica-privacidad'
+    | '/preguntas-frecuentes'
+    | '/sitemap.xml'
+  id:
+    | '__root__'
+    | '/'
+    | '/autonomos-ley-segunda-oportunidad-barcelona'
+    | '/aviso-legal'
+    | '/blog'
+    | '/cancelar-deudas-hacienda-barcelona'
+    | '/ley-segunda-oportunidad-barcelona'
+    | '/politica-cookies'
+    | '/politica-privacidad'
+    | '/preguntas-frecuentes'
+    | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AutonomosLeySegundaOportunidadBarcelonaRoute: typeof AutonomosLeySegundaOportunidadBarcelonaRoute
+  AvisoLegalRoute: typeof AvisoLegalRoute
+  BlogRoute: typeof BlogRoute
+  CancelarDeudasHaciendaBarcelonaRoute: typeof CancelarDeudasHaciendaBarcelonaRoute
+  LeySegundaOportunidadBarcelonaRoute: typeof LeySegundaOportunidadBarcelonaRoute
+  PoliticaCookiesRoute: typeof PoliticaCookiesRoute
+  PoliticaPrivacidadRoute: typeof PoliticaPrivacidadRoute
+  PreguntasFrecuentesRoute: typeof PreguntasFrecuentesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/preguntas-frecuentes': {
+      id: '/preguntas-frecuentes'
+      path: '/preguntas-frecuentes'
+      fullPath: '/preguntas-frecuentes'
+      preLoaderRoute: typeof PreguntasFrecuentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-privacidad': {
+      id: '/politica-privacidad'
+      path: '/politica-privacidad'
+      fullPath: '/politica-privacidad'
+      preLoaderRoute: typeof PoliticaPrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-cookies': {
+      id: '/politica-cookies'
+      path: '/politica-cookies'
+      fullPath: '/politica-cookies'
+      preLoaderRoute: typeof PoliticaCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ley-segunda-oportunidad-barcelona': {
+      id: '/ley-segunda-oportunidad-barcelona'
+      path: '/ley-segunda-oportunidad-barcelona'
+      fullPath: '/ley-segunda-oportunidad-barcelona'
+      preLoaderRoute: typeof LeySegundaOportunidadBarcelonaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cancelar-deudas-hacienda-barcelona': {
+      id: '/cancelar-deudas-hacienda-barcelona'
+      path: '/cancelar-deudas-hacienda-barcelona'
+      fullPath: '/cancelar-deudas-hacienda-barcelona'
+      preLoaderRoute: typeof CancelarDeudasHaciendaBarcelonaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aviso-legal': {
+      id: '/aviso-legal'
+      path: '/aviso-legal'
+      fullPath: '/aviso-legal'
+      preLoaderRoute: typeof AvisoLegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/autonomos-ley-segunda-oportunidad-barcelona': {
+      id: '/autonomos-ley-segunda-oportunidad-barcelona'
+      path: '/autonomos-ley-segunda-oportunidad-barcelona'
+      fullPath: '/autonomos-ley-segunda-oportunidad-barcelona'
+      preLoaderRoute: typeof AutonomosLeySegundaOportunidadBarcelonaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +240,27 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AutonomosLeySegundaOportunidadBarcelonaRoute:
+    AutonomosLeySegundaOportunidadBarcelonaRoute,
+  AvisoLegalRoute: AvisoLegalRoute,
+  BlogRoute: BlogRoute,
+  CancelarDeudasHaciendaBarcelonaRoute: CancelarDeudasHaciendaBarcelonaRoute,
+  LeySegundaOportunidadBarcelonaRoute: LeySegundaOportunidadBarcelonaRoute,
+  PoliticaCookiesRoute: PoliticaCookiesRoute,
+  PoliticaPrivacidadRoute: PoliticaPrivacidadRoute,
+  PreguntasFrecuentesRoute: PreguntasFrecuentesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
