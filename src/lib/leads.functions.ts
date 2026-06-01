@@ -14,7 +14,6 @@ const LeadSchema = z.object({
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => LeadSchema.parse(data))
   .handler(async ({ data }) => {
-    console.log("[submitLead] inserting lead:", { ...data, contacto_valor: "***" });
     const { error, data: inserted } = await supabaseAdmin
       .from("leads")
       .insert({
@@ -27,10 +26,36 @@ export const submitLead = createServerFn({ method: "POST" })
       })
       .select()
       .single();
+
     if (error) {
       console.error("[submitLead] Supabase insert failed:", JSON.stringify(error, null, 2));
       throw new Error(`Insert failed: ${error.message} (code: ${error.code})`);
     }
-    console.log("[submitLead] inserted:", inserted?.id);
+
+    // Fire-and-forget notification (don't fail the form if email/SMS fails)
+    try {
+      const SUPABASE_URL = process.env.SUPABASE_URL!;
+      const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/notify-lead`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${SERVICE_KEY}`,
+        },
+        body: JSON.stringify({
+          type: "INSERT",
+          table: "leads",
+          schema: "public",
+          record: inserted,
+          old_record: null,
+        }),
+      });
+      if (!res.ok) {
+        console.error("[submitLead] notify-lead failed:", res.status, await res.text());
+      }
+    } catch (e) {
+      console.error("[submitLead] notify-lead invocation error:", e);
+    }
+
     return { ok: true, id: inserted?.id };
   });
