@@ -52,22 +52,10 @@ export function ContactForm() {
       };
 
       const { error: insertError } = await supabase
-        .from("leads")
+        .from('leads')
         .insert(leadData);
 
-      if (insertError) {
-        console.error("[ContactForm] insert error:", insertError);
-        throw new Error(`No pudimos guardar tu consulta: ${insertError.message}`);
-      }
-
-      const { error: fnError } = await supabase.functions.invoke("clever-endpoint", {
-        body: { record: leadData },
-      });
-
-      if (fnError) {
-        // Lead was saved — log notification failure but don't block the user
-        console.error("[ContactForm] clever-endpoint error:", fnError);
-      }
+      if (insertError) throw new Error(insertError.message);
 
       setDone(true);
     } catch (err) {
