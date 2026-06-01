@@ -14,14 +14,23 @@ const LeadSchema = z.object({
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => LeadSchema.parse(data))
   .handler(async ({ data }) => {
-    const { error } = await supabaseAdmin.from("leads").insert({
-      nombre: data.nombre,
-      situacion: data.situacion,
-      deuda_aproximada: data.deuda_aproximada,
-      contacto_tipo: data.contacto_tipo,
-      contacto_valor: data.contacto_valor,
-      mensaje: data.mensaje ?? null,
-    });
-    if (error) throw new Error(error.message);
-    return { ok: true };
+    console.log("[submitLead] inserting lead:", { ...data, contacto_valor: "***" });
+    const { error, data: inserted } = await supabaseAdmin
+      .from("leads")
+      .insert({
+        nombre: data.nombre,
+        situacion: data.situacion,
+        deuda_aproximada: data.deuda_aproximada,
+        contacto_tipo: data.contacto_tipo,
+        contacto_valor: data.contacto_valor,
+        mensaje: data.mensaje ?? null,
+      })
+      .select()
+      .single();
+    if (error) {
+      console.error("[submitLead] Supabase insert failed:", JSON.stringify(error, null, 2));
+      throw new Error(`Insert failed: ${error.message} (code: ${error.code})`);
+    }
+    console.log("[submitLead] inserted:", inserted?.id);
+    return { ok: true, id: inserted?.id };
   });
