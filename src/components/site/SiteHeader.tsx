@@ -14,7 +14,7 @@ export function SiteHeader() {
     <header
       className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-background/85 backdrop-blur-md border-b border-border/60"
+          ? "bg-background/90 backdrop-blur-md border-b border-border/60"
           : "bg-transparent"
       }`}
     >
@@ -27,17 +27,11 @@ export function SiteHeader() {
             Horizonte <span className="text-gold">Legal</span>
           </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-7 text-sm text-primary/80">
-          <a href="/#como-funciona" className="hover:text-primary transition-colors">Cómo funciona</a>
-          <a href="/#eligibilidad" className="hover:text-primary transition-colors">¿Cumplo requisitos?</a>
-          <a href="/#faq" className="hover:text-primary transition-colors">Preguntas</a>
-          <Link to="/blog" className="hover:text-primary transition-colors">Blog</Link>
-        </nav>
         <a
           href="/#contacto"
-          className="hidden sm:inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary/90 transition"
+          className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-4 py-2 text-sm font-semibold hover:opacity-95 transition shadow-sm"
         >
-          Consulta gratuita
+          Consulta gratis
         </a>
       </div>
     </header>

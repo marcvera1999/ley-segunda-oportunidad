@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import {
-  Wallet, ShieldAlert, Briefcase, Users, MessageSquare,
-  Search, Landmark, Sunrise, Star, Lock, ChevronDown,
-} from "lucide-react";
 import { useState } from "react";
+import { ChevronDown, Phone, Search, FileText, Sunrise, Star } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { EligibilityQuiz } from "@/components/site/EligibilityQuiz";
 import { ContactForm } from "@/components/site/ContactForm";
 import { StickyCTA } from "@/components/site/StickyCTA";
+import { WhatsAppFab } from "@/components/site/WhatsAppFab";
+import { ExitIntent } from "@/components/site/ExitIntent";
+import { TrustBar } from "@/components/site/TrustBar";
 
 const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Horizonte Legal";
 const DESC =
@@ -63,11 +63,7 @@ const jsonLd = {
       },
       telephone: "+34900000000",
       priceRange: "€€",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "127",
-      },
+      aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "127" },
     },
     {
       "@type": "FAQPage",
@@ -95,12 +91,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: DESC },
     ],
     links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(jsonLd),
-      },
-    ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }],
   }),
   component: Landing,
 });
@@ -109,129 +100,137 @@ function Landing() {
   return (
     <main className="overflow-x-hidden">
       <Hero />
+      <TrustBar />
       <Identificacion />
-      <Eligibilidad />
+      <Contacto />
       <ComoFunciona />
       <SocialProof />
-      <Contacto />
+      <Eligibilidad />
       <FAQ />
       <SeoContent />
       <StickyCTA />
+      <WhatsAppFab />
+      <ExitIntent />
     </main>
   );
 }
 
 /* ============ HERO ============ */
 function Hero() {
+  const words = ["¿Y", "si", "pudieras"];
+  const words2 = ["borrar", "tus", "deudas"];
+  const words3 = ["legalmente?"];
+
+  const Line = ({ ws, delay = 0, italic = false, gold = false }: { ws: string[]; delay?: number; italic?: boolean; gold?: boolean }) => (
+    <span className={`block ${italic ? "italic" : ""} ${gold ? "text-gold" : ""}`}>
+      {ws.map((w, i) => (
+        <motion.span
+          key={`${w}-${i}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: delay + i * 0.15, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block mr-[0.25em]"
+        >
+          {w}
+        </motion.span>
+      ))}
+    </span>
+  );
+
   return (
     <section
-      className="relative pt-28 pb-20 md:pt-40 md:pb-32 grain"
-      style={{ background: "var(--gradient-hero)" }}
+      className="relative min-h-screen flex items-center pt-28 pb-20 md:pt-32 md:pb-24"
+      style={{ background: "linear-gradient(180deg, #FAF8F4 0%, #F5F0E8 100%)" }}
     >
-      <div className="max-w-5xl mx-auto px-5 md:px-8 text-center relative z-10">
+      {/* faint geometric */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[640px] h-[640px] rounded-full"
+        style={{ background: "radial-gradient(circle, var(--gold) 0%, transparent 60%)", opacity: 0.04 }}
+      />
+      <div className="relative z-10 max-w-[760px] mx-auto px-5 md:px-8 text-center w-full">
         <motion.span
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="inline-block text-xs uppercase tracking-[0.2em] text-gold font-semibold mb-5"
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="inline-block text-[11px] md:text-xs uppercase tracking-[0.18em] text-gold font-semibold border border-gold/50 rounded-full px-4 py-1.5 mb-8 bg-gold/5"
         >
-          Abogados en Barcelona · Ley 25/2015
+          Abogados en Barcelona · Ley 25/2015 · Reformada 2022
         </motion.span>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary leading-[1.05] tracking-tight"
-        >
-          ¿Las deudas no te dejan vivir?
-          <br />
-          <span className="italic text-gold">Existe una salida legal.</span>
-        </motion.h1>
+        <h1 className="font-display font-bold text-primary leading-[1.05] tracking-tight text-[38px] md:text-[56px]">
+          <Line ws={words} delay={0.2} />
+          <Line ws={words2} delay={0.5} />
+          <Line ws={words3} delay={0.95} italic gold />
+        </h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="mt-7 text-[18px] md:text-[20px] text-muted-foreground max-w-[520px] mx-auto leading-relaxed"
         >
-          La Ley de la Segunda Oportunidad te permite cancelar tus deudas
-          definitivamente. En Horizonte Legal te acompañamos desde el primer día.
+          Miles de personas en Barcelona ya lo han hecho. La Ley de la Segunda Oportunidad existe para ti.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-          className="mt-9 flex flex-col sm:flex-row gap-3 justify-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.9, duration: 0.5 }}
+          className="mt-9 flex justify-center"
         >
           <a
             href="#contacto"
-            className="pulse-gold inline-flex items-center justify-center gap-2 rounded-full bg-gold text-gold-foreground px-7 py-4 font-semibold hover:opacity-95 transition"
+            className="pulse-gold inline-flex items-center justify-center rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-semibold hover:opacity-95 transition text-base"
           >
-            Consulta gratuita en 24h →
-          </a>
-          <a
-            href="#eligibilidad"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-transparent border border-primary/20 text-primary px-7 py-4 font-medium hover:bg-primary/5 transition"
-          >
-            ¿Cumplo los requisitos? →
+            Descubre si puedes cancelar tus deudas →
           </a>
         </motion.div>
 
-        <motion.div
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground"
+          transition={{ delay: 1.3, duration: 0.6 }}
+          className="mt-6 text-xs text-muted-foreground"
         >
-          <span>🔒 Confidencial</span>
-          <span>✓ Sin compromiso</span>
-          <span>📍 Barcelona</span>
-          <span>⚖️ +500 casos resueltos</span>
-        </motion.div>
+          ⭐⭐⭐⭐⭐&nbsp; Valorado por +500 familias en Barcelona
+        </motion.p>
       </div>
     </section>
   );
 }
 
-/* ============ ¿Eres tú? ============ */
+/* ============ IDENTIFICACIÓN ============ */
 function Identificacion() {
   const items = [
-    { icon: Wallet, text: "No puedo pagar mis préstamos cada mes" },
-    { icon: ShieldAlert, text: "Tengo miedo de que me embarguen" },
-    { icon: Briefcase, text: "Soy autónomo y mi negocio quebró" },
-    { icon: Users, text: "Avalé a alguien y ahora la deuda es mía" },
+    { e: "💳", t: "No llego a fin de mes pagando mis préstamos", c: "Tarjetas, préstamos, financieras… la deuda crece sola." },
+    { e: "🏠", t: "Tengo miedo de perder mi casa o que me embarguen", c: "El embargo puede detenerse. Existe un proceso legal para esto." },
+    { e: "🧾", t: "Mi negocio cerró y me quedé con las deudas", c: "Los autónomos también tienen derecho a empezar de cero." },
+    { e: "🤝", t: "Avalé a alguien y ahora la deuda es mía", c: "La ley protege también a los avalistas. Podemos ayudarte." },
   ];
   return (
-    <section className="py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-5 md:px-8">
+    <section className="py-32 md:py-44">
+      <div className="max-w-[760px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-14">
-          <p className="text-sm uppercase tracking-widest text-gold mb-3">¿Eres tú?</p>
-          <h2 className="font-display text-3xl md:text-5xl text-primary">
-            Sabemos cómo te sientes
+          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">¿Eres tú?</p>
+          <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
+            Sabemos exactamente cómo te sientes
           </h2>
         </Reveal>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {items.map(({ icon: Icon, text }, i) => (
-            <Reveal key={text} delay={i * 0.1}>
-              <div className="h-full rounded-2xl bg-card border border-border p-6 hover:shadow-[var(--shadow-soft)] hover:-translate-y-1 transition-all duration-300">
-                <div className="h-11 w-11 rounded-xl bg-gold/15 text-gold flex items-center justify-center mb-5">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <p className="font-display text-lg text-primary leading-snug italic">
-                  "{text}"
-                </p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {items.map((it, i) => (
+            <Reveal key={it.t} delay={i * 0.08}>
+              <div className="h-full rounded-2xl bg-card border border-[color:var(--border-warm)] p-6 md:hover:shadow-[var(--shadow-soft)] md:hover:-translate-y-1 transition-all duration-300">
+                <div className="text-[40px] leading-none mb-3">{it.e}</div>
+                <p className="font-semibold text-[18px] text-primary leading-snug">{it.t}</p>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{it.c}</p>
               </div>
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={0.4}>
-          <p className="text-center mt-12 text-muted-foreground max-w-2xl mx-auto text-lg">
-            Si alguna de estas situaciones te suena familiar, la Ley de la Segunda
-            Oportunidad puede ser para ti.
+        <Reveal delay={0.3}>
+          <p className="text-center mt-12 italic text-[18px] text-sage leading-relaxed max-w-xl mx-auto">
+            Si te has reconocido en alguna de estas situaciones, tienes derecho a saber si puedes salir de esto.
           </p>
         </Reveal>
       </div>
@@ -239,31 +238,46 @@ function Identificacion() {
   );
 }
 
-/* ============ Cómo funciona ============ */
+/* ============ CONTACTO (mini-form) ============ */
+function Contacto() {
+  return (
+    <section id="contacto" className="py-24 md:py-36 bg-secondary/40 scroll-mt-20">
+      <div className="max-w-[760px] mx-auto px-5 md:px-8">
+        <Reveal>
+          <ContactForm />
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ============ CÓMO FUNCIONA ============ */
 function ComoFunciona() {
   const steps = [
-    { icon: MessageSquare, t: "Cuéntanos tu caso", d: "Una primera conversación honesta y sin compromiso." },
-    { icon: Search, t: "Analizamos tu situación", d: "Estudio gratuito de viabilidad por un abogado especializado." },
-    { icon: Landmark, t: "Presentamos tu expediente", d: "Tramitamos todo ante los Juzgados Mercantiles de Barcelona." },
-    { icon: Sunrise, t: "Tus deudas se cancelan", d: "Resolución judicial firme. Empiezas de cero." },
+    { Icon: Phone, t: "Nos cuentas tu caso", d: "Una llamada confidencial. Sin papeles, sin compromisos." },
+    { Icon: Search, t: "Lo analizamos gratis", d: "Nuestros abogados estudian tu viabilidad en 24–48 horas." },
+    { Icon: FileText, t: "Presentamos el expediente", d: "Nos encargamos de todo ante los Juzgados de Barcelona." },
+    { Icon: Sunrise, t: "Tus deudas se cancelan", d: "Resolución judicial firme. Empiezas de cero." },
   ];
-
   return (
-    <section id="como-funciona" className="py-24 md:py-32 bg-secondary/40">
-      <div className="max-w-6xl mx-auto px-5 md:px-8">
+    <section className="py-32 md:py-44">
+      <div className="max-w-[900px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-16">
-          <p className="text-sm uppercase tracking-widest text-gold mb-3">El proceso</p>
-          <h2 className="font-display text-3xl md:text-5xl text-primary">
-            ¿Cómo funciona? Simple y claro.
+          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">El proceso</p>
+          <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
+            Cuatro pasos. Sin burocracia.
           </h2>
         </Reveal>
-
-        <div className="relative grid md:grid-cols-4 gap-8 md:gap-5">
-          <div className="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
-          {steps.map(({ icon: Icon, t, d }, i) => (
-            <Reveal key={t} delay={i * 0.12}>
+        <div className="relative grid md:grid-cols-4 gap-10 md:gap-5">
+          <div
+            aria-hidden
+            className="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-px"
+            style={{ backgroundImage: "repeating-linear-gradient(to right, var(--gold) 0 6px, transparent 6px 12px)" }}
+          />
+          {steps.map(({ Icon, t, d }, i) => (
+            <Reveal key={t} delay={i * 0.1}>
               <div className="relative text-center">
-                <div className="relative mx-auto h-14 w-14 rounded-full bg-background border-2 border-gold flex items-center justify-center text-gold mb-5">
+                <div className="relative mx-auto h-14 w-14 rounded-full bg-background border-2 border-gold flex items-center justify-center text-gold mb-4">
                   <Icon className="h-6 w-6" />
                   <span className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">
                     {i + 1}
@@ -275,10 +289,9 @@ function ComoFunciona() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={0.5}>
-          <p className="text-center mt-14 text-muted-foreground italic">
-            El proceso dura entre <span className="text-primary font-medium">3 y 18 meses</span> según cada caso.
+        <Reveal delay={0.4}>
+          <p className="text-center mt-14 text-sm text-muted-foreground">
+            El proceso completo dura entre 3 y 18 meses según el caso.
           </p>
         </Reveal>
       </div>
@@ -286,132 +299,52 @@ function ComoFunciona() {
   );
 }
 
-/* ============ Eligibilidad ============ */
-function Eligibilidad() {
-  return (
-    <section id="eligibilidad" className="py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-5 md:px-8">
-        <Reveal className="text-center mb-12">
-          <p className="text-sm uppercase tracking-widest text-gold mb-3">Test rápido</p>
-          <h2 className="font-display text-3xl md:text-5xl text-primary">
-            Descubre en 60 segundos si puedes acogerte a la ley
-          </h2>
-          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-            5 preguntas anónimas. Al terminar, si encajas, te llamamos gratis en 24h.
-          </p>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <EligibilityQuiz />
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ============ Social proof ============ */
+/* ============ SOCIAL PROOF ============ */
 function SocialProof() {
-  const testimonials = [
-    {
-      name: "Carlos", city: "Barcelona", amount: "68.000€",
-      quote: "Llegué con miedo y vergüenza. Me trataron como a una persona, no como a un expediente. Hoy duermo tranquilo.",
-    },
-    {
-      name: "María", city: "L'Hospitalet", amount: "41.500€",
-      quote: "No sabía que esto existía. En 9 meses cancelaron todas mis deudas de tarjetas y préstamos personales.",
-    },
-    {
-      name: "Ahmed", city: "Badalona", amount: "93.000€",
-      quote: "Mi negocio quebró durante la pandemia. Pensaba que estaba acabado. Ahora tengo una nueva oportunidad.",
-    },
+  const t = [
+    { name: "Carlos", city: "Barcelona", amount: "68.000€", quote: "Llegué con miedo y vergüenza. Me trataron como a una persona, no como a un expediente. Hoy duermo tranquilo." },
+    { name: "María", city: "L'Hospitalet", amount: "41.500€", quote: "No sabía que esto existía. En 9 meses cancelaron todas mis deudas de tarjetas y préstamos personales." },
+    { name: "Ahmed", city: "Badalona", amount: "93.000€", quote: "Mi negocio quebró durante la pandemia. Pensaba que estaba acabado. Ahora tengo una nueva oportunidad." },
   ];
-
   return (
-    <section className="py-24 md:py-32 bg-secondary/40">
-      <div className="max-w-6xl mx-auto px-5 md:px-8">
+    <section className="py-32 md:py-44 bg-secondary/40">
+      <div className="max-w-[900px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-14">
-          <p className="text-sm uppercase tracking-widest text-gold mb-3">Casos reales</p>
-          <h2 className="font-display text-3xl md:text-5xl text-primary">
-            Casos reales, vidas transformadas
+          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">Casos reales</p>
+          <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
+            Personas que ya empezaron de cero
           </h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.12}>
-              <article className="h-full rounded-2xl bg-card border border-border p-7 hover:shadow-[var(--shadow-warm)] hover:-translate-y-1 transition-all duration-300">
+        <div className="flex md:grid md:grid-cols-3 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-5 px-5 md:mx-0 md:px-0 pb-2">
+          {t.map((it, i) => (
+            <Reveal key={it.name} delay={i * 0.1} className="snap-center shrink-0 w-[85%] md:w-auto">
+              <article className="h-full rounded-2xl bg-card border-l-4 border-l-gold border border-[color:var(--border-warm)] p-7 md:hover:-translate-y-1 md:hover:shadow-lg transition-all duration-200">
                 <div className="flex gap-0.5 text-gold mb-4">
                   {Array.from({ length: 5 }).map((_, j) => (
                     <Star key={j} className="h-4 w-4 fill-current" />
                   ))}
                 </div>
-                <p className="italic text-primary/85 leading-relaxed mb-6">"{t.quote}"</p>
-                <div className="pt-4 border-t border-border">
-                  <p className="font-display text-lg text-primary">{t.name}, {t.city}</p>
-                  <p className="text-sm text-sage font-semibold">{t.amount} cancelados</p>
+                <p className="italic text-primary/85 leading-relaxed mb-6">{it.quote}</p>
+                <div className="flex items-center gap-3 pt-4 border-t border-[color:var(--border-warm)]">
+                  <span className="h-10 w-10 rounded-full bg-sage text-sage-foreground flex items-center justify-center font-display font-semibold text-sm">
+                    {it.name[0]}
+                  </span>
+                  <div>
+                    <p className="font-display text-base text-primary leading-tight">{it.name}, {it.city}</p>
+                    <p className="text-sm text-gold font-bold">{it.amount} cancelados</p>
+                  </div>
                 </div>
               </article>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={0.4}>
-          <div className="mt-14 rounded-2xl bg-primary text-primary-foreground p-8 md:p-10 grid sm:grid-cols-3 gap-6 text-center">
-            <Stat n="+500" l="procedimientos iniciados" />
-            <Stat n="98%" l="tasa de éxito" />
-            <Stat n="2015" l="en Barcelona desde" />
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.5}>
-          <p className="text-center mt-10 text-xs text-muted-foreground uppercase tracking-widest">
-            Colegiados en el Il·lustre Col·legi de l'Advocacia de Barcelona (ICAB) · Juzgados Mercantiles de Barcelona
-          </p>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function Stat({ n, l }: { n: string; l: string }) {
-  return (
-    <div>
-      <p className="font-display text-4xl md:text-5xl text-gold">{n}</p>
-      <p className="text-sm text-primary-foreground/70 mt-1">{l}</p>
-    </div>
-  );
-}
-
-/* ============ SEO content block ============ */
-function SeoContent() {
-  return (
-    <section className="py-24 md:py-32">
-      <div className="max-w-3xl mx-auto px-5 md:px-8 prose-content">
-        <Reveal className="mb-10">
-          <p className="text-sm uppercase tracking-widest text-gold mb-3">La ley</p>
-          <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
-            ¿Qué es la Ley de la Segunda Oportunidad?
-          </h2>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <div className="space-y-5 text-[17px] leading-relaxed text-primary/85">
-            <p>
-              La <strong>Ley de la Segunda Oportunidad</strong> (Ley 25/2015, profundamente reformada en 2022) es un mecanismo legal que permite a particulares y autónomos en situación de insolvencia cancelar definitivamente sus deudas a través de un procedimiento judicial. En Barcelona, este procedimiento se tramita ante los Juzgados de lo Mercantil y ofrece una salida real a personas atrapadas en una espiral de deudas imposibles de pagar.
-            </p>
-
-            <h3 className="font-display text-2xl text-primary pt-4">¿Quién puede acogerse?</h3>
-            <p>
-              Pueden acogerse tanto <strong>particulares</strong> como <strong>autónomos</strong> (no sociedades S.L. ni S.A.) que estén actuando de buena fe, no hayan ocultado bienes y no hayan sido condenados por delitos económicos en los últimos diez años. No importa el origen de las deudas: préstamos bancarios, tarjetas de crédito, microcréditos, deudas de la actividad empresarial, avales por terceros o incluso parte de las deudas con Hacienda y la Seguridad Social pueden cancelarse mediante la <strong>exoneración de deudas</strong> (EPI – exoneración del pasivo insatisfecho).
-            </p>
-
-            <h3 className="font-display text-2xl text-primary pt-4">¿Qué deudas se pueden cancelar y cuáles no?</h3>
-            <p>
-              La <strong>cancelación de deudas en Barcelona</strong> mediante esta ley incluye préstamos personales, tarjetas, créditos al consumo, financiación de vehículos, deudas con proveedores y, desde la reforma de 2022, hasta 10.000€ de deuda con Hacienda y otros 10.000€ con la Seguridad Social. No se pueden cancelar pensiones de alimentos ni multas penales. Como <strong>abogados especialistas en segunda oportunidad en Barcelona</strong>, llevamos cada expediente desde el primer informe de viabilidad hasta la resolución judicial firme, normalmente en un plazo de 3 a 18 meses. El <strong>concurso de acreedores para persona física en Barcelona</strong> es un proceso técnico, pero cuando se gestiona con experiencia, devuelve a la persona la tranquilidad de empezar de nuevo.
-            </p>
-
-            <p className="italic text-primary pt-2">
-              Si quieres saber si tu caso es viable, solicita tu consulta gratuita hoy.
-            </p>
+        <Reveal delay={0.3}>
+          <div className="mt-12 rounded-2xl bg-primary text-primary-foreground p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            <div><p className="font-display text-3xl text-gold">+500</p><p className="text-sm text-primary-foreground/70 mt-1">procedimientos</p></div>
+            <div><p className="font-display text-3xl text-gold">98%</p><p className="text-sm text-primary-foreground/70 mt-1">tasa de éxito</p></div>
+            <div><p className="font-display text-3xl text-gold">2015</p><p className="text-sm text-primary-foreground/70 mt-1">activos desde</p></div>
           </div>
         </Reveal>
       </div>
@@ -419,22 +352,19 @@ function SeoContent() {
   );
 }
 
-/* ============ Contacto ============ */
-function Contacto() {
+/* ============ ELIGIBILIDAD ============ */
+function Eligibilidad() {
   return (
-    <section id="contacto" className="py-24 md:py-32 bg-secondary/40 scroll-mt-20">
-      <div className="max-w-3xl mx-auto px-5 md:px-8">
+    <section id="eligibilidad" className="py-32 md:py-44">
+      <div className="max-w-[760px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-10">
-          <p className="text-sm uppercase tracking-widest text-gold mb-3">Tu primer paso</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">Test rápido</p>
           <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
-            Cuéntanos tu situación. <span className="italic">Es confidencial.</span>
+            Descubre en 60 segundos si puedes acogerte
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Un abogado de nuestro equipo te contactará en menos de 24 horas.
-          </p>
         </Reveal>
-        <Reveal delay={0.2}>
-          <ContactForm />
+        <Reveal delay={0.15}>
+          <EligibilityQuiz />
         </Reveal>
       </div>
     </section>
@@ -445,49 +375,92 @@ function Contacto() {
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="py-24 md:py-32">
-      <div className="max-w-3xl mx-auto px-5 md:px-8">
+    <section id="faq" className="py-32 md:py-44">
+      <div className="max-w-[760px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-12">
-          <p className="text-sm uppercase tracking-widest text-gold mb-3">Preguntas frecuentes</p>
-          <h2 className="font-display text-3xl md:text-5xl text-primary">
-            Todo lo que querías saber
+          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">Preguntas frecuentes</p>
+          <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
+            Lo que todo el mundo pregunta
           </h2>
         </Reveal>
-
-        <div className="space-y-3">
+        <div>
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <Reveal key={f.q} delay={i * 0.05}>
-                <div className="rounded-2xl bg-card border border-border overflow-hidden">
+              <Reveal key={f.q} delay={i * 0.04}>
+                <div className="border-b border-[color:var(--border-warm)]">
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="w-full text-left px-6 py-5 flex items-start justify-between gap-4 hover:bg-secondary/30 transition"
+                    className="w-full text-left py-5 flex items-start justify-between gap-4"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-display text-lg text-primary">{f.q}</span>
+                    <span className="text-[17px] font-semibold text-primary">{f.q}</span>
                     <ChevronDown
-                      className={`h-5 w-5 text-gold flex-shrink-0 mt-1 transition-transform duration-300 ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
+                      className={`h-5 w-5 text-gold flex-shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     />
                   </button>
                   <motion.div
                     initial={false}
-                    animate={{
-                      height: isOpen ? "auto" : 0,
-                      opacity: isOpen ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
+                    animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                    transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <p className="px-6 pb-5 text-primary/75 leading-relaxed">{f.a}</p>
+                    <p className="pb-5 pr-8 text-[16px] leading-[1.7] text-muted-foreground">{f.a}</p>
                   </motion.div>
                 </div>
               </Reveal>
             );
           })}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ SEO CONTENT (collapsible) ============ */
+function SeoContent() {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <section className="py-32 md:py-44">
+      <div className="max-w-[760px] mx-auto px-5 md:px-8">
+        <Reveal>
+          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">La ley</p>
+          <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight mb-8">
+            ¿Qué es la Ley de la Segunda Oportunidad?
+          </h2>
+          <p className="text-[17px] leading-relaxed text-primary/85">
+            La <strong>Ley de la Segunda Oportunidad</strong> (Ley 25/2015, profundamente reformada en 2022) es un mecanismo legal que permite a particulares y autónomos en situación de insolvencia cancelar definitivamente sus deudas a través de un procedimiento judicial. En Barcelona, este procedimiento se tramita ante los Juzgados de lo Mercantil y ofrece una salida real a personas atrapadas en una espiral de deudas imposibles de pagar.
+          </p>
+
+          <motion.div
+            initial={false}
+            animate={{ height: expanded ? "auto" : 0, opacity: expanded ? 1 : 0 }}
+            transition={{ duration: 0.35 }}
+            className="overflow-hidden"
+          >
+            <div className="space-y-5 pt-5 text-[17px] leading-relaxed text-primary/85">
+              <h3 className="font-display text-2xl text-primary pt-2">¿Quién puede acogerse?</h3>
+              <p>
+                Pueden acogerse tanto <strong>particulares</strong> como <strong>autónomos</strong> (no sociedades S.L. ni S.A.) que estén actuando de buena fe, no hayan ocultado bienes y no hayan sido condenados por delitos económicos en los últimos diez años. No importa el origen de las deudas: préstamos bancarios, tarjetas de crédito, microcréditos, deudas de la actividad empresarial, avales por terceros o incluso parte de las deudas con Hacienda y la Seguridad Social pueden cancelarse mediante la <strong>exoneración de deudas</strong> (EPI – exoneración del pasivo insatisfecho).
+              </p>
+              <h3 className="font-display text-2xl text-primary pt-2">¿Qué deudas se pueden cancelar y cuáles no?</h3>
+              <p>
+                La <strong>cancelación de deudas en Barcelona</strong> mediante esta ley incluye préstamos personales, tarjetas, créditos al consumo, financiación de vehículos, deudas con proveedores y, desde la reforma de 2022, hasta 10.000€ de deuda con Hacienda y otros 10.000€ con la Seguridad Social. No se pueden cancelar pensiones de alimentos ni multas penales. Como <strong>abogados especialistas en segunda oportunidad en Barcelona</strong>, llevamos cada expediente desde el primer informe de viabilidad hasta la resolución judicial firme, normalmente en un plazo de 3 a 18 meses.
+              </p>
+              <p className="italic text-primary">
+                Si quieres saber si tu caso es viable, solicita tu consulta gratuita hoy.
+              </p>
+            </div>
+          </motion.div>
+
+          <button
+            onClick={() => setExpanded((v) => !v)}
+            className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-primary transition"
+          >
+            {expanded ? "Leer menos" : "Leer más"}
+            <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`} />
+          </button>
+        </Reveal>
       </div>
     </section>
   );
