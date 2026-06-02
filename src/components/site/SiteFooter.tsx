@@ -16,7 +16,6 @@ export function SiteFooter() {
           <Link to="/politica-privacidad" className="hover:text-gold transition">Privacidad</Link>
           <Link to="/politica-cookies" className="hover:text-gold transition">Cookies</Link>
           <Link to="/preguntas-frecuentes" className="hover:text-gold transition">FAQ</Link>
-          <Link to="/blog" className="hover:text-gold transition">Blog</Link>
         </nav>
         <div className="flex items-center gap-4 text-sm">
           <a href="tel:+34625349097" className="inline-flex items-center gap-1.5 hover:text-gold transition">
@@ -33,9 +32,10 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-primary-foreground/10">
-        <p className="max-w-6xl mx-auto px-5 md:px-8 py-5 text-center text-xs text-primary-foreground/60">
-          © {new Date().getFullYear()} Horizonte Legal · ICAB Colegiados · Barcelona
-        </p>
+        <div className="max-w-6xl mx-auto px-5 md:px-8 py-5 text-center text-xs text-primary-foreground/60 space-y-1">
+          <p>© {new Date().getFullYear()} Horizonte Legal · ICAB Colegiados · Barcelona</p>
+          <p>Passeig de Gràcia Passeig de Gràcia 120 2ndo Derecha Barcelona 008008</p>
+        </div>
       </div>
     </footer>
   );
