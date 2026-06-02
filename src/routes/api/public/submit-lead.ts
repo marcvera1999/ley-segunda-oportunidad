@@ -113,26 +113,31 @@ export const Route = createFileRoute("/api/public/submit-lead")({
             if (error) console.error("[submit-lead] rate insert error:", error);
           });
 
-        // Invoke notify-lead edge function (email + SMS)
+        // Invoke notify-lead edge function (email + SMS) on the external Supabase project
         try {
-          const SUPABASE_URL = process.env.SUPABASE_URL!;
-          const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-          const res = await fetch(`${SUPABASE_URL}/functions/v1/clever-endpoint`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${SERVICE_KEY}`,
-            },
-            body: JSON.stringify({
-              type: "INSERT",
-              table: "leads",
-              schema: "public",
-              record: inserted,
-              old_record: null,
-            }),
-          });
-          if (!res.ok) {
-            console.error("[submit-lead] notify-lead failed:", res.status, await res.text());
+          const EXT_URL = "https://jyzotpamjmffvjrxfjwf.supabase.co";
+          const EXT_KEY = process.env.SERVICE_ROLE_KEY;
+          if (EXT_KEY) {
+            const res = await fetch(`${EXT_URL}/functions/v1/clever-endpoint`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${EXT_KEY}`,
+                apikey: EXT_KEY,
+              },
+              body: JSON.stringify({
+                type: "INSERT",
+                table: "leads",
+                schema: "public",
+                record: inserted,
+                old_record: null,
+              }),
+            });
+            if (!res.ok) {
+              console.error("[submit-lead] notify-lead failed:", res.status, await res.text());
+            }
+          } else {
+            console.warn("[submit-lead] SERVICE_ROLE_KEY not set; skipping notify-lead");
           }
         } catch (e) {
           console.error("[submit-lead] notify-lead invocation error:", e);
