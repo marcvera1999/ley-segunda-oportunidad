@@ -101,10 +101,16 @@ export function EligibilityQuiz() {
                 allOk ? "bg-sage text-sage-foreground" : "bg-gold text-gold-foreground"
               }`}
             >
-              {allOk ? <Check className="h-7 w-7" /> : <span className="font-display text-xl">!</span>}
+              {allOk ? <Check className="h-7 w-7" /> : <X className="h-7 w-7" />}
             </div>
             <h3 className="font-display text-2xl md:text-3xl text-primary mb-3">
-              {allOk ? "✓ Probablemente cumples los requisitos" : "Puede que existan otras vías para ti"}
+              {allOk ? (
+                <span className="flex items-center justify-center gap-2">
+                  <Check className="h-6 w-6 text-sage" /> Probablemente cumples los requisitos
+                </span>
+              ) : (
+                "Puede que existan otras vías para ti"
+              )}
             </h3>
             <p className="text-primary/75 mb-6 max-w-md mx-auto">
               {allOk
