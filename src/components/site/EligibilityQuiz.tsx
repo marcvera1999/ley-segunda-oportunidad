@@ -2,12 +2,13 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 
-const QUESTIONS = [
-  "¿Tienes deudas que no puedes pagar?",
-  "¿Son superiores a 5.000€ en total?",
-  "¿Eres persona física o autónomo (no empresa S.L.)?",
-  "¿No has sido condenado por delitos económicos en los últimos 10 años?",
-  "¿Estás actuando de buena fe (no has ocultado bienes)?",
+type Q = { q: string; correct: boolean };
+
+const QUESTIONS: Q[] = [
+  { q: "¿Tienes deudas que no puedes pagar?", correct: true },
+  { q: "¿Eres persona física o autónomo (no empresa S.L.)?", correct: true },
+  { q: "¿Has sido condenado por delitos económicos en los últimos 10 años?", correct: false },
+  { q: "¿Estás actuando de buena fe (no has ocultado bienes)?", correct: true },
 ];
 
 export function EligibilityQuiz() {
@@ -24,8 +25,17 @@ export function EligibilityQuiz() {
   };
 
   const done = step >= QUESTIONS.length;
-  const allYes = done && answers.every(Boolean);
+  const allOk = done && answers.every((a, i) => a === QUESTIONS[i].correct);
   const progress = (Math.min(step, QUESTIONS.length) / QUESTIONS.length) * 100;
+
+  const current = !done ? QUESTIONS[step] : null;
+  const yesIsGood = current?.correct === true;
+  const noIsGood = current?.correct === false;
+
+  const goodCls =
+    "inline-flex items-center justify-center gap-2 rounded-full bg-sage text-sage-foreground px-6 min-h-[52px] font-semibold hover:opacity-90 transition";
+  const neutralCls =
+    "inline-flex items-center justify-center gap-2 rounded-full bg-secondary text-primary/70 px-6 min-h-[52px] font-medium hover:bg-secondary/70 transition border border-[color:var(--border-warm)]";
 
   return (
     <div className="rounded-3xl bg-card border-[1.5px] border-gold p-6 md:p-10 shadow-[var(--shadow-form)] max-w-[600px] mx-auto">
@@ -59,18 +69,18 @@ export function EligibilityQuiz() {
             className="text-center"
           >
             <h3 className="font-display text-2xl md:text-[28px] text-primary mb-8 leading-snug">
-              {QUESTIONS[step]}
+              {current!.q}
             </h3>
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => answer(true)}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-sage text-sage-foreground px-6 min-h-[52px] font-semibold hover:opacity-90 transition"
+                className={yesIsGood ? goodCls : neutralCls}
               >
                 <Check className="h-5 w-5" /> Sí
               </button>
               <button
                 onClick={() => answer(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-secondary text-primary/70 px-6 min-h-[52px] font-medium hover:bg-secondary/70 transition border border-[color:var(--border-warm)]"
+                className={noIsGood ? goodCls : neutralCls}
               >
                 <X className="h-5 w-5" /> No
               </button>
@@ -83,21 +93,21 @@ export function EligibilityQuiz() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
             className={`text-center rounded-2xl p-6 ${
-              allYes ? "bg-[color:var(--sage-light)]" : "bg-secondary"
+              allOk ? "bg-[color:var(--sage-light)]" : "bg-secondary"
             }`}
           >
             <div
               className={`inline-flex h-14 w-14 items-center justify-center rounded-full mb-4 ${
-                allYes ? "bg-sage text-sage-foreground" : "bg-gold text-gold-foreground"
+                allOk ? "bg-sage text-sage-foreground" : "bg-gold text-gold-foreground"
               }`}
             >
-              {allYes ? <Check className="h-7 w-7" /> : <span className="font-display text-xl">!</span>}
+              {allOk ? <Check className="h-7 w-7" /> : <span className="font-display text-xl">!</span>}
             </div>
             <h3 className="font-display text-2xl md:text-3xl text-primary mb-3">
-              {allYes ? "✓ Probablemente cumples los requisitos" : "Puede que existan otras vías para ti"}
+              {allOk ? "✓ Probablemente cumples los requisitos" : "Puede que existan otras vías para ti"}
             </h3>
             <p className="text-primary/75 mb-6 max-w-md mx-auto">
-              {allYes
+              {allOk
                 ? "Un abogado puede revisar tu caso sin coste y llamarte hoy mismo."
                 : "Cada situación es única. Estudiamos tu caso, sin compromiso."}
             </p>
