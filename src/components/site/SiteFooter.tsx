@@ -16,7 +16,6 @@ export function SiteFooter() {
           <Link to="/politica-privacidad" className="hover:text-gold transition">Privacidad</Link>
           <Link to="/politica-cookies" className="hover:text-gold transition">Cookies</Link>
           <Link to="/preguntas-frecuentes" className="hover:text-gold transition">FAQ</Link>
-          <Link to="/blog" className="hover:text-gold transition">Blog</Link>
         </nav>
         <div className="flex items-center gap-4 text-sm">
           <a href="tel:+34625349097" className="inline-flex items-center gap-1.5 hover:text-gold transition">
