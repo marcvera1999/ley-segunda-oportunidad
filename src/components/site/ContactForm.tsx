@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lock, Check, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
 const DEUDAS = [
   "Menos de 10.000€",
