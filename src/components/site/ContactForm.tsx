@@ -11,11 +11,45 @@ const DEUDAS = [
   "Más de 100.000€",
 ];
 
+// Rate limiting en cliente: máx. envíos por ventana de tiempo (primera barrera;
+// la barrera real va en Supabase, ver migración SQL del proyecto).
+const RL_KEY = "hl_form_submits";
+const RL_MAX = 3;
+const RL_WINDOW_MS = 60 * 60 * 1000; // 1 hora
+
+function isRateLimited(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const now = Date.now();
+    const raw = localStorage.getItem(RL_KEY);
+    const times: number[] = raw ? JSON.parse(raw) : [];
+    const recent = times.filter((t) => now - t < RL_WINDOW_MS);
+    return recent.length >= RL_MAX;
+  } catch {
+    return false;
+  }
+}
+
+function recordSubmit() {
+  if (typeof window === "undefined") return;
+  try {
+    const now = Date.now();
+    const raw = localStorage.getItem(RL_KEY);
+    const times: number[] = raw ? JSON.parse(raw) : [];
+    const recent = times.filter((t) => now - t < RL_WINDOW_MS);
+    recent.push(now);
+    localStorage.setItem(RL_KEY, JSON.stringify(recent));
+  } catch {
+    /* noop */
+  }
+}
+
 export function ContactForm({ bare = false }: { bare?: boolean }) {
   const [deuda, setDeuda] = useState("");
   const [telefono, setTelefono] = useState("");
   const [nombre, setNombre] = useState("");
   const [gdpr, setGdpr] = useState(false);
+  const [website, setWebsite] = useState(""); // honeypot: debe quedar siempre vacío
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -23,10 +57,23 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    // Honeypot: si un bot rellenó el campo oculto, fingimos éxito y no enviamos.
+    if (website) {
+      setDone(true);
+      return;
+    }
+
     if (!deuda || !telefono || !nombre || !gdpr) {
       setError("Por favor completa todos los campos.");
       return;
     }
+
+    if (isRateLimited()) {
+      setError("Has enviado varias solicitudes. Inténtalo de nuevo más tarde o escríbenos por WhatsApp.");
+      return;
+    }
+
     setLoading(true);
     try {
       const leadData = {
@@ -51,6 +98,7 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
         console.error("[ContactForm] Make webhook error:", whErr);
       }
 
+      recordSubmit();
       setDone(true);
     } catch (err) {
       console.error("[ContactForm] submission error:", err);
@@ -98,6 +146,20 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
             animate={{ opacity: 1 }}
             className="space-y-6"
           >
+            {/* Honeypot anti-spam: oculto a humanos, los bots lo rellenan */}
+            <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden" tabIndex={-1}>
+              <label htmlFor="website-hp">No rellenar este campo</label>
+              <input
+                id="website-hp"
+                type="text"
+                name="website"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             {!bare && (
               <div className="text-center space-y-3">
                 <span className="inline-block text-[11px] uppercase tracking-widest text-gold border border-gold/40 rounded-full px-3 py-1 bg-gold/5">
