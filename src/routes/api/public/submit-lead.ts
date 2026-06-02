@@ -113,6 +113,31 @@ export const Route = createFileRoute("/api/public/submit-lead")({
             if (error) console.error("[submit-lead] rate insert error:", error);
           });
 
+        // Invoke notify-lead edge function (email + SMS)
+        try {
+          const SUPABASE_URL = process.env.SUPABASE_URL!;
+          const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+          const res = await fetch(`${SUPABASE_URL}/functions/v1/clever-endpoint`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${SERVICE_KEY}`,
+            },
+            body: JSON.stringify({
+              type: "INSERT",
+              table: "leads",
+              schema: "public",
+              record: inserted,
+              old_record: null,
+            }),
+          });
+          if (!res.ok) {
+            console.error("[submit-lead] notify-lead failed:", res.status, await res.text());
+          }
+        } catch (e) {
+          console.error("[submit-lead] notify-lead invocation error:", e);
+        }
+
         // Fire-and-forget Make webhook
         try {
           await fetch("https://hook.eu1.make.com/s1xr4wtekgngfmq7dyr3wls27wkx1mhx", {
