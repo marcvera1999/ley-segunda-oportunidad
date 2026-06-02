@@ -107,13 +107,15 @@ export const Route = createFileRoute("/api/public/submit-lead")({
           );
         }
 
-        // Record the rate-limit hit (fire-and-forget)
+        /*
+        // Record the rate-limit hit — DESACTIVADO TEMPORALMENTE
         supabaseAdmin
           .from("rate_limits")
           .insert({ ip, endpoint: "leads" })
           .then(({ error }) => {
             if (error) console.error("[submit-lead] rate insert error:", error);
           });
+        */
 
         // Invoke notify-lead edge function (email + SMS) on the external Supabase project
         try {
