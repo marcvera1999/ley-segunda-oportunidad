@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
+import { ContactForm } from "@/components/site/ContactForm";
 
 const QUESTIONS = [
   "¿Tienes deudas que no puedes pagar?",
@@ -91,23 +92,21 @@ export function EligibilityQuiz() {
             </h3>
             <p className="text-muted-foreground mb-7 max-w-md mx-auto">
               {allYes
-                ? "Un abogado revisará tu caso sin coste y te llamará en menos de 24h."
-                : "Cuéntanos tu caso y lo estudiamos juntos. Cada situación es única."}
+                ? "Déjanos tu teléfono y un abogado revisará tu caso sin coste y te llamará en menos de 24h."
+                : "Cada situación es única. Déjanos tu teléfono y lo estudiamos juntos, sin compromiso."}
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="#contacto"
-                className="inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground px-7 py-3 font-medium hover:bg-primary/90"
-              >
-                Solicitar consulta gratuita →
-              </a>
-              <button
-                onClick={reset}
-                className="text-sm text-muted-foreground hover:text-primary underline underline-offset-4"
-              >
-                Repetir el test
-              </button>
+
+            {/* Cierre en caliente: el formulario aparece aquí mismo */}
+            <div className="text-left mt-2 pt-6 border-t border-border">
+              <ContactForm bare />
             </div>
+
+            <button
+              onClick={reset}
+              className="mt-6 text-sm text-muted-foreground hover:text-primary underline underline-offset-4"
+            >
+              Repetir el test
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

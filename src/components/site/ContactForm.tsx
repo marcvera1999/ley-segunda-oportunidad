@@ -1,15 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, Check, Phone, MessageCircle, Mail } from "lucide-react";
+import { Lock, Check, Phone, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-
-const SITUACIONES = [
-  "No puedo pagar mis préstamos o tarjetas",
-  "Soy autónomo y tengo deudas de mi actividad",
-  "Soy avalista de una deuda que no es mía",
-  "Tengo deudas con Hacienda o Seguridad Social",
-  "Otro / No sé cómo describirlo",
-];
 
 const DEUDAS = [
   "Menos de 10.000€",
@@ -19,15 +11,13 @@ const DEUDAS = [
   "Más de 100.000€",
 ];
 
-type ContactoTipo = "telefono" | "whatsapp" | "email";
+type ContactoTipo = "telefono" | "whatsapp";
 
-export function ContactForm() {
+export function ContactForm({ bare = false }: { bare?: boolean }) {
   const [nombre, setNombre] = useState("");
-  const [situacion, setSituacion] = useState("");
   const [deuda, setDeuda] = useState("");
   const [contactoTipo, setContactoTipo] = useState<ContactoTipo>("whatsapp");
   const [contactoValor, setContactoValor] = useState("");
-  const [mensaje, setMensaje] = useState("");
   const [gdpr, setGdpr] = useState(false);
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
@@ -36,7 +26,7 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    if (!nombre || !situacion || !deuda || !contactoValor || !gdpr) {
+    if (!nombre || !deuda || !contactoValor || !gdpr) {
       setError("Por favor completa todos los campos requeridos.");
       return;
     }
@@ -44,11 +34,13 @@ export function ContactForm() {
     try {
       const leadData = {
         nombre,
-        situacion,
+        // La situación concreta se cualifica por teléfono; enviamos un valor
+        // por defecto porque la columna es NOT NULL en Supabase.
+        situacion: "Por cualificar en llamada",
         deuda_aproximada: deuda,
         contacto_tipo: contactoTipo,
         contacto_valor: contactoValor,
-        mensaje: mensaje || null,
+        mensaje: null,
       };
 
       console.log('[DEBUG] Intentando insertar:', leadData);
@@ -88,7 +80,7 @@ console.log('[DEBUG] Insert exitoso');
   };
 
   return (
-    <div className="rounded-3xl bg-card border border-border shadow-[var(--shadow-warm)] p-7 md:p-10">
+    <div className={bare ? "" : "rounded-3xl bg-card border border-border shadow-[var(--shadow-warm)] p-7 md:p-10"}>
       <AnimatePresence mode="wait">
         {done ? (
           <motion.div
@@ -129,21 +121,6 @@ console.log('[DEBUG] Insert exitoso');
               />
             </Field>
 
-            <Field label="¿Cuál es tu situación principal?">
-              <select
-                value={situacion}
-                onChange={(e) => setSituacion(e.target.value)}
-                required
-                aria-label="Situación"
-                className="w-full bg-transparent border-b border-border focus:border-gold outline-none py-2.5 text-base appearance-none cursor-pointer"
-              >
-                <option value="">Elige una opción…</option>
-                {SITUACIONES.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-            </Field>
-
             <Field label="¿Cuánto debes aproximadamente?">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {DEUDAS.map((d) => (
@@ -163,12 +140,11 @@ console.log('[DEBUG] Insert exitoso');
               </div>
             </Field>
 
-            <Field label="¿Cuál es la mejor forma de contactarte?">
+            <Field label="¿A qué número te contactamos?">
               <div className="flex gap-2 mb-3">
                 {[
-                  { id: "telefono", label: "Teléfono", Icon: Phone },
                   { id: "whatsapp", label: "WhatsApp", Icon: MessageCircle },
-                  { id: "email", label: "Email", Icon: Mail },
+                  { id: "telefono", label: "Llamada", Icon: Phone },
                 ].map(({ id, label, Icon }) => (
                   <button
                     key={id}
@@ -185,26 +161,14 @@ console.log('[DEBUG] Insert exitoso');
                 ))}
               </div>
               <input
-                type={contactoTipo === "email" ? "email" : "tel"}
+                type="tel"
                 value={contactoValor}
                 onChange={(e) => setContactoValor(e.target.value)}
-                placeholder={contactoTipo === "email" ? "tu@email.com" : "+34 600 000 000"}
-                aria-label="Contacto"
+                placeholder="+34 600 000 000"
+                aria-label="Teléfono"
                 required
                 maxLength={300}
                 className="w-full bg-transparent border-b border-border focus:border-gold outline-none py-2.5 text-lg placeholder:text-muted-foreground/60"
-              />
-            </Field>
-
-            <Field label="¿Hay algo más que quieras contarnos? (opcional)">
-              <textarea
-                value={mensaje}
-                onChange={(e) => setMensaje(e.target.value)}
-                rows={3}
-                maxLength={5000}
-                placeholder="Tu situación es única. Puedes escribirnos lo que necesites."
-                aria-label="Mensaje"
-                className="w-full bg-transparent border border-border rounded-xl focus:border-gold outline-none p-3 text-base placeholder:text-muted-foreground/60 resize-none"
               />
             </Field>
 

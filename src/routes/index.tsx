@@ -110,12 +110,12 @@ function Landing() {
     <main className="overflow-x-hidden">
       <Hero />
       <Identificacion />
-      <ComoFunciona />
       <Eligibilidad />
+      <ComoFunciona />
       <SocialProof />
-      <SeoContent />
       <Contacto />
       <FAQ />
+      <SeoContent />
       <StickyCTA />
     </main>
   );
@@ -297,7 +297,7 @@ function Eligibilidad() {
             Descubre en 60 segundos si puedes acogerte a la ley
           </h2>
           <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-            5 preguntas. Respuestas confidenciales. Sin formularios ni emails.
+            5 preguntas anónimas. Al terminar, si encajas, te llamamos gratis en 24h.
           </p>
         </Reveal>
         <Reveal delay={0.2}>
