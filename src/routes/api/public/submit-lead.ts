@@ -138,6 +138,38 @@ export const Route = createFileRoute("/api/public/submit-lead")({
           console.error("[submit-lead] notify-lead invocation error:", e);
         }
 
+        // Fire-and-forget: replicate the lead into the external Supabase project
+        try {
+          const EXT_URL = "https://jyzotpamjmffvjrxfjwf.supabase.co";
+          const EXT_KEY = process.env.SERVICE_ROLE_KEY;
+          if (EXT_KEY) {
+            const extRes = await fetch(`${EXT_URL}/rest/v1/leads`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                apikey: EXT_KEY,
+                Authorization: `Bearer ${EXT_KEY}`,
+                Prefer: "return=minimal",
+              },
+              body: JSON.stringify({
+                nombre: lead.nombre,
+                situacion: lead.situacion,
+                deuda_aproximada: lead.deuda_aproximada,
+                contacto_tipo: lead.contacto_tipo,
+                contacto_valor: lead.contacto_valor,
+                mensaje: lead.mensaje ?? null,
+              }),
+            });
+            if (!extRes.ok) {
+              console.error("[submit-lead] external supabase insert failed:", extRes.status, await extRes.text());
+            }
+          } else {
+            console.warn("[submit-lead] SERVICE_ROLE_KEY not set; skipping external supabase insert");
+          }
+        } catch (e) {
+          console.error("[submit-lead] external supabase insert error:", e);
+        }
+
         // Fire-and-forget Make webhook
         try {
           await fetch("https://hook.eu1.make.com/s1xr4wtekgngfmq7dyr3wls27wkx1mhx", {
