@@ -84,17 +84,19 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
         mensaje: null,
       };
 
-      const { error: insertError } = await supabase.from("leads").insert(leadData);
-      if (insertError) throw new Error(insertError.message);
+      const res = await fetch("/api/public/submit-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(leadData),
+      });
 
-      try {
-        await fetch("https://hook.eu1.make.com/s1xr4wtekgngfmq7dyr3wls27wkx1mhx", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...leadData, created_at: new Date().toISOString() }),
-        });
-      } catch (whErr) {
-        console.error("[ContactForm] Make webhook error:", whErr);
+      if (res.status === 429) {
+        const { error: msg } = await res.json().catch(() => ({ error: "" }));
+        throw new Error(msg || "Has enviado demasiadas solicitudes. Inténtalo más tarde.");
+      }
+      if (!res.ok) {
+        const { error: msg } = await res.json().catch(() => ({ error: "" }));
+        throw new Error(msg || `Error ${res.status}`);
       }
 
       recordSubmit();
