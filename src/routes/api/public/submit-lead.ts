@@ -38,7 +38,8 @@ export const Route = createFileRoute("/api/public/submit-lead")({
       POST: async ({ request }) => {
         const ip = getClientIp(request);
 
-        // Rate limit check
+        /*
+        // Rate limit check — DESACTIVADO TEMPORALMENTE
         const sinceIso = new Date(Date.now() - WINDOW_MS).toISOString();
         const { count, error: countErr } = await supabaseAdmin
           .from("rate_limits")
@@ -63,6 +64,7 @@ export const Route = createFileRoute("/api/public/submit-lead")({
             { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } },
           );
         }
+        */
 
         let payload: unknown;
         try {
@@ -105,13 +107,15 @@ export const Route = createFileRoute("/api/public/submit-lead")({
           );
         }
 
-        // Record the rate-limit hit (fire-and-forget)
+        /*
+        // Record the rate-limit hit — DESACTIVADO TEMPORALMENTE
         supabaseAdmin
           .from("rate_limits")
           .insert({ ip, endpoint: "leads" })
           .then(({ error }) => {
             if (error) console.error("[submit-lead] rate insert error:", error);
           });
+        */
 
         // Invoke notify-lead edge function (email + SMS) on the external Supabase project
         try {
