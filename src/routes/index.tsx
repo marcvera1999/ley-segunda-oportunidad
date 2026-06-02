@@ -221,7 +221,7 @@ function Identificacion() {
           {items.map((it, i) => (
             <Reveal key={it.t} delay={i * 0.08}>
               <div className="h-full rounded-2xl bg-card border border-[color:var(--border-warm)] p-6 md:hover:shadow-[var(--shadow-soft)] md:hover:-translate-y-1 transition-all duration-300">
-                <div className="text-[40px] leading-none mb-3">{it.e}</div>
+                <div className="text-[40px] leading-none mb-3 text-center">{it.e}</div>
                 <p className="font-semibold text-[18px] text-primary leading-snug">{it.t}</p>
                 <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{it.c}</p>
               </div>
@@ -255,8 +255,8 @@ function Contacto() {
 function ComoFunciona() {
   const steps = [
     { Icon: Phone, t: "Nos cuentas tu caso", d: "Una llamada confidencial. Sin papeles, sin compromisos." },
-    { Icon: Search, t: "Lo analizamos gratis", d: "Nuestros abogados estudian tu viabilidad en 24–48 horas." },
-    { Icon: FileText, t: "Presentamos el expediente", d: "Nos encargamos de todo ante los Juzgados de Barcelona." },
+    { Icon: Search, t: "Lo analizamos juntos\n", d: "Nuestros abogados estudian tu viabilidad en la misma llamada." },
+    { Icon: FileText, t: "Presentamos el expediente", d: "Nos encargamos de todo ante los Juzgados" },
     { Icon: Sunrise, t: "Tus deudas se cancelan", d: "Resolución judicial firme. Empiezas de cero." },
   ];
   return (
@@ -284,7 +284,7 @@ function ComoFunciona() {
                   </span>
                 </div>
                 <h3 className="font-display text-xl text-primary mb-2">{t}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{d}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed py-0">{d}</p>
               </div>
             </Reveal>
           ))}
