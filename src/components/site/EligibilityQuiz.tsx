@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
-import { ContactForm } from "@/components/site/ContactForm";
 
 const QUESTIONS = [
   "¿Tienes deudas que no puedes pagar?",
@@ -16,11 +15,9 @@ export function EligibilityQuiz() {
   const [answers, setAnswers] = useState<boolean[]>([]);
 
   const answer = (yes: boolean) => {
-    const next = [...answers, yes];
-    setAnswers(next);
+    setAnswers((a) => [...a, yes]);
     setStep((s) => s + 1);
   };
-
   const reset = () => {
     setAnswers([]);
     setStep(0);
@@ -28,20 +25,28 @@ export function EligibilityQuiz() {
 
   const done = step >= QUESTIONS.length;
   const allYes = done && answers.every(Boolean);
+  const progress = (Math.min(step, QUESTIONS.length) / QUESTIONS.length) * 100;
 
   return (
-    <div className="rounded-3xl bg-card border border-border shadow-[var(--shadow-warm)] p-7 md:p-10 max-w-2xl mx-auto">
-      {/* progress dots */}
-      <div className="flex justify-center gap-2 mb-7">
-        {QUESTIONS.map((_, i) => (
-          <span
-            key={i}
-            className={`h-1.5 rounded-full transition-all duration-500 ${
-              i < step ? "w-8 bg-gold" : i === step ? "w-8 bg-primary/60" : "w-4 bg-border"
-            }`}
-          />
-        ))}
-      </div>
+    <div className="rounded-3xl bg-card border-[1.5px] border-gold p-6 md:p-10 shadow-[var(--shadow-form)] max-w-[600px] mx-auto">
+      {!done && (
+        <>
+          <div className="flex justify-between items-center text-xs text-muted-foreground mb-2">
+            <span className="uppercase tracking-wider font-semibold">
+              Pregunta {step + 1} de {QUESTIONS.length}
+            </span>
+            <span>{Math.round(progress)}%</span>
+          </div>
+          <div className="h-1.5 w-full rounded-full bg-[color:var(--border-warm)] overflow-hidden mb-8">
+            <motion.div
+              className="h-full bg-gold rounded-full"
+              initial={false}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.4 }}
+            />
+          </div>
+        </>
+      )}
 
       <AnimatePresence mode="wait">
         {!done ? (
@@ -50,27 +55,24 @@ export function EligibilityQuiz() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.35 }}
+            transition={{ duration: 0.25 }}
             className="text-center"
           >
-            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-3">
-              Pregunta {step + 1} de {QUESTIONS.length}
-            </p>
-            <h3 className="font-display text-2xl md:text-3xl text-primary mb-8">
+            <h3 className="font-display text-2xl md:text-[28px] text-primary mb-8 leading-snug">
               {QUESTIONS[step]}
             </h3>
-            <div className="flex gap-3 justify-center">
+            <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => answer(true)}
-                className="inline-flex items-center gap-2 rounded-full bg-sage text-sage-foreground px-7 py-3 font-medium hover:opacity-90 transition"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-sage text-sage-foreground px-6 min-h-[52px] font-semibold hover:opacity-90 transition"
               >
-                <Check className="h-4 w-4" /> Sí
+                <Check className="h-5 w-5" /> Sí
               </button>
               <button
                 onClick={() => answer(false)}
-                className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-7 py-3 font-medium hover:bg-secondary/70 transition border border-border"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-secondary text-primary/70 px-6 min-h-[52px] font-medium hover:bg-secondary/70 transition border border-[color:var(--border-warm)]"
               >
-                <X className="h-4 w-4" /> No
+                <X className="h-5 w-5" /> No
               </button>
             </div>
           </motion.div>
@@ -80,33 +82,39 @@ export function EligibilityQuiz() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
-            className="text-center"
+            className={`text-center rounded-2xl p-6 ${
+              allYes ? "bg-[color:var(--sage-light)]" : "bg-secondary"
+            }`}
           >
-            <div className={`inline-flex h-14 w-14 items-center justify-center rounded-full mb-4 ${allYes ? "bg-sage text-sage-foreground" : "bg-gold text-gold-foreground"}`}>
+            <div
+              className={`inline-flex h-14 w-14 items-center justify-center rounded-full mb-4 ${
+                allYes ? "bg-sage text-sage-foreground" : "bg-gold text-gold-foreground"
+              }`}
+            >
               {allYes ? <Check className="h-7 w-7" /> : <span className="font-display text-xl">!</span>}
             </div>
             <h3 className="font-display text-2xl md:text-3xl text-primary mb-3">
-              {allYes
-                ? "Parece que cumples los requisitos"
-                : "Puede que existan otras vías para ti"}
+              {allYes ? "✓ Probablemente cumples los requisitos" : "Puede que existan otras vías para ti"}
             </h3>
-            <p className="text-muted-foreground mb-7 max-w-md mx-auto">
+            <p className="text-primary/75 mb-6 max-w-md mx-auto">
               {allYes
-                ? "Déjanos tu teléfono y un abogado revisará tu caso sin coste y te llamará en menos de 24h."
-                : "Cada situación es única. Déjanos tu teléfono y lo estudiamos juntos, sin compromiso."}
+                ? "Un abogado puede revisar tu caso sin coste y llamarte hoy mismo."
+                : "Cada situación es única. Estudiamos tu caso, sin compromiso."}
             </p>
-
-            {/* Cierre en caliente: el formulario aparece aquí mismo */}
-            <div className="text-left mt-2 pt-6 border-t border-border">
-              <ContactForm bare />
-            </div>
-
-            <button
-              onClick={reset}
-              className="mt-6 text-sm text-muted-foreground hover:text-primary underline underline-offset-4"
+            <a
+              href="#contacto"
+              className="inline-flex items-center justify-center rounded-full bg-gold text-gold-foreground px-7 min-h-[52px] font-semibold hover:opacity-95 transition"
             >
-              Repetir el test
-            </button>
+              Habla con un abogado ahora →
+            </a>
+            <div>
+              <button
+                onClick={reset}
+                className="mt-5 text-sm text-muted-foreground hover:text-primary underline underline-offset-4"
+              >
+                Repetir el test
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
