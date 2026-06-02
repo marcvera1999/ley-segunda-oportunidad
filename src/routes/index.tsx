@@ -255,7 +255,7 @@ function Contacto() {
 function ComoFunciona() {
   const steps = [
     { Icon: Phone, t: "Nos cuentas tu caso", d: "Una llamada confidencial. Sin papeles, sin compromisos." },
-    { Icon: Search, t: "Lo analizamos juntos\n", d: "Nuestros abogados estudian tu viabilidad en la misma llamada." },
+    { Icon: Search, t: "Lo analizamos juntos", d: "Nuestros abogados estudian tu viabilidad en la misma llamada." },
     { Icon: FileText, t: "Presentamos el expediente", d: "Nos encargamos de todo ante los Juzgados" },
     { Icon: Sunrise, t: "Tus deudas se cancelan", d: "Resolución judicial firme. Empiezas de cero." },
   ];
@@ -283,7 +283,7 @@ function ComoFunciona() {
                     {i + 1}
                   </span>
                 </div>
-                <h3 className="font-display text-xl text-primary mb-2">{t}</h3>
+                <h3 className="font-display text-xl text-primary mb-2 min-h-[3.5rem] flex items-center justify-center">{t}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed py-0">{d}</p>
               </div>
             </Reveal>
@@ -340,13 +340,6 @@ function SocialProof() {
           ))}
         </div>
 
-        <Reveal delay={0.3}>
-          <div className="mt-12 rounded-2xl bg-primary text-primary-foreground p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            <div><p className="font-display text-3xl text-gold">+500</p><p className="text-sm text-primary-foreground/70 mt-1">procedimientos</p></div>
-            <div><p className="font-display text-3xl text-gold">98%</p><p className="text-sm text-primary-foreground/70 mt-1">tasa de éxito</p></div>
-            <div><p className="font-display text-3xl text-gold">2015</p><p className="text-sm text-primary-foreground/70 mt-1">activos desde</p></div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

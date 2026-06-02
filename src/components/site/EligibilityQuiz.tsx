@@ -4,7 +4,6 @@ import { Check, X } from "lucide-react";
 
 const QUESTIONS = [
   "¿Tienes deudas que no puedes pagar?",
-  "¿Son superiores a 5.000€ en total?",
   "¿Eres persona física o autónomo (no empresa S.L.)?",
   "¿No has sido condenado por delitos económicos en los últimos 10 años?",
   "¿Estás actuando de buena fe (no has ocultado bienes)?",
