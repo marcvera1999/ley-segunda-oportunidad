@@ -1,2 +1,10 @@
+# Si cambias de dominio, actualiza también la URL del Sitemap de abajo.
 User-agent: *
 Allow: /
+
+# No indexar utilidades / páginas legales finas
+Disallow: /aviso-legal
+Disallow: /politica-privacidad
+Disallow: /politica-cookies
+
+Sitemap: https://cancelatudeuda.es/sitemap.xml

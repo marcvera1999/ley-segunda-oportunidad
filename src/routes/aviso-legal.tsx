@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/aviso-legal")({
-  head: () => ({
-    meta: [{ title: "Aviso Legal | Horizonte Legal" }, { name: "description", content: "Aviso legal de Horizonte Legal." }],
-    links: [{ rel: "canonical", href: "/aviso-legal" }],
-  }),
+  head: () => seo({ title: "Aviso Legal | Horizonte Legal", description: "Aviso legal de Horizonte Legal.", path: "/aviso-legal", noindex: true }),
   component: () => (
     <main className="pt-32 pb-24 max-w-3xl mx-auto px-5 md:px-8">
       <h1 className="font-display text-4xl text-primary">Aviso Legal</h1>

@@ -1,17 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
 
 const TITLE = "Preguntas frecuentes Ley Segunda Oportunidad Barcelona | Horizonte Legal";
 const DESC = "Resolvemos tus dudas sobre la Ley de la Segunda Oportunidad: costes, plazos, vivienda, Hacienda, autónomos y mucho más.";
 
 export const Route = createFileRoute("/preguntas-frecuentes")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESC },
-      { property: "og:url", content: "/preguntas-frecuentes" },
-    ],
-    links: [{ rel: "canonical", href: "/preguntas-frecuentes" }],
-  }),
+  head: () => seo({ title: TITLE, description: DESC, path: "/preguntas-frecuentes" }),
   component: Page,
 });
 

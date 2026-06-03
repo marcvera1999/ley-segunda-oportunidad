@@ -1,19 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
 
 const TITLE = "Ley de la Segunda Oportunidad en Barcelona | Horizonte Legal";
 const DESC = "Guía completa de la Ley de la Segunda Oportunidad en Barcelona. Cancela tus deudas legalmente con abogados especialistas. Consulta gratuita.";
 
 export const Route = createFileRoute("/ley-segunda-oportunidad-barcelona")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESC },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESC },
-      { property: "og:url", content: "/ley-segunda-oportunidad-barcelona" },
-    ],
-    links: [{ rel: "canonical", href: "/ley-segunda-oportunidad-barcelona" }],
-  }),
+  head: () => seo({ title: TITLE, description: DESC, path: "/ley-segunda-oportunidad-barcelona" }),
   component: Page,
 });
 

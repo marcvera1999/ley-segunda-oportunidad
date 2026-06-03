@@ -1,19 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
 
 const TITLE = "Cancelar deudas con Hacienda en Barcelona | Horizonte Legal";
 const DESC = "Cancela hasta 10.000€ de deuda con Hacienda y otros 10.000€ con la Seguridad Social mediante la Ley de la Segunda Oportunidad en Barcelona.";
 
 export const Route = createFileRoute("/cancelar-deudas-hacienda-barcelona")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESC },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESC },
-      { property: "og:url", content: "/cancelar-deudas-hacienda-barcelona" },
-    ],
-    links: [{ rel: "canonical", href: "/cancelar-deudas-hacienda-barcelona" }],
-  }),
+  head: () => seo({ title: TITLE, description: DESC, path: "/cancelar-deudas-hacienda-barcelona" }),
   component: Page,
 });
 

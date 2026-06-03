@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE } from "@/lib/seo";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { CookieBanner } from "@/components/site/CookieBanner";
@@ -73,18 +74,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#FAF8F4" },
-      { property: "og:site_name", content: "Horizonte Legal" },
-      { property: "og:locale", content: "es_ES" },
-      { title: "Ley Segunda Oportunidad" },
-      { property: "og:title", content: "Ley Segunda Oportunidad" },
-      { name: "twitter:title", content: "Ley Segunda Oportunidad" },
-      { name: "description", content: "Horizonte Legal offers a debt cancellation solution for individuals and autónomos in Barcelona." },
-      { property: "og:description", content: "Horizonte Legal offers a debt cancellation solution for individuals and autónomos in Barcelona." },
-      { name: "twitter:description", content: "Horizonte Legal offers a debt cancellation solution for individuals and autónomos in Barcelona." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/69d4191a-0500-45f3-b394-e0dba18b8bce/id-preview-0bf2c418--5bb7d30b-6a3c-43d1-9bb2-5d18317907c8.lovable.app-1780332332930.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/69d4191a-0500-45f3-b394-e0dba18b8bce/id-preview-0bf2c418--5bb7d30b-6a3c-43d1-9bb2-5d18317907c8.lovable.app-1780332332930.png" },
+      { property: "og:site_name", content: SITE.name },
+      { property: "og:locale", content: SITE.locale },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:type", content: "website" },
+      // Fallback: cada ruta sobrescribe título/descripción/OG con seo().
+      { title: SITE.defaultTitle },
+      { name: "description", content: SITE.defaultDescription },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -104,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="es">
+    <html lang={SITE.lang}>
       <head>
         <HeadContent />
       </head>

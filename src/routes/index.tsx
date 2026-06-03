@@ -9,6 +9,7 @@ import { StickyCTA } from "@/components/site/StickyCTA";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { ExitIntent } from "@/components/site/ExitIntent";
 import { TrustBar } from "@/components/site/TrustBar";
+import { seo, SITE, localBusinessJsonLd } from "@/lib/seo";
 
 const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Horizonte Legal";
 const DESC =
@@ -49,24 +50,21 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["LegalService", "LocalBusiness"],
-      name: "Horizonte Legal",
-      description: DESC,
-      url: "/",
-      areaServed: { "@type": "City", name: "Barcelona" },
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Carrer de Pau Claris, 100",
-        addressLocality: "Barcelona",
-        postalCode: "08009",
-        addressCountry: "ES",
-      },
-      telephone: "+34900000000",
-      priceRange: "€€",
-      aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "127" },
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      inLanguage: SITE.lang,
+      publisher: { "@id": `${SITE.url}/#business` },
     },
+    localBusinessJsonLd({
+      // NOTA: aggregateRating debe reflejar reseñas reales y verificables.
+      // Si no las hay, elimínalo para no incumplir las directrices de Google.
+      aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "127" },
+    }),
     {
       "@type": "FAQPage",
+      "@id": `${SITE.url}/#faq`,
       mainEntity: faqs.map((f) => ({
         "@type": "Question",
         name: f.q,
@@ -77,22 +75,14 @@ const jsonLd = {
 };
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESC },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESC },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { property: "og:locale", content: "es_ES" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: TITLE },
-      { name: "twitter:description", content: DESC },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }],
-  }),
+  head: () => {
+    const { meta, links } = seo({ title: TITLE, description: DESC, path: "/" });
+    return {
+      meta,
+      links,
+      scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }],
+    };
+  },
   component: Landing,
 });
 

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
 
 const TITLE = "Blog | Horizonte Legal — Ley Segunda Oportunidad Barcelona";
 const DESC = "Artículos sobre la Ley de la Segunda Oportunidad, casos prácticos y consejos para personas con deudas en Barcelona.";
@@ -10,15 +11,7 @@ const posts = [
 ];
 
 export const Route = createFileRoute("/blog")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESC },
-      { property: "og:title", content: TITLE },
-      { property: "og:url", content: "/blog" },
-    ],
-    links: [{ rel: "canonical", href: "/blog" }],
-  }),
+  head: () => seo({ title: TITLE, description: DESC, path: "/blog" }),
   component: Page,
 });
 

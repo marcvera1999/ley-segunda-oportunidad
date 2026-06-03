@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/politica-privacidad")({
-  head: () => ({
-    meta: [{ title: "Política de Privacidad | Horizonte Legal" }, { name: "description", content: "Política de privacidad de Horizonte Legal." }],
-    links: [{ rel: "canonical", href: "/politica-privacidad" }],
-  }),
+  head: () => seo({ title: "Política de Privacidad | Horizonte Legal", description: "Política de privacidad de Horizonte Legal.", path: "/politica-privacidad", noindex: true }),
   component: () => (
     <main className="pt-32 pb-24 max-w-3xl mx-auto px-5 md:px-8">
       <h1 className="font-display text-4xl text-primary">Política de Privacidad</h1>

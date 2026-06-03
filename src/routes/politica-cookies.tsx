@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/politica-cookies")({
-  head: () => ({
-    meta: [{ title: "Política de Cookies | Horizonte Legal" }, { name: "description", content: "Política de cookies de Horizonte Legal." }],
-    links: [{ rel: "canonical", href: "/politica-cookies" }],
-  }),
+  head: () => seo({ title: "Política de Cookies | Horizonte Legal", description: "Política de cookies de Horizonte Legal.", path: "/politica-cookies", noindex: true }),
   component: () => (
     <main className="pt-32 pb-24 max-w-3xl mx-auto px-5 md:px-8">
       <h1 className="font-display text-4xl text-primary">Política de Cookies</h1>
