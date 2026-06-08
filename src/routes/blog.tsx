@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { seo } from "@/lib/seo";
 
-const TITLE = "Blog | Horizonte Legal — Ley Segunda Oportunidad Barcelona";
+const TITLE = "Blog | Vida Sin Deudas — Ley Segunda Oportunidad Barcelona";
 const DESC = "Artículos sobre la Ley de la Segunda Oportunidad, casos prácticos y consejos para personas con deudas en Barcelona.";
 
 const posts = [

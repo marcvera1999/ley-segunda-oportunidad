@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { seo } from "@/lib/seo";
 
-const TITLE = "Ley de la Segunda Oportunidad en Barcelona | Horizonte Legal";
+const TITLE = "Ley de la Segunda Oportunidad en Barcelona | Vida Sin Deudas";
 const DESC = "Guía completa de la Ley de la Segunda Oportunidad en Barcelona. Cancela tus deudas legalmente con abogados especialistas. Consulta gratuita.";
 
 export const Route = createFileRoute("/ley-segunda-oportunidad-barcelona")({
@@ -18,7 +18,7 @@ function Page() {
       </h1>
       <div className="mt-8 space-y-5 text-[17px] text-primary/85 leading-relaxed">
         <p>La Ley de la Segunda Oportunidad (Ley 25/2015, reformada en 2022) es la herramienta legal que permite a personas físicas y autónomos en Barcelona cancelar sus deudas y empezar de nuevo.</p>
-        <p>En Horizonte Legal acompañamos a particulares y autónomos en todo el procedimiento ante los Juzgados Mercantiles de Barcelona, desde el análisis inicial de viabilidad hasta la resolución firme de cancelación de deudas (EPI).</p>
+        <p>En Vida Sin Deudas acompañamos a particulares y autónomos en todo el procedimiento ante los Juzgados Mercantiles de Barcelona, desde el análisis inicial de viabilidad hasta la resolución firme de cancelación de deudas (EPI).</p>
         <p>Cancelar deudas en Barcelona es posible: préstamos personales, tarjetas, microcréditos, deudas de la actividad empresarial y, dentro de los límites legales, también deudas con Hacienda y la Seguridad Social.</p>
       </div>
       <div className="mt-10">

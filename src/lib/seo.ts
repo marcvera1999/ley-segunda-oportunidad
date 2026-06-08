@@ -9,11 +9,11 @@
 
 export const SITE = {
   /** Dominio sin barra final. CAMBIAR AQUÍ si cambia el dominio. */
-  url: "https://cancelatudeuda.es",
+  url: "https://vidasindeudas.es",
 
   /** Marca / nombre del negocio. */
-  name: "Horizonte Legal",
-  legalName: "Horizonte Legal Abogados",
+  name: "Vida Sin Deudas",
+  legalName: "Vida Sin Deudas Abogados",
 
   locale: "es_ES",
   lang: "es-ES",
@@ -23,7 +23,7 @@ export const SITE = {
 
   /** Datos de contacto / negocio (PLACEHOLDER — sustituir por los reales). */
   phone: "+34000000000",
-  email: "info@cancelatudeuda.es",
+  email: "vidasindeudas@vidasindeudas.es",
   address: {
     street: "Carrer de Pau Claris, 100",
     city: "Barcelona",
@@ -36,7 +36,7 @@ export const SITE = {
   /** Perfiles sociales (rellenar cuando existan). Se usan en sameAs. */
   social: [] as string[],
 
-  defaultTitle: "Cancela tus deudas con la Ley de la Segunda Oportunidad | Horizonte Legal",
+  defaultTitle: "Cancela tus deudas con la Ley de la Segunda Oportunidad | Vida Sin Deudas",
   defaultDescription:
     "Cancela tus deudas legalmente con la Ley de la Segunda Oportunidad. Abogados especialistas en Barcelona. Consulta gratuita y sin compromiso.",
 } as const;
