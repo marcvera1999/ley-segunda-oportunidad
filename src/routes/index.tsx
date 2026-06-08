@@ -38,7 +38,7 @@ const faqs = [
   },
   {
     q: "¿Apareceré en ASNEF o ficheros de morosos durante el proceso?",
-    a: "Durante el procedimiento puedes seguir apareciendo en ficheros como ASNEF o RAI. Sin embargo, una vez obtenida la cancelación definitiva de tus deudas (EPI), tienes derecho a solicitar la baja de estos registros. Te acompañamos en ese proceso para que recuperes tu reputación financiera lo antes posible.",
+    a: "Durante el procedimiento puedes seguir apareciendo en ficheros como ASNEF o RAI. Una vez obtenida la cancelación definitiva de tus deudas (EPI), tus deudas se eliminan directamente y se solicita la baja de estos registros para que recuperes tu reputación financiera lo antes posible.",
   },
   {
     q: "¿Funciona si tengo deudas en varias entidades bancarias?",
@@ -158,9 +158,18 @@ function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-7 text-[18px] md:text-[20px] text-muted-foreground max-w-[520px] mx-auto leading-relaxed"
+          className="mt-7 text-[18px] md:text-[20px] text-muted-foreground max-w-[560px] mx-auto leading-relaxed"
         >
-          Miles de personas en Barcelona ya lo han hecho. La Ley de la Segunda Oportunidad existe para ti.
+          <strong className="text-primary font-semibold">Cancela todas tus deudas</strong> legalmente.
+          Miles de personas en Barcelona ya lo han hecho.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.75, duration: 0.6 }}
+          className="mt-3 text-sm md:text-[15px] text-primary/80"
+        >
+          📍 Te atendemos en <span className="font-semibold">Paseo de Gracia 120, 2º Derecha · Barcelona</span>
         </motion.p>
 
         <motion.div
@@ -197,6 +206,7 @@ function Identificacion() {
     { e: "🏠", t: "Tengo miedo de perder mi casa o que me embarguen", c: "El embargo puede detenerse. Existe un proceso legal para esto." },
     { e: "🧾", t: "Mi negocio cerró y me quedé con las deudas", c: "Los autónomos también tienen derecho a empezar de cero." },
     { e: "🤝", t: "Avalé a alguien y ahora la deuda es mía", c: "La ley protege también a los avalistas. Podemos ayudarte." },
+    { e: "📵", t: "Estoy cansado de las llamadas del banco y de los recobros", c: "Cuando inicias el proceso, los acreedores deben dejar de llamarte." },
   ];
   return (
     <section className="py-32 md:py-44">
@@ -279,11 +289,6 @@ function ComoFunciona() {
             </Reveal>
           ))}
         </div>
-        <Reveal delay={0.4}>
-          <p className="text-center mt-14 text-sm text-muted-foreground">
-            El proceso completo dura entre 3 y 18 meses según el caso.
-          </p>
-        </Reveal>
       </div>
     </section>
   );
