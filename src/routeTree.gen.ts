@@ -14,6 +14,7 @@ import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frec
 import { Route as PoliticaPrivacidadRouteImport } from './routes/politica-privacidad'
 import { Route as PoliticaCookiesRouteImport } from './routes/politica-cookies'
 import { Route as LeySegundaOportunidadBarcelonaRouteImport } from './routes/ley-segunda-oportunidad-barcelona'
+import { Route as ConsultaGratuitaRouteImport } from './routes/consulta-gratuita'
 import { Route as CancelarDeudasHaciendaBarcelonaRouteImport } from './routes/cancelar-deudas-hacienda-barcelona'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
@@ -47,6 +48,11 @@ const LeySegundaOportunidadBarcelonaRoute =
     path: '/ley-segunda-oportunidad-barcelona',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ConsultaGratuitaRoute = ConsultaGratuitaRouteImport.update({
+  id: '/consulta-gratuita',
+  path: '/consulta-gratuita',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CancelarDeudasHaciendaBarcelonaRoute =
   CancelarDeudasHaciendaBarcelonaRouteImport.update({
     id: '/cancelar-deudas-hacienda-barcelona',
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/aviso-legal': typeof AvisoLegalRoute
   '/blog': typeof BlogRoute
   '/cancelar-deudas-hacienda-barcelona': typeof CancelarDeudasHaciendaBarcelonaRoute
+  '/consulta-gratuita': typeof ConsultaGratuitaRoute
   '/ley-segunda-oportunidad-barcelona': typeof LeySegundaOportunidadBarcelonaRoute
   '/politica-cookies': typeof PoliticaCookiesRoute
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/aviso-legal': typeof AvisoLegalRoute
   '/blog': typeof BlogRoute
   '/cancelar-deudas-hacienda-barcelona': typeof CancelarDeudasHaciendaBarcelonaRoute
+  '/consulta-gratuita': typeof ConsultaGratuitaRoute
   '/ley-segunda-oportunidad-barcelona': typeof LeySegundaOportunidadBarcelonaRoute
   '/politica-cookies': typeof PoliticaCookiesRoute
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/aviso-legal': typeof AvisoLegalRoute
   '/blog': typeof BlogRoute
   '/cancelar-deudas-hacienda-barcelona': typeof CancelarDeudasHaciendaBarcelonaRoute
+  '/consulta-gratuita': typeof ConsultaGratuitaRoute
   '/ley-segunda-oportunidad-barcelona': typeof LeySegundaOportunidadBarcelonaRoute
   '/politica-cookies': typeof PoliticaCookiesRoute
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/blog'
     | '/cancelar-deudas-hacienda-barcelona'
+    | '/consulta-gratuita'
     | '/ley-segunda-oportunidad-barcelona'
     | '/politica-cookies'
     | '/politica-privacidad'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/blog'
     | '/cancelar-deudas-hacienda-barcelona'
+    | '/consulta-gratuita'
     | '/ley-segunda-oportunidad-barcelona'
     | '/politica-cookies'
     | '/politica-privacidad'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/blog'
     | '/cancelar-deudas-hacienda-barcelona'
+    | '/consulta-gratuita'
     | '/ley-segunda-oportunidad-barcelona'
     | '/politica-cookies'
     | '/politica-privacidad'
@@ -168,6 +180,7 @@ export interface RootRouteChildren {
   AvisoLegalRoute: typeof AvisoLegalRoute
   BlogRoute: typeof BlogRoute
   CancelarDeudasHaciendaBarcelonaRoute: typeof CancelarDeudasHaciendaBarcelonaRoute
+  ConsultaGratuitaRoute: typeof ConsultaGratuitaRoute
   LeySegundaOportunidadBarcelonaRoute: typeof LeySegundaOportunidadBarcelonaRoute
   PoliticaCookiesRoute: typeof PoliticaCookiesRoute
   PoliticaPrivacidadRoute: typeof PoliticaPrivacidadRoute
@@ -211,6 +224,13 @@ declare module '@tanstack/react-router' {
       path: '/ley-segunda-oportunidad-barcelona'
       fullPath: '/ley-segunda-oportunidad-barcelona'
       preLoaderRoute: typeof LeySegundaOportunidadBarcelonaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consulta-gratuita': {
+      id: '/consulta-gratuita'
+      path: '/consulta-gratuita'
+      fullPath: '/consulta-gratuita'
+      preLoaderRoute: typeof ConsultaGratuitaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cancelar-deudas-hacienda-barcelona': {
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   AvisoLegalRoute: AvisoLegalRoute,
   BlogRoute: BlogRoute,
   CancelarDeudasHaciendaBarcelonaRoute: CancelarDeudasHaciendaBarcelonaRoute,
+  ConsultaGratuitaRoute: ConsultaGratuitaRoute,
   LeySegundaOportunidadBarcelonaRoute: LeySegundaOportunidadBarcelonaRoute,
   PoliticaCookiesRoute: PoliticaCookiesRoute,
   PoliticaPrivacidadRoute: PoliticaPrivacidadRoute,
@@ -275,3 +296,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

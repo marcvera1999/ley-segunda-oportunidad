@@ -136,6 +136,22 @@ export function localBusinessJsonLd(extra?: Record<string, unknown>) {
       latitude: SITE.geo.lat,
       longitude: SITE.geo.lng,
     },
+    // Horario (ajusta al real del despacho). Ayuda a los rich snippets.
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "19:00",
+      },
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: SITE.phone,
+      contactType: "customer service",
+      areaServed: "ES",
+      availableLanguage: ["es", "ca"],
+    },
     ...(SITE.social.length ? { sameAs: SITE.social } : {}),
     ...extra,
   };

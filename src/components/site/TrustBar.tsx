@@ -1,30 +1,43 @@
 import { useEffect, useRef, useState } from "react";
 
-const ITEMS = [
-  { value: 500, prefix: "+", label: "casos" },
-  { value: 98, suffix: "%", label: "éxito" },
-  { value: 2015, label: "Desde", asIs: true },
-  { value: 0, label: "ICAB Colegiados", text: "ICAB" },
-];
-
-function CountUp({ to, prefix = "", suffix = "", asIs = false }: { to: number; prefix?: string; suffix?: string; asIs?: boolean }) {
-  const [n, setN] = useState(0);
+function CountUp({
+  to,
+  prefix = "",
+  suffix = "",
+  asIs = false,
+}: {
+  to: number;
+  prefix?: string;
+  suffix?: string;
+  asIs?: boolean;
+}) {
+  // IMPORTANTE (SEO): el valor inicial es el FINAL, así el HTML renderizado en
+  // el servidor (y lo que ve Google o un usuario sin JS) ya muestra +500 / 98%,
+  // no 0. La animación solo arranca en cliente, al entrar en pantalla.
+  const [n, setN] = useState(to);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (asIs || !ref.current) return;
+
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return; // sin animación: se queda en el valor final
+
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting && !started.current) {
             started.current = true;
+            setN(0); // reinicia justo al entrar en vista para animar 0 -> to
             const duration = 1500;
             const start = performance.now();
             const tick = (now: number) => {
               const t = Math.min(1, (now - start) / duration);
               const eased = 1 - Math.pow(1 - t, 3);
-              setN(asIs ? to : Math.round(to * eased));
+              setN(Math.round(to * eased));
               if (t < 1) requestAnimationFrame(tick);
             };
             requestAnimationFrame(tick);
@@ -37,7 +50,13 @@ function CountUp({ to, prefix = "", suffix = "", asIs = false }: { to: number; p
     return () => obs.disconnect();
   }, [to, asIs]);
 
-  return <span ref={ref}>{prefix}{n}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {prefix}
+      {n}
+      {suffix}
+    </span>
+  );
 }
 
 export function TrustBar() {
