@@ -12,7 +12,7 @@ export function CookieBanner() {
     setShow(false);
   };
   return (
-    <div className="fixed top-0 inset-x-0 z-50 bg-primary text-primary-foreground text-sm">
+    <div className="fixed bottom-0 inset-x-0 z-[100] bg-primary text-primary-foreground text-sm border-t border-primary-foreground/15 shadow-[0_-8px_24px_-8px_rgba(0,0,0,0.3)]">
       <div className="max-w-6xl mx-auto px-5 md:px-8 py-3 flex flex-col sm:flex-row items-center gap-3 justify-between">
         <p className="text-primary-foreground/85">
           Usamos cookies para mejorar tu experiencia. Al continuar, aceptas nuestra{" "}
