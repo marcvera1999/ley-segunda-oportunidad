@@ -289,11 +289,6 @@ function ComoFunciona() {
             </Reveal>
           ))}
         </div>
-        <Reveal delay={0.4}>
-          <p className="text-center mt-14 text-sm text-muted-foreground">
-            El proceso completo dura entre 3 y 18 meses según el caso.
-          </p>
-        </Reveal>
       </div>
     </section>
   );
