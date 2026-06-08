@@ -2,13 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lock, Check, Loader2 } from "lucide-react";
 
-const DEUDAS = [
-  "Menos de 10.000€",
-  "10.000€ – 30.000€",
-  "30.000€ – 60.000€",
-  "60.000€ – 100.000€",
-  "Más de 100.000€",
-];
+
 
 // Rate limiting en cliente: máx. envíos por ventana de tiempo (primera barrera;
 // la barrera real va en Supabase, ver migración SQL del proyecto).
@@ -44,11 +38,10 @@ function recordSubmit() {
 }
 
 export function ContactForm({ bare = false }: { bare?: boolean }) {
-  const [deuda, setDeuda] = useState("");
   const [telefono, setTelefono] = useState("");
   const [nombre, setNombre] = useState("");
   const [gdpr, setGdpr] = useState(false);
-  const [website, setWebsite] = useState(""); // honeypot: debe quedar siempre vacío
+  const [website, setWebsite] = useState(""); // honeypot
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,13 +50,12 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
     e.preventDefault();
     setError(null);
 
-    // Honeypot: si un bot rellenó el campo oculto, fingimos éxito y no enviamos.
     if (website) {
       setDone(true);
       return;
     }
 
-    if (!deuda || !telefono || !nombre || !gdpr) {
+    if (!telefono || !nombre || !gdpr) {
       setError("Por favor completa todos los campos.");
       return;
     }
@@ -78,7 +70,7 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
       const leadData = {
         nombre,
         situacion: "Por cualificar en llamada",
-        deuda_aproximada: deuda,
+        deuda_aproximada: null,
         contacto_tipo: "telefono" as const,
         contacto_valor: telefono,
         mensaje: null,
@@ -147,7 +139,7 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
             animate={{ opacity: 1 }}
             className="space-y-6"
           >
-            {/* Honeypot anti-spam: oculto a humanos, los bots lo rellenan */}
+            {/* Honeypot anti-spam */}
             <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden" tabIndex={-1}>
               <label htmlFor="website-hp">No rellenar este campo</label>
               <input
@@ -166,78 +158,39 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
                 <span className="inline-block text-[11px] uppercase tracking-widest text-gold border border-gold/40 rounded-full px-3 py-1 bg-gold/5">
                   Consulta gratuita · Respuesta en menos de 1 hora
                 </span>
-                <h3 className="font-display text-2xl md:text-3xl text-primary">¿Cuánto debes?</h3>
+                <h3 className="font-display text-2xl md:text-3xl text-primary">Te llamamos en menos de 2h</h3>
                 <p className="text-sm text-muted-foreground">
-                  Es el único dato que necesitamos para empezar.
+                  Déjanos tu teléfono y un abogado te llama gratis.
                 </p>
               </div>
             )}
 
-            {/* Field 1: Debt pills */}
+            {/* Phone */}
             <div>
-              <label className="block text-sm font-semibold text-primary mb-3">
-                Importe aproximado de tu deuda
+              <label className="block text-sm font-semibold text-primary mb-2">
+                ¿A qué número te llamamos?
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {DEUDAS.map((d, i) => {
-                  const isLast = i === DEUDAS.length - 1;
-                  const isSel = deuda === d;
-                  return (
-                    <button
-                      key={d}
-                      type="button"
-                      onClick={() => setDeuda(d)}
-                      className={`text-center px-4 py-3.5 rounded-full border-[1.5px] text-sm font-medium transition-all md:hover:scale-[1.02] active:scale-100 ${
-                        isLast ? "sm:col-span-2" : ""
-                      } ${
-                        isSel
-                          ? "bg-gold border-gold text-gold-foreground"
-                          : "bg-transparent border-[color:var(--border-warm)] text-primary hover:border-gold/60"
-                      }`}
-                    >
-                      {d}
-                    </button>
-                  );
-                })}
-              </div>
+              <input
+                type="tel"
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                placeholder="+34 600 000 000"
+                aria-label="Teléfono"
+                maxLength={300}
+                className="w-full bg-background border-[1.5px] border-[color:var(--border-warm)] focus:border-gold outline-none px-4 py-3.5 rounded-2xl text-base placeholder:text-muted-foreground/60"
+              />
+              <p className="text-xs text-muted-foreground mt-1.5">
+                Solo para que un abogado te llame. Nada más.
+              </p>
             </div>
 
-            {/* Field 2: Phone */}
+            {/* Name + GDPR */}
             <AnimatePresence>
-              {deuda && (
+              {telefono.length >= 6 && (
                 <motion.div
                   initial={{ opacity: 0, height: 0, y: -10 }}
                   animate={{ opacity: 1, height: "auto", y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
-                >
-                  <label className="block text-sm font-semibold text-primary mb-2">
-                    ¿A qué número te llamamos?
-                  </label>
-                  <input
-                    type="tel"
-                    value={telefono}
-                    onChange={(e) => setTelefono(e.target.value)}
-                    placeholder="+34 600 000 000"
-                    aria-label="Teléfono"
-                    maxLength={300}
-                    autoFocus
-                    className="w-full bg-background border-[1.5px] border-[color:var(--border-warm)] focus:border-gold outline-none px-4 py-3.5 rounded-2xl text-base placeholder:text-muted-foreground/60"
-                  />
-                  <p className="text-xs text-muted-foreground mt-1.5">
-                    Solo para que un abogado te llame. Nada más.
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Field 3: Name */}
-            <AnimatePresence>
-              {deuda && telefono.length >= 6 && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0, y: -10 }}
-                  animate={{ opacity: 1, height: "auto", y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.05 }}
                   className="overflow-hidden space-y-4"
                 >
                   <div>
@@ -267,7 +220,7 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
                       <a href="/politica-privacidad" className="text-primary underline underline-offset-2">
                         política de privacidad
                       </a>{" "}
-                      y que Horizonte Legal me contacte.
+                      y que Vida Sin Deudas me contacte.
                     </span>
                   </label>
                 </motion.div>
