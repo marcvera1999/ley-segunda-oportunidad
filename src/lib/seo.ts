@@ -22,16 +22,16 @@ export const SITE = {
   ogImage: "/og-cover.jpg",
 
   /** Datos de contacto / negocio (PLACEHOLDER — sustituir por los reales). */
-  phone: "+34000000000",
+  phone: "+34932426252",
   email: "vidasindeudas@vidasindeudas.es",
   address: {
-    street: "Carrer de Pau Claris, 100",
+    street: "Passeig de Gràcia 120, 2º Derecha",
     city: "Barcelona",
     region: "Barcelona",
-    postalCode: "08009",
+    postalCode: "08008",
     country: "ES",
   },
-  geo: { lat: 41.3947, lng: 2.1686 },
+  geo: { lat: 41.3974, lng: 2.1611 },
 
   /** Perfiles sociales (rellenar cuando existan). Se usan en sameAs. */
   social: [] as string[],
