@@ -5,10 +5,8 @@ import { supabaseAdmin } from "@/integrations/supabase/client.server";
 const LeadSchema = z.object({
   nombre: z.string().trim().min(1).max(200),
   situacion: z.string().min(1).max(200),
-  deuda_aproximada: z.string().min(1).max(100).nullable().optional(),
   contacto_tipo: z.enum(["telefono", "whatsapp", "email"]),
   contacto_valor: z.string().trim().min(3).max(300),
-  mensaje: z.string().max(5000).nullable().optional(),
 });
 
 const MAX_PER_HOUR = 3;
@@ -91,10 +89,8 @@ export const Route = createFileRoute("/api/public/submit-lead")({
           .insert({
             nombre: lead.nombre,
             situacion: lead.situacion,
-            deuda_aproximada: lead.deuda_aproximada,
             contacto_tipo: lead.contacto_tipo,
             contacto_valor: lead.contacto_valor,
-            mensaje: lead.mensaje ?? null,
           })
           .select()
           .single();
@@ -163,10 +159,8 @@ export const Route = createFileRoute("/api/public/submit-lead")({
               body: JSON.stringify({
                 nombre: lead.nombre,
                 situacion: lead.situacion,
-                deuda_aproximada: lead.deuda_aproximada,
                 contacto_tipo: lead.contacto_tipo,
                 contacto_valor: lead.contacto_valor,
-                mensaje: lead.mensaje ?? null,
               }),
             });
             if (!extRes.ok) {

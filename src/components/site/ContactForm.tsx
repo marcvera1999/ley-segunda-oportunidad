@@ -70,10 +70,8 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
       const leadData = {
         nombre,
         situacion: "Por cualificar en llamada",
-        deuda_aproximada: null,
         contacto_tipo: "telefono" as const,
         contacto_valor: telefono,
-        mensaje: null,
       };
 
       const res = await fetch("/api/public/submit-lead", {
