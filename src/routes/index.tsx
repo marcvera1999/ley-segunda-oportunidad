@@ -186,14 +186,6 @@ function Hero() {
           </a>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-          className="mt-6 text-xs text-muted-foreground"
-        >
-          ⭐⭐⭐⭐⭐&nbsp; Valorado por +500 familias en Barcelona
-        </motion.p>
       </div>
     </section>
   );

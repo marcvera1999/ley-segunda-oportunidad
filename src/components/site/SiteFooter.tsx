@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="max-w-6xl mx-auto px-5 md:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
           <span className="h-9 w-9 rounded-full bg-gold flex items-center justify-center text-primary font-display font-bold">
-            H
+            V
           </span>
           <span className="font-display text-xl">Vida Sin Deudas</span>
         </div>
