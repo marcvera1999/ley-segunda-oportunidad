@@ -2,13 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lock, Check, Loader2 } from "lucide-react";
 
-const DEUDAS = [
-  "Menos de 10.000€",
-  "10.000€ – 30.000€",
-  "30.000€ – 60.000€",
-  "60.000€ – 100.000€",
-  "Más de 100.000€",
-];
+
 
 // Rate limiting en cliente: máx. envíos por ventana de tiempo (primera barrera;
 // la barrera real va en Supabase, ver migración SQL del proyecto).
