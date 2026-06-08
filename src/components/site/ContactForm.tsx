@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lock, Check, Loader2 } from "lucide-react";
-
-
+import { supabase } from "@/integrations/supabase/client";
 
 // Rate limiting en cliente: máx. envíos por ventana de tiempo (primera barrera;
 // la barrera real va en Supabase, ver migración SQL del proyecto).
@@ -67,26 +66,23 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
 
     setLoading(true);
     try {
-      const leadData = {
-        nombre,
-        situacion: "Por cualificar en llamada",
-        contacto_tipo: "telefono" as const,
-        contacto_valor: telefono,
-      };
+      // Solo recogemos nombre + teléfono. La cualificación se hace en la llamada.
+      const leadData = { nombre, contacto_valor: telefono };
 
-      const res = await fetch("/api/public/submit-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(leadData),
-      });
+      // 1) Guardar el lead en Supabase (proyecto A). RLS: anon solo puede INSERT.
+      const { error: insertError } = await supabase.from("leads").insert(leadData);
+      if (insertError) throw new Error(insertError.message);
 
-      if (res.status === 429) {
-        const { error: msg } = await res.json().catch(() => ({ error: "" }));
-        throw new Error(msg || "Has enviado demasiadas solicitudes. Inténtalo más tarde.");
-      }
-      if (!res.ok) {
-        const { error: msg } = await res.json().catch(() => ({ error: "" }));
-        throw new Error(msg || `Error ${res.status}`);
+      // 2) Avisar a Make (Google Sheets + email + SMS). Fire-and-forget:
+      //    si Make falla, el lead ya está guardado en Supabase.
+      try {
+        await fetch("https://hook.eu1.make.com/s1xr4wtekgngfmq7dyr3wls27wkx1mhx", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...leadData, created_at: new Date().toISOString() }),
+        });
+      } catch (whErr) {
+        console.error("[ContactForm] Make webhook error:", whErr);
       }
 
       recordSubmit();
