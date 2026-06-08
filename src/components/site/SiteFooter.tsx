@@ -34,7 +34,7 @@ export function SiteFooter() {
       <div className="border-t border-primary-foreground/10">
         <div className="max-w-6xl mx-auto px-5 md:px-8 py-5 text-center text-xs text-primary-foreground/60 space-y-1">
           <p>© {new Date().getFullYear()} Vida Sin Deudas · ICAB Colegiados · Barcelona</p>
-          <p>Passeig de Gràcia Passeig de Gràcia 120 2ndo Derecha Barcelona 008008</p>
+          <p>Passeig de Gràcia 120, 2º Derecha · 08008 Barcelona</p>
         </div>
       </div>
     </footer>
