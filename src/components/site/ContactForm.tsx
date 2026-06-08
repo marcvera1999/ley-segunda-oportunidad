@@ -156,7 +156,7 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
             {!bare && (
               <div className="text-center space-y-3">
                 <span className="inline-block text-[11px] uppercase tracking-widest text-gold border border-gold/40 rounded-full px-3 py-1 bg-gold/5">
-                  Consulta gratuita · Respuesta en menos de 1 hora
+                  Consulta gratuita · Respuesta en menos de 2 horas
                 </span>
                 <h3 className="font-display text-2xl md:text-3xl text-primary">Te llamamos en menos de 2h</h3>
                 <p className="text-sm text-muted-foreground">
