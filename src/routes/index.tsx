@@ -38,7 +38,7 @@ const faqs = [
   },
   {
     q: "¿Apareceré en ASNEF o ficheros de morosos durante el proceso?",
-    a: "Durante el procedimiento puedes seguir apareciendo en ficheros como ASNEF o RAI. Sin embargo, una vez obtenida la cancelación definitiva de tus deudas (EPI), tienes derecho a solicitar la baja de estos registros. Te acompañamos en ese proceso para que recuperes tu reputación financiera lo antes posible.",
+    a: "Durante el procedimiento puedes seguir apareciendo en ficheros como ASNEF o RAI. Una vez obtenida la cancelación definitiva de tus deudas (EPI), tus deudas se eliminan directamente y se solicita la baja de estos registros para que recuperes tu reputación financiera lo antes posible.",
   },
   {
     q: "¿Funciona si tengo deudas en varias entidades bancarias?",
