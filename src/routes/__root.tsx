@@ -81,8 +81,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: SITE.defaultTitle },
       { name: "description", content: SITE.defaultDescription },
     ],
-    links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    links: [      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/favicon.svg" },      { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         // Solo los pesos realmente usados (antes 9 → ahora 7) para acelerar
