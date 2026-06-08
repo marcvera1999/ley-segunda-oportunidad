@@ -206,6 +206,7 @@ function Identificacion() {
     { e: "🏠", t: "Tengo miedo de perder mi casa o que me embarguen", c: "El embargo puede detenerse. Existe un proceso legal para esto." },
     { e: "🧾", t: "Mi negocio cerró y me quedé con las deudas", c: "Los autónomos también tienen derecho a empezar de cero." },
     { e: "🤝", t: "Avalé a alguien y ahora la deuda es mía", c: "La ley protege también a los avalistas. Podemos ayudarte." },
+    { e: "📵", t: "Estoy cansado de las llamadas del banco y de los recobros", c: "Cuando inicias el proceso, los acreedores deben dejar de llamarte." },
   ];
   return (
     <section className="py-32 md:py-44">
