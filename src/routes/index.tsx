@@ -158,9 +158,18 @@ function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-7 text-[18px] md:text-[20px] text-muted-foreground max-w-[520px] mx-auto leading-relaxed"
+          className="mt-7 text-[18px] md:text-[20px] text-muted-foreground max-w-[560px] mx-auto leading-relaxed"
         >
-          Miles de personas en Barcelona ya lo han hecho. La Ley de la Segunda Oportunidad existe para ti.
+          <strong className="text-primary font-semibold">Cancela todas tus deudas</strong> legalmente.
+          Miles de personas en Barcelona ya lo han hecho.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.75, duration: 0.6 }}
+          className="mt-3 text-sm md:text-[15px] text-primary/80"
+        >
+          📍 Te atendemos en <span className="font-semibold">Paseo de Gracia 120, 2º Derecha · Barcelona</span>
         </motion.p>
 
         <motion.div
