@@ -13,5 +13,5 @@ export default defineConfig({
     server: { entry: "server" },
   },
   // Force Nitro to build for Vercel (outputs to .vercel/output — Vercel's Build Output API)
-  nitro: { preset: "vercel-edge" },
+  nitro: { preset: "vercel" },
 });
