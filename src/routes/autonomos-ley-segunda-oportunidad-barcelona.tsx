@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { seo } from "@/lib/seo";
 
-const TITLE = "Autónomos y Ley Segunda Oportunidad Barcelona | Horizonte Legal";
+const TITLE = "Autónomos y Ley Segunda Oportunidad Barcelona | Vida Sin Deudas";
 const DESC = "Autónomos en Barcelona con deudas de su actividad: cancela tus deudas con la Ley de la Segunda Oportunidad. Consulta gratuita con abogados especialistas.";
 
 export const Route = createFileRoute("/autonomos-ley-segunda-oportunidad-barcelona")({

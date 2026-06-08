@@ -11,14 +11,14 @@ import { ExitIntent } from "@/components/site/ExitIntent";
 import { TrustBar } from "@/components/site/TrustBar";
 import { seo, SITE, localBusinessJsonLd } from "@/lib/seo";
 
-const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Horizonte Legal";
+const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Vida Sin Deudas";
 const DESC =
   "Especialistas en Ley de la Segunda Oportunidad en Barcelona. Cancela tus deudas legalmente. Consulta gratuita y sin compromiso. +500 casos resueltos. Llámanos hoy.";
 
 const faqs = [
   {
     q: "¿Cuánto cuesta acogerse a la Ley de la Segunda Oportunidad?",
-    a: "La primera consulta con Horizonte Legal en Barcelona es siempre gratuita y sin compromiso. Los honorarios profesionales para llevar todo el proceso se acuerdan de forma transparente desde el inicio, adaptados a tu situación económica y al volumen de tu deuda. Trabajamos con planes de pago fraccionado para que tu situación actual no sea un obstáculo para empezar de nuevo.",
+    a: "La primera consulta con Vida Sin Deudas en Barcelona es siempre gratuita y sin compromiso. Los honorarios profesionales para llevar todo el proceso se acuerdan de forma transparente desde el inicio, adaptados a tu situación económica y al volumen de tu deuda. Trabajamos con planes de pago fraccionado para que tu situación actual no sea un obstáculo para empezar de nuevo.",
   },
   {
     q: "¿Cuánto tiempo dura el proceso?",
@@ -186,14 +186,6 @@ function Hero() {
           </a>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-          className="mt-6 text-xs text-muted-foreground"
-        >
-          ⭐⭐⭐⭐⭐&nbsp; Valorado por +500 familias en Barcelona
-        </motion.p>
       </div>
     </section>
   );

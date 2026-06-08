@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
 
 const HREF =
-  "https://wa.me/34625349097?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20la%20Ley%20de%20la%20Segunda%20Oportunidad";
+  "https://wa.me/34659924695?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20la%20Ley%20de%20la%20Segunda%20Oportunidad";
 
 export function WhatsAppFab() {
   const [show, setShow] = useState(false);
