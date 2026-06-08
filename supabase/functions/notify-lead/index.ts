@@ -45,8 +45,14 @@ Deno.serve(async (req) => {
     const results: Record<string, unknown> = {};
 
     // --- Email via Resend ---
+    // DESACTIVADO: el email de aviso lo envía Make (Gmail). Mantener este envío
+    // provocaba dos correos por cada lead. Pon EMAIL_VIA_RESEND_ENABLED = true
+    // para reactivarlo si algún día Make deja de enviar el email.
+    const EMAIL_VIA_RESEND_ENABLED = false;
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-    if (!RESEND_API_KEY) {
+    if (!EMAIL_VIA_RESEND_ENABLED) {
+      console.log("notify-lead: email por Resend deshabilitado (lo envía Make).");
+    } else if (!RESEND_API_KEY) {
       console.error("Missing RESEND_API_KEY");
     } else {
       const html = `
