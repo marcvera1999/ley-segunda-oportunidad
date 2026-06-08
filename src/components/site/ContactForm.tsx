@@ -251,4 +251,3 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
     </div>
   );
 }
-  const [deuda, setDeuda] = useState("");
