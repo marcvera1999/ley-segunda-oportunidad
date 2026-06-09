@@ -422,7 +422,7 @@ function FAQ() {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-5 pr-8 text-[16px] leading-[1.7] text-muted-foreground">{f.a}</p>
+                    <p className="pb-5 pr-8 text-[16px] leading-[1.7] text-muted-foreground text-justify hyphens-auto">{f.a}</p>
                   </motion.div>
                 </div>
               </Reveal>
@@ -445,7 +445,7 @@ function SeoContent() {
           <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight mb-8">
             ¿Qué es la Ley de la Segunda Oportunidad?
           </h2>
-          <p className="text-[17px] leading-relaxed text-primary/85">
+          <p className="text-[17px] leading-relaxed text-primary/85 text-justify hyphens-auto">
             La <strong>Ley de la Segunda Oportunidad</strong> (Ley 25/2015, profundamente reformada en 2022) es un mecanismo legal que permite a particulares y autónomos en situación de insolvencia cancelar definitivamente sus deudas a través de un procedimiento judicial. En Barcelona, este procedimiento se tramita ante los Juzgados de lo Mercantil y ofrece una salida real a personas atrapadas en una espiral de deudas imposibles de pagar.
           </p>
 
@@ -455,7 +455,7 @@ function SeoContent() {
             transition={{ duration: 0.35 }}
             className="overflow-hidden"
           >
-            <div className="space-y-5 pt-5 text-[17px] leading-relaxed text-primary/85">
+            <div className="space-y-5 pt-5 text-[17px] leading-relaxed text-primary/85 text-justify hyphens-auto">
               <h3 className="font-display text-2xl text-primary pt-2">¿Quién puede acogerse?</h3>
               <p>
                 Pueden acogerse tanto <strong>particulares</strong> como <strong>autónomos</strong> (no sociedades S.L. ni S.A.) que estén actuando de buena fe, no hayan ocultado bienes y no hayan sido condenados por delitos económicos en los últimos diez años. No importa el origen de las deudas: préstamos bancarios, tarjetas de crédito, microcréditos, deudas de la actividad empresarial, avales por terceros o incluso parte de las deudas con Hacienda y la Seguridad Social pueden cancelarse mediante la <strong>exoneración de deudas</strong> (EPI – exoneración del pasivo insatisfecho).

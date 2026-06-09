@@ -16,7 +16,7 @@ function Page() {
       <h1 className="font-display text-4xl md:text-5xl text-primary leading-tight">
         Cancelar deudas con Hacienda en Barcelona
       </h1>
-      <div className="mt-8 space-y-5 text-[17px] text-primary/85 leading-relaxed">
+      <div className="mt-8 space-y-5 text-[17px] text-primary/85 leading-relaxed text-justify hyphens-auto">
         <p>Desde la reforma de 2022, la Ley de la Segunda Oportunidad permite cancelar hasta 10.000€ de deuda con Hacienda y otros 10.000€ con la Seguridad Social por deudor.</p>
         <p>En Vida Sin Deudas te ayudamos a planificar la estrategia que mejor encaja con tu situación fiscal en Barcelona.</p>
       </div>

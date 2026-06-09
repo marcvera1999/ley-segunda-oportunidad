@@ -16,7 +16,7 @@ function Page() {
       <h1 className="font-display text-4xl md:text-5xl text-primary leading-tight">
         Abogados especialistas en Ley de la Segunda Oportunidad en Barcelona
       </h1>
-      <div className="mt-8 space-y-5 text-[17px] text-primary/85 leading-relaxed">
+      <div className="mt-8 space-y-5 text-[17px] text-primary/85 leading-relaxed text-justify hyphens-auto">
         <p>La Ley de la Segunda Oportunidad (Ley 25/2015, reformada en 2022) es la herramienta legal que permite a personas físicas y autónomos en Barcelona cancelar sus deudas y empezar de nuevo.</p>
         <p>En Vida Sin Deudas acompañamos a particulares y autónomos en todo el procedimiento ante los Juzgados Mercantiles de Barcelona, desde el análisis inicial de viabilidad hasta la resolución firme de cancelación de deudas (EPI).</p>
         <p>Cancelar deudas en Barcelona es posible: préstamos personales, tarjetas, microcréditos, deudas de la actividad empresarial y, dentro de los límites legales, también deudas con Hacienda y la Seguridad Social.</p>

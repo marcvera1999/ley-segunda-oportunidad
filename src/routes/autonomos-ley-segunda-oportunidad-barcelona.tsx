@@ -16,7 +16,7 @@ function Page() {
       <h1 className="font-display text-4xl md:text-5xl text-primary leading-tight">
         Autónomo con deudas en Barcelona: empieza de cero
       </h1>
-      <div className="mt-8 space-y-5 text-[17px] text-primary/85 leading-relaxed">
+      <div className="mt-8 space-y-5 text-[17px] text-primary/85 leading-relaxed text-justify hyphens-auto">
         <p>Si eres autónomo en Barcelona y tu actividad ha generado deudas que ya no puedes asumir, la Ley de la Segunda Oportunidad está pensada para ti.</p>
         <p>Cancelamos deudas con proveedores, bancos, líneas de crédito, leasing y, dentro de los límites legales, también con Hacienda y la Seguridad Social.</p>
       </div>
