@@ -179,9 +179,8 @@ function Hero() {
           className="mt-8 mx-auto max-w-[520px] space-y-3 text-left"
         >
           {[
-            "Dejas de pagar tus deudas desde el primer día del procedimiento",
-            "Desde el primer día ya no te pueden reclamar las deudas",
-            "Te eliminamos de los listados de morosos (ASNEF, RAI…)",
+            "Desde que iniciamos el procedimiento, dejas de pagar las deudas y no te las pueden reclamar",
+            "Te eliminamos de los listados de morosos",
           ].map((b) => (
             <li key={b} className="flex items-start gap-3 text-[15px] md:text-base text-primary/90">
               <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-sage text-sage-foreground">
@@ -199,17 +198,17 @@ function Hero() {
           className="mt-9 flex flex-col items-center gap-3"
         >
           <a
-            href="#contacto"
-            className="pulse-gold inline-flex items-center justify-center rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-semibold hover:opacity-95 transition text-base"
+            href="tel:+34932426252"
+            className="pulse-gold inline-flex items-center justify-center gap-2 rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-bold hover:opacity-95 transition text-lg"
           >
-            Solicitar consulta gratuita →
+            <Phone className="h-5 w-5" />
+            Llámanos: 93 242 62 52
           </a>
           <a
-            href="tel:+34932426252"
-            className="inline-flex items-center gap-2 text-primary font-semibold hover:text-gold transition"
+            href="#contacto"
+            className="inline-flex items-center gap-1.5 text-primary font-semibold hover:text-gold transition"
           >
-            <Phone className="h-4 w-4 text-gold" />
-            o llámanos gratis: <span className="text-gold">93 242 62 52</span>
+            o solicita tu consulta gratuita →
           </a>
         </motion.div>
 
