@@ -6,7 +6,6 @@ type Q = { q: string; correct: boolean };
 
 const QUESTIONS: Q[] = [
   { q: "¿Tienes deudas que no puedes pagar?", correct: true },
-  { q: "¿Eres persona física o autónomo (no empresa S.L.)?", correct: true },
   { q: "¿Has sido condenado por delitos económicos en los últimos 10 años?", correct: false },
   { q: "¿Estás actuando de buena fe (no has ocultado bienes)?", correct: true },
 ];

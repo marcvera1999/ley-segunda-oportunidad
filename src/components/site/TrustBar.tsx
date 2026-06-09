@@ -63,7 +63,7 @@ export function TrustBar() {
   return (
     <section className="bg-primary text-primary-foreground py-5">
       <div className="max-w-4xl mx-auto px-5 md:px-8 grid grid-cols-2 md:grid-cols-4 gap-y-4 md:divide-x md:divide-primary-foreground/15">
-        <Stat number={<CountUp to={500} prefix="+" />} label="casos" />
+        <Stat number={<CountUp to={1000} prefix="+" />} label="casos" />
         <Stat number={<CountUp to={98} suffix="%" />} label="éxito" />
         <Stat number={<CountUp to={2015} asIs />} label="Desde" />
         <Stat number={<span>ICAB</span>} label="Colegiados" />

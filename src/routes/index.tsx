@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ChevronDown, Phone, Search, FileText, Sunrise, Star } from "lucide-react";
+import { ChevronDown, Phone, Search, FileText, Sunrise, Star, Check } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { EligibilityQuiz } from "@/components/site/EligibilityQuiz";
 import { ContactForm } from "@/components/site/ContactForm";
@@ -13,7 +13,7 @@ import { seo, SITE, localBusinessJsonLd } from "@/lib/seo";
 
 const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Vida Sin Deudas";
 const DESC =
-  "Especialistas en Ley de la Segunda Oportunidad en Barcelona. Cancela tus deudas legalmente. Consulta gratuita y sin compromiso. +500 casos resueltos. Llámanos hoy.";
+  "Especialistas en Ley de la Segunda Oportunidad en Barcelona. Cancela tus deudas legalmente. Consulta gratuita y sin compromiso. +1000 casos resueltos. Llámanos hoy.";
 
 const faqs = [
   {
@@ -161,7 +161,7 @@ function Hero() {
           className="mt-7 text-[18px] md:text-[20px] text-muted-foreground max-w-[560px] mx-auto leading-relaxed"
         >
           <strong className="text-primary font-semibold">Cancela todas tus deudas</strong> legalmente.
-          Miles de personas en Barcelona ya lo han hecho.
+          Miles de personas ya lo han hecho.
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -172,17 +172,44 @@ function Hero() {
           📍 Te atendemos en <span className="font-semibold">Paseo de Gracia 120, 2º Derecha · Barcelona</span>
         </motion.p>
 
+        <motion.ul
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.85, duration: 0.6 }}
+          className="mt-8 mx-auto max-w-[520px] space-y-3 text-left"
+        >
+          {[
+            "Dejas de pagar tus deudas desde el primer día del procedimiento",
+            "Desde el primer día ya no te pueden reclamar las deudas",
+            "Te eliminamos de los listados de morosos (ASNEF, RAI…)",
+          ].map((b) => (
+            <li key={b} className="flex items-start gap-3 text-[15px] md:text-base text-primary/90">
+              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-sage text-sage-foreground">
+                <Check className="h-3.5 w-3.5" strokeWidth={3} />
+              </span>
+              <span>{b}</span>
+            </li>
+          ))}
+        </motion.ul>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.9, duration: 0.5 }}
-          className="mt-9 flex justify-center"
+          transition={{ delay: 1, duration: 0.5 }}
+          className="mt-9 flex flex-col items-center gap-3"
         >
           <a
             href="#contacto"
             className="pulse-gold inline-flex items-center justify-center rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-semibold hover:opacity-95 transition text-base"
           >
-            Descubre si puedes cancelar tus deudas →
+            Solicitar consulta gratuita →
+          </a>
+          <a
+            href="tel:+34932426252"
+            className="inline-flex items-center gap-2 text-primary font-semibold hover:text-gold transition"
+          >
+            <Phone className="h-4 w-4 text-gold" />
+            o llámanos gratis: <span className="text-gold">93 242 62 52</span>
           </a>
         </motion.div>
 
@@ -210,7 +237,7 @@ function Identificacion() {
           </h2>
         </Reveal>
         <div className="grid sm:grid-cols-2 gap-4">
-          {items.map((it, i) => (
+          {items.slice(0, 4).map((it, i) => (
             <Reveal key={it.t} delay={i * 0.08}>
               <div className="h-full rounded-2xl bg-card border border-[color:var(--border-warm)] p-6 md:hover:shadow-[var(--shadow-soft)] md:hover:-translate-y-1 transition-all duration-300">
                 <div className="text-[40px] leading-none mb-3 text-center">{it.e}</div>
@@ -220,6 +247,17 @@ function Identificacion() {
             </Reveal>
           ))}
         </div>
+        {items[4] && (
+          <div className="mt-4 sm:mx-auto sm:w-[calc(50%-0.5rem)]">
+            <Reveal delay={0.4}>
+              <div className="h-full rounded-2xl bg-card border border-[color:var(--border-warm)] p-6 md:hover:shadow-[var(--shadow-soft)] md:hover:-translate-y-1 transition-all duration-300">
+                <div className="text-[40px] leading-none mb-3 text-center">{items[4].e}</div>
+                <p className="font-semibold text-[18px] text-primary leading-snug">{items[4].t}</p>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{items[4].c}</p>
+              </div>
+            </Reveal>
+          </div>
+        )}
         <Reveal delay={0.3}>
           <p className="text-center mt-12 italic text-[18px] text-sage leading-relaxed max-w-xl mx-auto">
             Si te has reconocido en alguna de estas situaciones, tienes derecho a saber si puedes salir de esto.
