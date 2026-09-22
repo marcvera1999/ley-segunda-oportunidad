@@ -11,7 +11,7 @@ SET search_path = public
 AS $$
 BEGIN
   PERFORM extensions.http_post(
-    url := 'https://xxyivmzadabjdhyoreru.supabase.co/functions/v1/notify-lead',
+    url := 'https://jyzotpamjmffvjrxfjwf.supabase.co/functions/v1/notify-lead',
     headers := jsonb_build_object('Content-Type', 'application/json'),
     body := jsonb_build_object(
       'type', 'INSERT',

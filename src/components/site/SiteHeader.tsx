@@ -30,7 +30,7 @@ export function SiteHeader() {
         </Link>
         <div className="flex items-center gap-2 md:gap-3">
           <a
-            href="tel:+34932426252"
+            href="tel:+34659924695"
             className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-3.5 md:px-5 py-2 text-sm md:text-base font-bold hover:opacity-95 transition shadow-sm"
             aria-label="Llámanos al 93 242 62 52"
           >

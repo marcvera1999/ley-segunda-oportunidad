@@ -9,11 +9,11 @@
 
 export const SITE = {
   /** Dominio sin barra final. CAMBIAR AQUÍ si cambia el dominio. */
-  url: "https://vidasindeudas.es",
+  url: "https://deudaeliminada.es",
 
   /** Marca / nombre del negocio. */
-  name: "Vida Sin Deudas",
-  legalName: "Vida Sin Deudas Abogados",
+  name: "Deuda Eliminada",
+  legalName: "Deuda Eliminada Abogados",
 
   locale: "es_ES",
   lang: "es-ES",
@@ -22,8 +22,8 @@ export const SITE = {
   ogImage: "/og-cover.jpg",
 
   /** Datos de contacto / negocio (PLACEHOLDER — sustituir por los reales). */
-  phone: "+34932426252",
-  email: "vidasindeudas@vidasindeudas.es",
+  phone: "+34659924695",
+  email: "javiermassana@gmail.com",
   address: {
     street: "Passeig de Gràcia 120, 2º Derecha",
     city: "Barcelona",
@@ -36,7 +36,7 @@ export const SITE = {
   /** Perfiles sociales (rellenar cuando existan). Se usan en sameAs. */
   social: [] as string[],
 
-  defaultTitle: "Cancela tus deudas con la Ley de la Segunda Oportunidad | Vida Sin Deudas",
+  defaultTitle: "Cancela tus deudas con la Ley de la Segunda Oportunidad | Deuda Eliminada",
   defaultDescription:
     "Cancela tus deudas legalmente con la Ley de la Segunda Oportunidad. Abogados especialistas en Barcelona. Consulta gratuita y sin compromiso.",
 } as const;

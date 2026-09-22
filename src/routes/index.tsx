@@ -11,14 +11,14 @@ import { ExitIntent } from "@/components/site/ExitIntent";
 import { TrustBar } from "@/components/site/TrustBar";
 import { seo, SITE, localBusinessJsonLd } from "@/lib/seo";
 
-const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Vida Sin Deudas";
+const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Deuda Eliminada";
 const DESC =
   "Especialistas en Ley de la Segunda Oportunidad en Barcelona. Cancela tus deudas legalmente. Consulta gratuita y sin compromiso. +1000 casos resueltos. Llámanos hoy.";
 
 const faqs = [
   {
     q: "¿Cuánto cuesta acogerse a la Ley de la Segunda Oportunidad?",
-    a: "La primera consulta con Vida Sin Deudas en Barcelona es siempre gratuita y sin compromiso. Los honorarios profesionales para llevar todo el proceso se acuerdan de forma transparente desde el inicio, adaptados a tu situación económica y al volumen de tu deuda. Trabajamos con planes de pago fraccionado para que tu situación actual no sea un obstáculo para empezar de nuevo.",
+    a: "La primera consulta con Deuda Eliminada en Barcelona es siempre gratuita y sin compromiso. Los honorarios profesionales para llevar todo el proceso se acuerdan de forma transparente desde el inicio, adaptados a tu situación económica y al volumen de tu deuda. Trabajamos con planes de pago fraccionado para que tu situación actual no sea un obstáculo para empezar de nuevo.",
   },
   {
     q: "¿Cuánto tiempo dura el proceso?",
@@ -198,7 +198,7 @@ function Hero() {
           className="mt-9 flex flex-col items-center gap-3"
         >
           <a
-            href="tel:+34932426252"
+            href="tel:+34659924695"
             className="pulse-gold inline-flex items-center justify-center gap-2 rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-bold hover:opacity-95 transition text-lg"
           >
             <Phone className="h-5 w-5" />

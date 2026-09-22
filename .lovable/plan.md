@@ -1,4 +1,4 @@
-# Landing Page Redesign — Horizonte Legal
+# Landing Page Redesign — Deuda Eliminada
 
 Full restructure of `/` (home) for maximum conversion, minimum friction. Keeps existing palette, fonts, SEO, FAQ content, testimonial quotes, quiz logic, Supabase + Make integration, and all other routes untouched.
 
@@ -34,7 +34,7 @@ Full restructure of `/` (home) for maximum conversion, minimum friction. Keeps e
 8. **Quiz**: existing logic preserved; visual shell only — gold-bordered card max-w 600px, gold progress bar "Pregunta X de 5", Playfair 24px question, large pill Yes (sage) / No (muted), slide-left transition, sage-light result card with CTA scrolling to mini-form.
 9. **FAQ**: borderless accordion (bottom border only), single-open, first open by default, rotating chevron — content unchanged.
 10. **SEO block**: H2 + first paragraph visible, "Leer más" expands the rest (height/opacity transition). All copy preserved for indexing.
-11. **Footer**: 2 rows only — logo / legal links / phone+WhatsApp; then "© 2026 Horizonte Legal · ICAB Colegiados · Barcelona".
+11. **Footer**: 2 rows only — logo / legal links / phone+WhatsApp; then "© 2026 Deuda Eliminada · ICAB Colegiados · Barcelona".
 
 ## Floating elements
 - **WhatsAppFab**: 56px circle (52px mobile), `#25D366`, white icon, hover tooltip, pulse ring every 4s, appears after 3s. Link as specified.

@@ -16,34 +16,19 @@ export type Database = {
     Tables: {
       leads: {
         Row: {
-          contacto_tipo: string
-          contacto_valor: string
+          contacto_valor: string | null
           created_at: string
-          deuda_aproximada: string
-          id: string
-          mensaje: string | null
           nombre: string
-          situacion: string
         }
         Insert: {
-          contacto_tipo: string
-          contacto_valor: string
+          contacto_valor?: string | null
           created_at?: string
-          deuda_aproximada: string
-          id?: string
-          mensaje?: string | null
           nombre: string
-          situacion: string
         }
         Update: {
-          contacto_tipo?: string
-          contacto_valor?: string
+          contacto_valor?: string | null
           created_at?: string
-          deuda_aproximada?: string
-          id?: string
-          mensaje?: string | null
           nombre?: string
-          situacion?: string
         }
         Relationships: []
       }

@@ -214,7 +214,7 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
                       <a href="/politica-privacidad" className="text-primary underline underline-offset-2">
                         política de privacidad
                       </a>{" "}
-                      y que Vida Sin Deudas me contacte.
+                      y que Deuda Eliminada me contacte.
                     </span>
                   </label>
                 </motion.div>

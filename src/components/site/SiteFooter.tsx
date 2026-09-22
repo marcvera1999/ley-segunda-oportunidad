@@ -11,14 +11,14 @@ export function SiteFooter() {
             <span className="h-9 w-9 rounded-full bg-gold flex items-center justify-center text-primary font-display font-bold">
               V
             </span>
-            <span className="font-display text-xl">Vida Sin Deudas</span>
+            <span className="font-display text-xl">Deuda Eliminada</span>
           </div>
           <p className="mt-4 text-sm text-primary-foreground/70 leading-relaxed">
             Abogados especialistas en la Ley de la Segunda Oportunidad. Cancela tus
             deudas legalmente. Primera consulta gratuita y sin compromiso.
           </p>
           <a
-            href="tel:+34932426252"
+            href="tel:+34659924695"
             className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-4 py-2 text-sm font-bold hover:opacity-95 transition"
           >
             <Phone className="h-4 w-4" /> 93 242 62 52
@@ -52,7 +52,7 @@ export function SiteFooter() {
           <h2 className="text-xs uppercase tracking-[0.15em] text-gold font-semibold mb-4">Contacto</h2>
           <ul className="space-y-2.5 text-sm text-primary-foreground/80">
             <li>
-              <a href="tel:+34932426252" className="inline-flex items-center gap-2 hover:text-gold transition">
+              <a href="tel:+34659924695" className="inline-flex items-center gap-2 hover:text-gold transition">
                 <Phone className="h-4 w-4" /> 93 242 62 52
               </a>
             </li>
@@ -75,7 +75,7 @@ export function SiteFooter() {
 
       <div className="border-t border-primary-foreground/10">
         <div className="max-w-6xl mx-auto px-5 md:px-8 py-5 text-center text-xs text-primary-foreground/60">
-          © {new Date().getFullYear()} Vida Sin Deudas · Colegiados en el ICAB · Barcelona
+          © {new Date().getFullYear()} Deuda Eliminada · Colegiados en el ICAB · Barcelona
         </div>
       </div>
     </footer>
