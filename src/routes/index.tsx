@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ChevronDown, Phone, Search, FileText, Sunrise, Star, Check } from "lucide-react";
+import { ChevronDown, Phone, Search, FileText, Sunrise, Check } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { EligibilityQuiz } from "@/components/site/EligibilityQuiz";
 import { ContactForm } from "@/components/site/ContactForm";
@@ -57,11 +57,7 @@ const jsonLd = {
       inLanguage: SITE.lang,
       publisher: { "@id": `${SITE.url}/#business` },
     },
-    localBusinessJsonLd({
-      // NOTA: aggregateRating debe reflejar reseñas reales y verificables.
-      // Si no las hay, elimínalo para no incumplir las directrices de Google.
-      aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "127" },
-    }),
+    localBusinessJsonLd(),
     {
       "@type": "FAQPage",
       "@id": `${SITE.url}/#faq`,
@@ -94,7 +90,6 @@ function Landing() {
       <Identificacion />
       <Contacto />
       <ComoFunciona />
-      <SocialProof />
       <Eligibilidad />
       <FAQ />
       <SeoContent />
@@ -322,56 +317,10 @@ function ComoFunciona() {
   );
 }
 
-/* ============ SOCIAL PROOF ============ */
-function SocialProof() {
-  const t = [
-    { name: "Carlos", city: "Barcelona", amount: "68.000€", quote: "Llegué con miedo y vergüenza. Me trataron como a una persona, no como a un expediente. Hoy duermo tranquilo." },
-    { name: "María", city: "L'Hospitalet", amount: "41.500€", quote: "No sabía que esto existía. En 9 meses cancelaron todas mis deudas de tarjetas y préstamos personales." },
-    { name: "Ahmed", city: "Badalona", amount: "93.000€", quote: "Mi negocio quebró durante la pandemia. Pensaba que estaba acabado. Ahora tengo una nueva oportunidad." },
-  ];
-  return (
-    <section className="py-32 md:py-44 bg-secondary/40">
-      <div className="max-w-[900px] mx-auto px-5 md:px-8">
-        <Reveal className="text-center mb-14">
-          <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">Casos reales</p>
-          <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
-            Personas que ya empezaron de cero
-          </h2>
-        </Reveal>
-
-        <div className="flex md:grid md:grid-cols-3 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-5 px-5 md:mx-0 md:px-0 pb-2">
-          {t.map((it, i) => (
-            <Reveal key={it.name} delay={i * 0.1} className="snap-center shrink-0 w-[85%] md:w-auto">
-              <article className="h-full rounded-2xl bg-card border-l-4 border-l-gold border border-[color:var(--border-warm)] p-7 md:hover:-translate-y-1 md:hover:shadow-lg transition-all duration-200">
-                <div className="flex gap-0.5 text-gold-ink mb-4">
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-                <p className="italic text-primary/85 leading-relaxed mb-6">{it.quote}</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-[color:var(--border-warm)]">
-                  <span className="h-10 w-10 rounded-full bg-sage text-sage-foreground flex items-center justify-center font-display font-semibold text-sm">
-                    {it.name[0]}
-                  </span>
-                  <div>
-                    <p className="font-display text-base text-primary leading-tight">{it.name}, {it.city}</p>
-                    <p className="text-sm text-gold-ink font-bold">{it.amount} cancelados</p>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
 /* ============ ELIGIBILIDAD ============ */
 function Eligibilidad() {
   return (
-    <section id="eligibilidad" className="py-32 md:py-44">
+    <section id="eligibilidad" className="py-32 md:py-44 bg-secondary/40">
       <div className="max-w-[760px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-10">
           <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">Test rápido</p>

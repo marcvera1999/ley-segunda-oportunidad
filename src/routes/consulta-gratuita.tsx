@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Phone, Search, FileText, Sunrise, Star, ShieldCheck, Lock, Clock } from "lucide-react";
+import { Phone, Search, FileText, Sunrise, ShieldCheck, Lock, Clock } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { ContactForm } from "@/components/site/ContactForm";
 import { TrustBar } from "@/components/site/TrustBar";
@@ -46,7 +46,6 @@ function ConsultaGratuita() {
       <HeroForm />
       <TrustBar />
       <ComoFunciona />
-      <Testimonios />
       <Garantia />
       <WhatsAppFab />
     </main>
@@ -172,54 +171,10 @@ function ComoFunciona() {
   );
 }
 
-/* ============ TESTIMONIOS ============ */
-function Testimonios() {
-  const t = [
-    { name: "Carlos", city: "Barcelona", amount: "68.000€", quote: "Me trataron como a una persona, no como a un expediente. Hoy duermo tranquilo." },
-    { name: "María", city: "L'Hospitalet", amount: "41.500€", quote: "No sabía que esto existía. En 9 meses cancelaron todas mis deudas." },
-    { name: "Ahmed", city: "Badalona", amount: "93.000€", quote: "Mi negocio quebró y pensaba que estaba acabado. Tengo una nueva oportunidad." },
-  ];
-  return (
-    <section className="py-20 md:py-28 bg-secondary/40">
-      <div className="max-w-5xl mx-auto px-5 md:px-8">
-        <Reveal className="text-center mb-12">
-          <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">Casos reales</p>
-          <h2 className="font-display text-3xl md:text-4xl text-primary leading-tight">
-            Personas que ya empezaron de cero
-          </h2>
-        </Reveal>
-        <div className="grid md:grid-cols-3 gap-5">
-          {t.map((it, i) => (
-            <Reveal key={it.name} delay={i * 0.1}>
-              <article className="h-full rounded-2xl bg-card border-l-4 border-l-gold border border-[color:var(--border-warm)] p-6">
-                <div className="flex gap-0.5 text-gold-ink mb-3">
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-                <p className="italic text-primary/85 leading-relaxed mb-5">{it.quote}</p>
-                <div className="flex items-center gap-3 pt-3 border-t border-[color:var(--border-warm)]">
-                  <span className="h-9 w-9 rounded-full bg-sage text-sage-foreground flex items-center justify-center font-display font-semibold text-sm">
-                    {it.name[0]}
-                  </span>
-                  <div>
-                    <p className="font-display text-sm text-primary leading-tight">{it.name}, {it.city}</p>
-                    <p className="text-sm text-gold-ink font-bold">{it.amount} cancelados</p>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ============ GARANTÍA + CTA FINAL ============ */
 function Garantia() {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-secondary/40">
       <div className="max-w-2xl mx-auto px-5 md:px-8 text-center">
         <Reveal>
           <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-sage/15 text-sage mb-5">
