@@ -197,13 +197,12 @@ function Hero() {
           transition={{ delay: 1, duration: 0.5 }}
           className="mt-9 flex flex-col items-center gap-3"
         >
-          <a
-            href="tel:+34659924695"
-            className="pulse-gold inline-flex items-center justify-center gap-2 rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-bold hover:opacity-95 transition text-lg"
-          >
+          <span className="inline-flex items-center justify-center gap-2 rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-bold text-lg">
             <Phone className="h-5 w-5" />
-            Llámanos: 93 242 62 52
-          </a>
+            <span>
+              Llámanos: <span className="tabular-nums select-all">659 924 695</span>
+            </span>
+          </span>
           <a
             href="#contacto"
             className="inline-flex items-center gap-1.5 text-primary font-semibold hover:text-gold transition"

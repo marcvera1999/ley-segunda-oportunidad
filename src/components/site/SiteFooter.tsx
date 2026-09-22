@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
+import { WHATSAPP_HREF, WhatsAppIcon } from "./whatsapp";
 
 export function SiteFooter() {
   return (
@@ -9,7 +10,7 @@ export function SiteFooter() {
         <div className="md:col-span-1">
           <div className="flex items-center gap-2">
             <span className="h-9 w-9 rounded-full bg-gold flex items-center justify-center text-primary font-display font-bold">
-              V
+              D
             </span>
             <span className="font-display text-xl">Deuda Eliminada</span>
           </div>
@@ -17,12 +18,10 @@ export function SiteFooter() {
             Abogados especialistas en la Ley de la Segunda Oportunidad. Cancela tus
             deudas legalmente. Primera consulta gratuita y sin compromiso.
           </p>
-          <a
-            href="tel:+34659924695"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-4 py-2 text-sm font-bold hover:opacity-95 transition"
-          >
-            <Phone className="h-4 w-4" /> 93 242 62 52
-          </a>
+          <span className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-4 py-2 text-sm font-bold">
+            <Phone className="h-4 w-4" />
+            <span className="tabular-nums select-all">659 924 695</span>
+          </span>
         </div>
 
         {/* Servicios (enlaces SEO) */}
@@ -52,18 +51,20 @@ export function SiteFooter() {
           <h2 className="text-xs uppercase tracking-[0.15em] text-gold font-semibold mb-4">Contacto</h2>
           <ul className="space-y-2.5 text-sm text-primary-foreground/80">
             <li>
-              <a href="tel:+34659924695" className="inline-flex items-center gap-2 hover:text-gold transition">
-                <Phone className="h-4 w-4" /> 93 242 62 52
-              </a>
+              <span className="inline-flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                <span className="tabular-nums select-all">659 924 695</span>
+              </span>
             </li>
-            <li>
+            <li className="pt-1">
               <a
-                href="https://wa.me/34659924695"
+                href={WHATSAPP_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-gold transition"
+                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-4 py-2 font-semibold shadow-sm hover:bg-[#1eb855] transition"
               >
-                <MessageCircle className="h-4 w-4" /> WhatsApp
+                <WhatsAppIcon className="h-4 w-4" />
+                Escríbenos por WhatsApp
               </a>
             </li>
             <li className="text-primary-foreground/70 leading-relaxed pt-1">
