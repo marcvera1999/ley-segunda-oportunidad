@@ -19,7 +19,7 @@ export const SITE = {
   lang: "es-ES",
 
   /** Imagen para compartir en redes (1200×630). Súbela a /public/og-cover.jpg */
-  ogImage: "/og-cover.jpg",
+  ogImage: "/og-cover.png",
 
   /** Datos de contacto / negocio (PLACEHOLDER — sustituir por los reales). */
   phone: "+34659924695",

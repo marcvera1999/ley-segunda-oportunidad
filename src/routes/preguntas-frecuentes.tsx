@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { seo } from "@/lib/seo";
 
-const TITLE = "Preguntas frecuentes Ley Segunda Oportunidad Barcelona | Deuda Eliminada";
+const TITLE = "Dudas frecuentes Ley Segunda Oportunidad | Deuda Eliminada";
 const DESC = "Resolvemos tus dudas sobre la Ley de la Segunda Oportunidad: costes, plazos, vivienda, Hacienda, autónomos y mucho más.";
 
 export const Route = createFileRoute("/preguntas-frecuentes")({

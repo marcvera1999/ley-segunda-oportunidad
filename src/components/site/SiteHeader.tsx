@@ -21,11 +21,11 @@ export function SiteHeader() {
     >
       <div className="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <span className="h-8 w-8 rounded-full bg-gradient-to-br from-gold to-[oklch(0.7_0.13_70)] flex items-center justify-center text-primary font-display font-bold text-sm">
+          <span className="h-8 w-8 rounded-full bg-gradient-to-br from-gold to-[oklch(0.60_0.09_72)] flex items-center justify-center text-primary font-display font-bold text-sm">
             D
           </span>
           <span className="font-display text-lg md:text-xl text-primary">
-            Deuda <span className="text-gold">Eliminada</span>
+            Deuda <span className="text-gold-ink">Eliminada</span>
           </span>
         </Link>
         <div className="flex items-center gap-2 md:gap-3">

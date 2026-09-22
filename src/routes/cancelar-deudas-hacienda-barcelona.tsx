@@ -12,7 +12,7 @@ export const Route = createFileRoute("/cancelar-deudas-hacienda-barcelona")({
 function Page() {
   return (
     <main className="pt-32 pb-24 max-w-3xl mx-auto px-5 md:px-8">
-      <p className="text-sm uppercase tracking-widest text-gold mb-3">Hacienda y SS</p>
+      <p className="text-sm uppercase tracking-widest text-gold-ink mb-3">Hacienda y SS</p>
       <h1 className="font-display text-4xl md:text-5xl text-primary leading-tight">
         Cancelar deudas con Hacienda en Barcelona
       </h1>

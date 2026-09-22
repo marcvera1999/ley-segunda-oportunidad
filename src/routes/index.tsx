@@ -13,7 +13,7 @@ import { seo, SITE, localBusinessJsonLd } from "@/lib/seo";
 
 const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Deuda Eliminada";
 const DESC =
-  "Especialistas en Ley de la Segunda Oportunidad en Barcelona. Cancela tus deudas legalmente. Consulta gratuita y sin compromiso. +1000 casos resueltos. Llámanos hoy.";
+  "Especialistas en Ley de la Segunda Oportunidad en Barcelona. Cancela tus deudas legalmente. Consulta gratuita y sin compromiso. +1000 casos resueltos.";
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ function Hero() {
   const words3 = ["legalmente?"];
 
   const Line = ({ ws, delay = 0, italic = false, gold = false }: { ws: string[]; delay?: number; italic?: boolean; gold?: boolean }) => (
-    <span className={`block ${italic ? "italic" : ""} ${gold ? "text-gold" : ""}`}>
+    <span className={`block ${italic ? "italic" : ""} ${gold ? "text-gold-ink" : ""}`}>
       {ws.map((w, i) => (
         <motion.span
           key={`${w}-${i}`}
@@ -130,7 +130,7 @@ function Hero() {
   return (
     <section
       className="relative min-h-screen flex items-center pt-28 pb-20 md:pt-32 md:pb-24"
-      style={{ background: "linear-gradient(180deg, #FAF8F4 0%, #F5F0E8 100%)" }}
+      style={{ background: "var(--gradient-hero)" }}
     >
       {/* faint geometric */}
       <div
@@ -143,7 +143,7 @@ function Hero() {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
-          className="inline-block text-[11px] md:text-xs uppercase tracking-[0.18em] text-gold font-semibold border border-gold/50 rounded-full px-4 py-1.5 mb-8 bg-gold/5"
+          className="inline-block text-[11px] md:text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold border border-gold/50 rounded-full px-4 py-1.5 mb-8 bg-gold/5"
         >
           Abogados en Barcelona · Ley 25/2015 · Reformada 2022
         </motion.span>
@@ -205,7 +205,7 @@ function Hero() {
           </span>
           <a
             href="#contacto"
-            className="inline-flex items-center gap-1.5 text-primary font-semibold hover:text-gold transition"
+            className="inline-flex items-center gap-1.5 text-primary font-semibold hover:text-gold-ink transition"
           >
             o solicita tu consulta gratuita →
           </a>
@@ -229,7 +229,7 @@ function Identificacion() {
     <section className="py-32 md:py-44">
       <div className="max-w-[760px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-14">
-          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">¿Eres tú?</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">¿Eres tú?</p>
           <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
             Sabemos exactamente cómo te sientes
           </h2>
@@ -291,7 +291,7 @@ function ComoFunciona() {
     <section className="py-32 md:py-44">
       <div className="max-w-[900px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-16">
-          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">El proceso</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">El proceso</p>
           <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
             Cuatro pasos. Sin burocracia.
           </h2>
@@ -305,7 +305,7 @@ function ComoFunciona() {
           {steps.map(({ Icon, t, d }, i) => (
             <Reveal key={t} delay={i * 0.1}>
               <div className="relative text-center">
-                <div className="relative mx-auto h-14 w-14 rounded-full bg-background border-2 border-gold flex items-center justify-center text-gold mb-4">
+                <div className="relative mx-auto h-14 w-14 rounded-full bg-background border-2 border-gold flex items-center justify-center text-gold-ink mb-4">
                   <Icon className="h-6 w-6" />
                   <span className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">
                     {i + 1}
@@ -333,7 +333,7 @@ function SocialProof() {
     <section className="py-32 md:py-44 bg-secondary/40">
       <div className="max-w-[900px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-14">
-          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">Casos reales</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">Casos reales</p>
           <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
             Personas que ya empezaron de cero
           </h2>
@@ -343,7 +343,7 @@ function SocialProof() {
           {t.map((it, i) => (
             <Reveal key={it.name} delay={i * 0.1} className="snap-center shrink-0 w-[85%] md:w-auto">
               <article className="h-full rounded-2xl bg-card border-l-4 border-l-gold border border-[color:var(--border-warm)] p-7 md:hover:-translate-y-1 md:hover:shadow-lg transition-all duration-200">
-                <div className="flex gap-0.5 text-gold mb-4">
+                <div className="flex gap-0.5 text-gold-ink mb-4">
                   {Array.from({ length: 5 }).map((_, j) => (
                     <Star key={j} className="h-4 w-4 fill-current" />
                   ))}
@@ -355,7 +355,7 @@ function SocialProof() {
                   </span>
                   <div>
                     <p className="font-display text-base text-primary leading-tight">{it.name}, {it.city}</p>
-                    <p className="text-sm text-gold font-bold">{it.amount} cancelados</p>
+                    <p className="text-sm text-gold-ink font-bold">{it.amount} cancelados</p>
                   </div>
                 </div>
               </article>
@@ -374,7 +374,7 @@ function Eligibilidad() {
     <section id="eligibilidad" className="py-32 md:py-44">
       <div className="max-w-[760px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-10">
-          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">Test rápido</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">Test rápido</p>
           <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
             Descubre en 60 segundos si puedes acogerte
           </h2>
@@ -394,7 +394,7 @@ function FAQ() {
     <section id="faq" className="py-32 md:py-44">
       <div className="max-w-[760px] mx-auto px-5 md:px-8">
         <Reveal className="text-center mb-12">
-          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">Preguntas frecuentes</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">Preguntas frecuentes</p>
           <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
             Lo que todo el mundo pregunta
           </h2>
@@ -412,7 +412,7 @@ function FAQ() {
                   >
                     <span className="text-[17px] font-semibold text-primary">{f.q}</span>
                     <ChevronDown
-                      className={`h-5 w-5 text-gold flex-shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                      className={`h-5 w-5 text-gold-ink flex-shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     />
                   </button>
                   <motion.div
@@ -440,7 +440,7 @@ function SeoContent() {
     <section className="py-32 md:py-44">
       <div className="max-w-[760px] mx-auto px-5 md:px-8">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.18em] text-gold font-semibold mb-3">La ley</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">La ley</p>
           <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight mb-8">
             ¿Qué es la Ley de la Segunda Oportunidad?
           </h2>
@@ -471,7 +471,7 @@ function SeoContent() {
 
           <button
             onClick={() => setExpanded((v) => !v)}
-            className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-primary transition"
+            className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-ink hover:text-primary transition"
           >
             {expanded ? "Leer menos" : "Leer más"}
             <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`} />

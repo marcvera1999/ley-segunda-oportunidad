@@ -39,7 +39,7 @@ export function ExitIntent() {
     <div className={`hidden md:flex fixed ${cookiePending ? "bottom-24" : "bottom-6"} left-6 z-[110] w-[min(44rem,calc(100%-3rem))] bg-card border border-gold rounded-2xl shadow-[var(--shadow-form)] py-3 pl-5 pr-3 items-center gap-4 animate-in fade-in slide-in-from-bottom-3 duration-300`}>
       <p className="flex-1 min-w-0 text-[15px] text-primary font-medium leading-snug">
         ⏳ Antes de irte — ¿sabías que tu consulta es{" "}
-        <span className="font-semibold text-gold">gratuita</span>?
+        <span className="font-semibold text-gold-ink">gratuita</span>?
       </p>
       <a
         href="#contacto"

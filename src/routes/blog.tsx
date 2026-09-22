@@ -18,7 +18,7 @@ export const Route = createFileRoute("/blog")({
 function Page() {
   return (
     <main className="pt-32 pb-24 max-w-5xl mx-auto px-5 md:px-8">
-      <p className="text-sm uppercase tracking-widest text-gold mb-3">Blog</p>
+      <p className="text-sm uppercase tracking-widest text-gold-ink mb-3">Blog</p>
       <h1 className="font-display text-4xl md:text-5xl text-primary">Conocimiento, sin tecnicismos</h1>
       <p className="mt-4 text-muted-foreground max-w-2xl">
         Artículos prácticos sobre la Ley de la Segunda Oportunidad en Barcelona.
@@ -30,7 +30,7 @@ function Page() {
             <div className="h-40 -mx-6 -mt-6 mb-5 rounded-t-2xl bg-gradient-to-br from-gold/30 via-sage/20 to-primary/10" />
             <h2 className="font-display text-xl text-primary leading-snug">{p.title}</h2>
             <p className="mt-3 text-sm text-muted-foreground">{p.excerpt}</p>
-            <Link to="/blog" className="mt-5 inline-flex text-sm text-gold font-medium">Próximamente →</Link>
+            <Link to="/blog" className="mt-5 inline-flex text-sm text-gold-ink font-medium">Próximamente →</Link>
           </article>
         ))}
       </div>

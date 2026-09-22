@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { seo } from "@/lib/seo";
 
-const TITLE = "Autónomos y Ley Segunda Oportunidad Barcelona | Deuda Eliminada";
+const TITLE = "Autónomos con deudas Barcelona | Deuda Eliminada";
 const DESC = "Autónomos en Barcelona con deudas de su actividad: cancela tus deudas con la Ley de la Segunda Oportunidad. Consulta gratuita con abogados especialistas.";
 
 export const Route = createFileRoute("/autonomos-ley-segunda-oportunidad-barcelona")({
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/autonomos-ley-segunda-oportunidad-barcelo
 function Page() {
   return (
     <main className="pt-32 pb-24 max-w-3xl mx-auto px-5 md:px-8">
-      <p className="text-sm uppercase tracking-widest text-gold mb-3">Para autónomos</p>
+      <p className="text-sm uppercase tracking-widest text-gold-ink mb-3">Para autónomos</p>
       <h1 className="font-display text-4xl md:text-5xl text-primary leading-tight">
         Autónomo con deudas en Barcelona: empieza de cero
       </h1>
