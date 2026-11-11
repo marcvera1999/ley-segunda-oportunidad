@@ -9,7 +9,7 @@ export const Route = createFileRoute("/aviso-legal")({
       <div className="mt-6 space-y-4 text-primary/80">
         <p>Titular: Deuda Eliminada — Passeig de Gràcia 120, 2º Derecha, 08008 Barcelona.</p>
         <p>Inscrita en el Il·lustre Col·legi de l'Advocacia de Barcelona (ICAB).</p>
-        <p>Contacto: javiermassana@gmail.com · 659 924 695</p>
+        <p>Contacto: javiermassana@gmail.com · 932 426 252</p>
       </div>
     </main>
   ),

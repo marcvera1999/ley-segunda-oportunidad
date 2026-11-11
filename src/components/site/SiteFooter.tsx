@@ -20,7 +20,7 @@ export function SiteFooter() {
           </p>
           <span className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-4 py-2 text-sm font-bold">
             <Phone className="h-4 w-4" />
-            <span className="tabular-nums select-all">659 924 695</span>
+            <span className="tabular-nums select-all">932 426 252</span>
           </span>
         </div>
 
@@ -53,7 +53,7 @@ export function SiteFooter() {
             <li>
               <span className="inline-flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span className="tabular-nums select-all">659 924 695</span>
+                <span className="tabular-nums select-all">932 426 252</span>
               </span>
             </li>
             <li className="pt-1">

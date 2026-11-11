@@ -31,10 +31,10 @@ export function SiteHeader() {
         <div className="flex items-center gap-2 md:gap-3">
           <span
             className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-3.5 md:px-5 py-2 text-sm md:text-base font-bold shadow-sm"
-            aria-label="Teléfono: 659 924 695"
+            aria-label="Teléfono: 932 426 252"
           >
             <Phone className="h-4 w-4" />
-            <span className="tabular-nums select-all">659 924 695</span>
+            <span className="tabular-nums select-all">932 426 252</span>
           </span>
           <a
             href="/#contacto"

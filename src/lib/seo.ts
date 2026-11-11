@@ -22,7 +22,7 @@ export const SITE = {
   ogImage: "/og-cover.png",
 
   /** Datos de contacto / negocio (PLACEHOLDER — sustituir por los reales). */
-  phone: "+34659924695",
+  phone: "+34932426252",
   email: "javiermassana@gmail.com",
   address: {
     street: "Passeig de Gràcia 120, 2º Derecha",

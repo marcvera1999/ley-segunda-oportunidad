@@ -195,7 +195,7 @@ function Hero() {
           <span className="inline-flex items-center justify-center gap-2 rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-bold text-lg">
             <Phone className="h-5 w-5" />
             <span>
-              Llámanos: <span className="tabular-nums select-all">659 924 695</span>
+              Llámanos: <span className="tabular-nums select-all">932 426 252</span>
             </span>
           </span>
           <a
