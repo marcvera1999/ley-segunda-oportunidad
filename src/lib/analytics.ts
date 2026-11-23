@@ -11,7 +11,7 @@
 //   (wa.me) se detectan desde GTM sin código.
 // ============================================================
 
-export const GTM_ID = "GTM-P9QN93MK";
+export const GTM_ID = "GTM-K2V3HQKW";
 
 /** Clave en localStorage con la elección del usuario: "granted" | "denied". */
 export const CONSENT_KEY = "de_cookie_consent";
