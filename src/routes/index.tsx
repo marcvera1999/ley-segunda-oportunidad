@@ -9,7 +9,7 @@ import { StickyCTA } from "@/components/site/StickyCTA";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { ExitIntent } from "@/components/site/ExitIntent";
 import { TrustBar } from "@/components/site/TrustBar";
-import { seo, SITE, localBusinessJsonLd } from "@/lib/seo";
+import { seo, SITE, PHONE_HREF, localBusinessJsonLd } from "@/lib/seo";
 
 const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Deuda Eliminada";
 const DESC =
@@ -30,15 +30,15 @@ const faqs = [
   },
   {
     q: "¿Se pueden cancelar las deudas con Hacienda?",
-    a: "Sí, aunque con límites. Desde la reforma de 2022, la Ley de la Segunda Oportunidad permite cancelar hasta 10.000€ de deuda con Hacienda y otros 10.000€ con la Seguridad Social por deudor. El resto puede aplazarse en condiciones favorables. Es un cambio importante: antes estas deudas eran totalmente inexonerables.",
+    a: "Sí, en parte. Desde la reforma de 2022 se puede exonerar una parte de la deuda con Hacienda y con la Seguridad Social: la ley fija un límite de 10.000 € por organismo, con los primeros 5.000 € exonerados íntegramente y el 50 % del importe entre 5.000 € y 10.000 €. Los tribunales están interpretando estos límites, así que estudiamos qué parte de tu deuda pública se puede exonerar en tu caso. Antes de la reforma, estas deudas no se podían cancelar.",
   },
   {
     q: "¿Qué pasa si soy autónomo con deudas de mi negocio?",
-    a: "Los autónomos están plenamente protegidos por la ley. Puedes cancelar deudas con proveedores, bancos, líneas de crédito, leasing y, dentro de los límites legales, también con Hacienda y la Seguridad Social. Muchos de nuestros clientes en Barcelona son autónomos cuyo negocio quebró y que ahora pueden empezar una nueva actividad sin la mochila del pasado.",
+    a: "Los autónomos pueden acogerse a la Ley de la Segunda Oportunidad. Se pueden exonerar deudas con proveedores, bancos, líneas de crédito y leasing y, dentro de los límites legales, una parte de las deudas con Hacienda y la Seguridad Social. Muchos de nuestros clientes en Barcelona son autónomos cuyo negocio quebró y que ahora pueden empezar una nueva actividad sin la mochila del pasado.",
   },
   {
     q: "¿Apareceré en ASNEF o ficheros de morosos durante el proceso?",
-    a: "Durante el procedimiento puedes seguir apareciendo en ficheros como ASNEF o RAI. Una vez obtenida la cancelación definitiva de tus deudas (EPI), tus deudas se eliminan directamente y se solicita la baja de estos registros para que recuperes tu reputación financiera lo antes posible.",
+    a: "Durante el procedimiento puedes seguir apareciendo en ficheros como ASNEF o RAI. Si el juzgado concede la exoneración (EPI), las deudas exoneradas dejan de poder reclamarse y solicitamos la baja de estos registros.",
   },
   {
     q: "¿Funciona si tengo deudas en varias entidades bancarias?",
@@ -155,8 +155,8 @@ function Hero() {
           transition={{ delay: 0.6, duration: 0.6 }}
           className="mt-7 text-[18px] md:text-[20px] text-muted-foreground max-w-[560px] mx-auto leading-relaxed"
         >
-          <strong className="text-primary font-semibold">Cancela todas tus deudas</strong> legalmente.
-          Miles de personas ya lo han hecho.
+          <strong className="text-primary font-semibold">Una salida legal a tus deudas</strong> para particulares y autónomos.
+          Te decimos gratis si puedes acogerte a la ley.
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -174,8 +174,8 @@ function Hero() {
           className="mt-8 mx-auto max-w-[520px] space-y-3 text-left"
         >
           {[
-            "Desde que iniciamos el procedimiento, dejas de pagar las deudas y no te las pueden reclamar",
-            "Te eliminamos de los listados de morosos",
+            "Te explicamos cómo afecta el procedimiento a los embargos y reclamaciones que tengas en curso",
+            "Si se cancelan tus deudas, pedimos tu baja de los ficheros de morosos",
           ].map((b) => (
             <li key={b} className="flex items-start gap-3 text-[15px] md:text-base text-primary/90">
               <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-sage text-sage-foreground">
@@ -192,12 +192,16 @@ function Hero() {
           transition={{ delay: 1, duration: 0.5 }}
           className="mt-9 flex flex-col items-center gap-3"
         >
-          <span className="inline-flex items-center justify-center gap-2 rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-bold text-lg">
+          <a
+            href={PHONE_HREF}
+            aria-label="Llamar al 932 426 252"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-gold text-gold-foreground px-7 min-h-[56px] w-full sm:w-auto font-bold text-lg hover:opacity-95 transition"
+          >
             <Phone className="h-5 w-5" />
             <span>
-              Llámanos: <span className="tabular-nums select-all">932 426 252</span>
+              Llámanos: <span className="tabular-nums">932 426 252</span>
             </span>
-          </span>
+          </a>
           <a
             href="#contacto"
             className="inline-flex items-center gap-1.5 text-primary font-semibold hover:text-gold-ink transition"
@@ -215,10 +219,10 @@ function Hero() {
 function Identificacion() {
   const items = [
     { e: "💳", t: "No llego a fin de mes pagando mis préstamos", c: "Tarjetas, préstamos, financieras… la deuda crece sola." },
-    { e: "🏠", t: "Tengo miedo de perder mi casa o que me embarguen", c: "El embargo puede detenerse. Existe un proceso legal para esto." },
+    { e: "🏠", t: "Tengo miedo de perder mi casa o que me embarguen", c: "Existe un procedimiento legal que puede ayudarte. Lo estudiamos contigo." },
     { e: "🧾", t: "Mi negocio cerró y me quedé con las deudas", c: "Los autónomos también tienen derecho a empezar de cero." },
-    { e: "🤝", t: "Avalé a alguien y ahora la deuda es mía", c: "La ley protege también a los avalistas. Podemos ayudarte." },
-    { e: "📵", t: "Estoy cansado de las llamadas del banco y de los recobros", c: "Cuando inicias el proceso, los acreedores deben dejar de llamarte." },
+    { e: "🤝", t: "Avalé a alguien y ahora la deuda es mía", c: "Los avalistas también pueden acogerse a la ley. Estudiamos tu caso." },
+    { e: "📵", t: "Estoy cansado de las llamadas del banco y de los recobros", c: "Te explicamos cómo afecta el procedimiento a las reclamaciones de tus acreedores." },
   ];
   return (
     <section className="py-32 md:py-44">
@@ -278,9 +282,9 @@ function Contacto() {
 function ComoFunciona() {
   const steps = [
     { Icon: Phone, t: "Nos cuentas tu caso", d: "Una llamada confidencial. Sin papeles, sin compromisos." },
-    { Icon: Search, t: "Lo analizamos juntos", d: "Nuestros abogados estudian tu viabilidad en la misma llamada." },
+    { Icon: Search, t: "Lo analizamos juntos", d: "Un abogado estudia gratis si puedes acogerte a la ley." },
     { Icon: FileText, t: "Presentamos el expediente", d: "Nos encargamos de todo ante los Juzgados" },
-    { Icon: Sunrise, t: "Tus deudas se cancelan", d: "Resolución judicial firme. Empiezas de cero." },
+    { Icon: Sunrise, t: "Pedimos la exoneración", d: "El juzgado resuelve qué deudas quedan canceladas." },
   ];
   return (
     <section className="py-32 md:py-44">
@@ -410,7 +414,7 @@ function SeoContent() {
               </p>
               <h3 className="font-display text-2xl text-primary pt-2">¿Qué deudas se pueden cancelar y cuáles no?</h3>
               <p>
-                La <strong>cancelación de deudas en Barcelona</strong> mediante esta ley incluye préstamos personales, tarjetas, créditos al consumo, financiación de vehículos, deudas con proveedores y, desde la reforma de 2022, hasta 10.000€ de deuda con Hacienda y otros 10.000€ con la Seguridad Social. No se pueden cancelar pensiones de alimentos ni multas penales. Como <strong>abogados especialistas en segunda oportunidad en Barcelona</strong>, llevamos cada expediente desde el primer informe de viabilidad hasta la resolución judicial firme, normalmente en un plazo de 3 a 18 meses.
+                La <strong>cancelación de deudas en Barcelona</strong> mediante esta ley incluye préstamos personales, tarjetas, créditos al consumo, financiación de vehículos, deudas con proveedores y, desde la reforma de 2022, una parte de la deuda con Hacienda y con la Seguridad Social, con los límites que marca la ley. No se pueden cancelar pensiones de alimentos ni multas penales. Como <strong>abogados especialistas en segunda oportunidad en Barcelona</strong>, llevamos cada expediente desde el primer informe de viabilidad hasta la resolución judicial firme, normalmente en un plazo de 3 a 18 meses.
               </p>
               <p className="italic text-primary">
                 Si quieres saber si tu caso es viable, solicita tu consulta gratuita hoy.

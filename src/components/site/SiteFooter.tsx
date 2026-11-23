@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { WHATSAPP_HREF, WhatsAppIcon } from "./whatsapp";
+import { PHONE_HREF } from "@/lib/seo";
+import { openCookieSettings } from "@/lib/analytics";
 
 export function SiteFooter() {
   return (
@@ -18,10 +20,14 @@ export function SiteFooter() {
             Abogados especialistas en la Ley de la Segunda Oportunidad. Cancela tus
             deudas legalmente. Primera consulta gratuita y sin compromiso.
           </p>
-          <span className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-4 py-2 text-sm font-bold">
+          <a
+            href={PHONE_HREF}
+            aria-label="Llamar al 932 426 252"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-4 py-2 text-sm font-bold hover:opacity-90 transition"
+          >
             <Phone className="h-4 w-4" />
-            <span className="tabular-nums select-all">932 426 252</span>
-          </span>
+            <span className="tabular-nums">932 426 252</span>
+          </a>
         </div>
 
         {/* Servicios (enlaces SEO) */}
@@ -43,6 +49,11 @@ export function SiteFooter() {
             <li><Link to="/aviso-legal" className="hover:text-gold transition">Aviso legal</Link></li>
             <li><Link to="/politica-privacidad" className="hover:text-gold transition">Política de privacidad</Link></li>
             <li><Link to="/politica-cookies" className="hover:text-gold transition">Política de cookies</Link></li>
+            <li>
+              <button type="button" onClick={openCookieSettings} className="hover:text-gold transition text-left">
+                Configurar cookies
+              </button>
+            </li>
           </ul>
         </nav>
 
@@ -51,10 +62,10 @@ export function SiteFooter() {
           <h2 className="text-xs uppercase tracking-[0.15em] text-gold font-semibold mb-4">Contacto</h2>
           <ul className="space-y-2.5 text-sm text-primary-foreground/80">
             <li>
-              <span className="inline-flex items-center gap-2">
+              <a href={PHONE_HREF} aria-label="Llamar al 932 426 252" className="inline-flex items-center gap-2 hover:text-gold transition">
                 <Phone className="h-4 w-4" />
-                <span className="tabular-nums select-all">932 426 252</span>
-              </span>
+                <span className="tabular-nums">932 426 252</span>
+              </a>
             </li>
             <li className="pt-1">
               <a

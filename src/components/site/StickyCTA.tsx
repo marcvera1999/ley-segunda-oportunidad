@@ -17,7 +17,7 @@ export function StickyCTA() {
       href="#contacto"
       className="above-cookiebar md:hidden fixed inset-x-0 z-40 bg-gold text-gold-foreground h-14 flex items-center justify-center text-sm font-semibold shadow-[0_-8px_24px_-8px_rgba(0,0,0,0.25)] gap-2"
     >
-      <Check className="h-4 w-4" /> Consulta gratuita · Respuesta en 1 hora
+      <Check className="h-4 w-4" /> Consulta gratuita · Respuesta en menos de 2 h
     </a>
   );
 }

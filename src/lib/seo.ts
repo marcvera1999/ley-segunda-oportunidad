@@ -41,6 +41,23 @@ export const SITE = {
     "Cancela tus deudas legalmente con la Ley de la Segunda Oportunidad. Abogados especialistas en Barcelona. Consulta gratuita y sin compromiso.",
 } as const;
 
+/** Enlace para llamar desde el móvil (tel:). */
+export const PHONE_HREF = `tel:${SITE.phone}`;
+
+/**
+ * Datos legales del titular de la web (LSSI, art. 10). Se muestran en el
+ * aviso legal y en la política de privacidad. Rellena los campos vacíos:
+ * las líneas vacías no se muestran en la web.
+ */
+export const LEGAL = {
+  /** Nombre y apellidos o razón social del titular (p. ej. la sociedad del despacho). */
+  titular: "",
+  /** NIF / CIF del titular. */
+  nif: "",
+  /** Abogados colegiados que prestan el servicio: nombre y nº de colegiado del ICAB. */
+  colegiados: [] as ReadonlyArray<{ nombre: string; numero: string }>,
+} as const;
+
 /** Convierte una ruta relativa en URL absoluta sobre el dominio. */
 export function absUrl(path = "/"): string {
   if (!path) return SITE.url;
@@ -141,8 +158,8 @@ export function localBusinessJsonLd(extra?: Record<string, unknown>) {
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:00",
-        closes: "19:00",
+        opens: "08:30",
+        closes: "20:00",
       },
     ],
     contactPoint: {

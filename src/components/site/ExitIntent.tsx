@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import { getConsent } from "@/lib/analytics";
 
 export function ExitIntent() {
   const [show, setShow] = useState(false);
@@ -13,7 +14,7 @@ export function ExitIntent() {
     const trigger = () => {
       if (sessionStorage.getItem("hl_exit_shown") === "1") return;
       sessionStorage.setItem("hl_exit_shown", "1");
-      setCookiePending(!localStorage.getItem("hl_cookie_consent"));
+      setCookiePending(getConsent() === null);
       setShow(true);
     };
 

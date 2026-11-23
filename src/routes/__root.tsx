@@ -15,6 +15,7 @@ import { SITE } from "@/lib/seo";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { CookieBanner } from "@/components/site/CookieBanner";
+import { GTM_ID, HEAD_SCRIPT } from "@/lib/analytics";
 
 function NotFoundComponent() {
   return (
@@ -103,9 +104,20 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang={SITE.lang}>
       <head>
+        {/* Consent Mode v2 (denegado por defecto) + Google Tag Manager. Debe ir primero. */}
+        <script dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }} />
         <HeadContent />
       </head>
       <body>
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            title="Google Tag Manager"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {children}
         <Scripts />
       </body>

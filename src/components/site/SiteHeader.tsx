@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
+import { PHONE_HREF } from "@/lib/seo";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,13 +30,14 @@ export function SiteHeader() {
           </span>
         </Link>
         <div className="flex items-center gap-2 md:gap-3">
-          <span
-            className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-3.5 md:px-5 py-2 text-sm md:text-base font-bold shadow-sm"
-            aria-label="Teléfono: 932 426 252"
+          <a
+            href={PHONE_HREF}
+            className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-3.5 md:px-5 py-2 text-sm md:text-base font-bold shadow-sm hover:opacity-90 transition"
+            aria-label="Llamar al 932 426 252"
           >
             <Phone className="h-4 w-4" />
-            <span className="tabular-nums select-all">932 426 252</span>
-          </span>
+            <span className="tabular-nums">932 426 252</span>
+          </a>
           <a
             href="/#contacto"
             className="hidden sm:inline-flex items-center rounded-full border border-gold/60 text-primary px-4 py-2 text-sm font-semibold hover:bg-gold/10 transition"

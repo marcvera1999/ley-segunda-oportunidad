@@ -19,7 +19,7 @@ function Page() {
       <div className="mt-8 space-y-5 text-[17px] text-primary/85 leading-relaxed text-justify hyphens-auto">
         <p>La Ley de la Segunda Oportunidad (Ley 25/2015, reformada en 2022) es la herramienta legal que permite a personas físicas y autónomos en Barcelona cancelar sus deudas y empezar de nuevo.</p>
         <p>En Deuda Eliminada acompañamos a particulares y autónomos en todo el procedimiento ante los Juzgados Mercantiles de Barcelona, desde el análisis inicial de viabilidad hasta la resolución firme de cancelación de deudas (EPI).</p>
-        <p>Cancelar deudas en Barcelona es posible: préstamos personales, tarjetas, microcréditos, deudas de la actividad empresarial y, dentro de los límites legales, también deudas con Hacienda y la Seguridad Social.</p>
+        <p>Cancelar deudas en Barcelona es posible: préstamos personales, tarjetas, microcréditos, deudas de la actividad empresarial y, dentro de los límites legales, también una parte de las deudas con Hacienda y la Seguridad Social.</p>
       </div>
       <div className="mt-10">
         <Link to="/" hash="contacto" className="inline-flex rounded-full bg-gold text-gold-foreground px-6 py-3 font-medium">

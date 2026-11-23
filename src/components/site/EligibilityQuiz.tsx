@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
+import { track } from "@/lib/analytics";
 
 type Q = { q: string; correct: boolean };
 
@@ -15,8 +16,14 @@ export function EligibilityQuiz() {
   const [answers, setAnswers] = useState<boolean[]>([]);
 
   const answer = (yes: boolean) => {
-    setAnswers((a) => [...a, yes]);
+    const next = [...answers, yes];
+    setAnswers(next);
     setStep((s) => s + 1);
+    if (next.length === QUESTIONS.length) {
+      const ok = next.every((a, i) => a === QUESTIONS[i].correct);
+      // Evento para GTM / GA4 (conversión secundaria). Sin datos personales.
+      track("test_completado", { resultado: ok ? "cumple" : "no_cumple" });
+    }
   };
   const reset = () => {
     setAnswers([]);

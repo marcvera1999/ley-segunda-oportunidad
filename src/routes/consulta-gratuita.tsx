@@ -9,7 +9,7 @@ import { seo, SITE, localBusinessJsonLd } from "@/lib/seo";
 
 const TITLE = "Consulta gratuita Ley Segunda Oportunidad | Deuda Eliminada";
 const DESC =
-  "Pide tu consulta gratuita y sin compromiso. Abogados especialistas en la Ley de la Segunda Oportunidad en Barcelona. Te llamamos en menos de 1 hora.";
+  "Pide tu consulta gratuita y sin compromiso. Abogados especialistas en la Ley de la Segunda Oportunidad en Barcelona. Te llamamos en menos de 2 horas.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -55,9 +55,9 @@ function ConsultaGratuita() {
 /* ============ HERO + FORM (above the fold) ============ */
 function HeroForm() {
   const beneficios = [
-    "Cancelación legal y definitiva de tus deudas",
-    "Paramos embargos y llamadas de acreedores",
-    "Primera consulta gratis y 100% confidencial",
+    "Estudiamos si puedes cancelar tus deudas por la vía legal",
+    "Te explicamos cómo afecta el procedimiento a embargos y reclamaciones",
+    "Primera consulta gratis y confidencial",
     "Particulares y autónomos en Barcelona",
   ];
   return (
@@ -114,7 +114,7 @@ function HeroForm() {
 
           <div className="mt-7 flex items-center gap-2 text-sm text-muted-foreground">
             <Clock className="h-4 w-4 text-gold-ink" />
-            Te llamamos en menos de 1 hora (horario laboral).
+            Te llamamos en menos de 2 horas (horario laboral).
           </div>
         </div>
 
@@ -137,9 +137,9 @@ function HeroForm() {
 function ComoFunciona() {
   const steps = [
     { Icon: Phone, t: "Nos cuentas tu caso", d: "Una llamada confidencial y gratuita. Sin papeleo." },
-    { Icon: Search, t: "Estudiamos tu viabilidad", d: "Un abogado analiza tu situación en 24–48 horas." },
+    { Icon: Search, t: "Estudiamos tu viabilidad", d: "Un abogado estudia gratis si puedes acogerte a la ley." },
     { Icon: FileText, t: "Presentamos el expediente", d: "Tramitamos todo ante los Juzgados de Barcelona." },
-    { Icon: Sunrise, t: "Tus deudas se cancelan", d: "Resolución judicial firme. Empiezas de cero." },
+    { Icon: Sunrise, t: "Pedimos la exoneración", d: "El juzgado resuelve qué deudas quedan canceladas." },
   ];
   return (
     <section className="py-20 md:py-28">

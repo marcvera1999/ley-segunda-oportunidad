@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lock, Check, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { track } from "@/lib/analytics";
 
 // Rate limiting en cliente: máx. envíos por ventana de tiempo (primera barrera;
 // la barrera real va en Supabase, ver migración SQL del proyecto).
@@ -87,6 +88,10 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
 
       recordSubmit();
       setDone(true);
+      // Conversión para GTM / GA4 / Google Ads. Sin datos personales.
+      track("formulario_enviado", {
+        form_location: typeof window !== "undefined" ? window.location.pathname : "",
+      });
     } catch (err) {
       console.error("[ContactForm] submission error:", err);
       setError(`Ha ocurrido un error: ${(err as Error)?.message || "desconocido"}`);
@@ -217,6 +222,15 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
                       y que Deuda Eliminada me contacte.
                     </span>
                   </label>
+                  <p className="text-[11px] leading-relaxed text-muted-foreground/90">
+                    Responsable: Deuda Eliminada. Finalidad: llamarte para atender tu consulta.
+                    Puedes ejercer tus derechos de acceso, rectificación, supresión y demás como se
+                    explica en la{" "}
+                    <a href="/politica-privacidad" className="underline underline-offset-2">
+                      política de privacidad
+                    </a>
+                    .
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
