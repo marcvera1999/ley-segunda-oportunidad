@@ -9,63 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frecuentes'
-import { Route as PoliticaPrivacidadRouteImport } from './routes/politica-privacidad'
-import { Route as PoliticaCookiesRouteImport } from './routes/politica-cookies'
-import { Route as LeySegundaOportunidadBarcelonaRouteImport } from './routes/ley-segunda-oportunidad-barcelona'
-import { Route as ConsultaGratuitaRouteImport } from './routes/consulta-gratuita'
-import { Route as CancelarDeudasHaciendaBarcelonaRouteImport } from './routes/cancelar-deudas-hacienda-barcelona'
-import { Route as BlogRouteImport } from './routes/blog'
-import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
-import { Route as AutonomosLeySegundaOportunidadBarcelonaRouteImport } from './routes/autonomos-ley-segunda-oportunidad-barcelona'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AutonomosLeySegundaOportunidadBarcelonaRouteImport } from './routes/autonomos-ley-segunda-oportunidad-barcelona'
+import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
+import { Route as CancelarDeudasHaciendaBarcelonaRouteImport } from './routes/cancelar-deudas-hacienda-barcelona'
+import { Route as ConsultaGratuitaRouteImport } from './routes/consulta-gratuita'
+import { Route as LeySegundaOportunidadBarcelonaRouteImport } from './routes/ley-segunda-oportunidad-barcelona'
+import { Route as PoliticaCookiesRouteImport } from './routes/politica-cookies'
+import { Route as PoliticaPrivacidadRouteImport } from './routes/politica-privacidad'
+import { Route as PreguntasFrecuentesRouteImport } from './routes/preguntas-frecuentes'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PreguntasFrecuentesRoute = PreguntasFrecuentesRouteImport.update({
-  id: '/preguntas-frecuentes',
-  path: '/preguntas-frecuentes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PoliticaPrivacidadRoute = PoliticaPrivacidadRouteImport.update({
-  id: '/politica-privacidad',
-  path: '/politica-privacidad',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PoliticaCookiesRoute = PoliticaCookiesRouteImport.update({
-  id: '/politica-cookies',
-  path: '/politica-cookies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LeySegundaOportunidadBarcelonaRoute =
-  LeySegundaOportunidadBarcelonaRouteImport.update({
-    id: '/ley-segunda-oportunidad-barcelona',
-    path: '/ley-segunda-oportunidad-barcelona',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ConsultaGratuitaRoute = ConsultaGratuitaRouteImport.update({
-  id: '/consulta-gratuita',
-  path: '/consulta-gratuita',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CancelarDeudasHaciendaBarcelonaRoute =
-  CancelarDeudasHaciendaBarcelonaRouteImport.update({
-    id: '/cancelar-deudas-hacienda-barcelona',
-    path: '/cancelar-deudas-hacienda-barcelona',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AvisoLegalRoute = AvisoLegalRouteImport.update({
-  id: '/aviso-legal',
-  path: '/aviso-legal',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AutonomosLeySegundaOportunidadBarcelonaRoute =
@@ -74,9 +33,56 @@ const AutonomosLeySegundaOportunidadBarcelonaRoute =
     path: '/autonomos-ley-segunda-oportunidad-barcelona',
     getParentRoute: () => rootRouteImport,
   } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AvisoLegalRoute = AvisoLegalRouteImport.update({
+  id: '/aviso-legal',
+  path: '/aviso-legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CancelarDeudasHaciendaBarcelonaRoute =
+  CancelarDeudasHaciendaBarcelonaRouteImport.update({
+    id: '/cancelar-deudas-hacienda-barcelona',
+    path: '/cancelar-deudas-hacienda-barcelona',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ConsultaGratuitaRoute = ConsultaGratuitaRouteImport.update({
+  id: '/consulta-gratuita',
+  path: '/consulta-gratuita',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeySegundaOportunidadBarcelonaRoute =
+  LeySegundaOportunidadBarcelonaRouteImport.update({
+    id: '/ley-segunda-oportunidad-barcelona',
+    path: '/ley-segunda-oportunidad-barcelona',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PoliticaCookiesRoute = PoliticaCookiesRouteImport.update({
+  id: '/politica-cookies',
+  path: '/politica-cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaPrivacidadRoute = PoliticaPrivacidadRouteImport.update({
+  id: '/politica-privacidad',
+  path: '/politica-privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreguntasFrecuentesRoute = PreguntasFrecuentesRouteImport.update({
+  id: '/preguntas-frecuentes',
+  path: '/preguntas-frecuentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -84,7 +90,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/autonomos-ley-segunda-oportunidad-barcelona': typeof AutonomosLeySegundaOportunidadBarcelonaRoute
   '/aviso-legal': typeof AvisoLegalRoute
-  '/blog': typeof BlogRoute
   '/cancelar-deudas-hacienda-barcelona': typeof CancelarDeudasHaciendaBarcelonaRoute
   '/consulta-gratuita': typeof ConsultaGratuitaRoute
   '/ley-segunda-oportunidad-barcelona': typeof LeySegundaOportunidadBarcelonaRoute
@@ -92,12 +97,13 @@ export interface FileRoutesByFullPath {
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/autonomos-ley-segunda-oportunidad-barcelona': typeof AutonomosLeySegundaOportunidadBarcelonaRoute
   '/aviso-legal': typeof AvisoLegalRoute
-  '/blog': typeof BlogRoute
   '/cancelar-deudas-hacienda-barcelona': typeof CancelarDeudasHaciendaBarcelonaRoute
   '/consulta-gratuita': typeof ConsultaGratuitaRoute
   '/ley-segunda-oportunidad-barcelona': typeof LeySegundaOportunidadBarcelonaRoute
@@ -105,13 +111,14 @@ export interface FileRoutesByTo {
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/autonomos-ley-segunda-oportunidad-barcelona': typeof AutonomosLeySegundaOportunidadBarcelonaRoute
   '/aviso-legal': typeof AvisoLegalRoute
-  '/blog': typeof BlogRoute
   '/cancelar-deudas-hacienda-barcelona': typeof CancelarDeudasHaciendaBarcelonaRoute
   '/consulta-gratuita': typeof ConsultaGratuitaRoute
   '/ley-segunda-oportunidad-barcelona': typeof LeySegundaOportunidadBarcelonaRoute
@@ -119,6 +126,8 @@ export interface FileRoutesById {
   '/politica-privacidad': typeof PoliticaPrivacidadRoute
   '/preguntas-frecuentes': typeof PreguntasFrecuentesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -126,7 +135,6 @@ export interface FileRouteTypes {
     | '/'
     | '/autonomos-ley-segunda-oportunidad-barcelona'
     | '/aviso-legal'
-    | '/blog'
     | '/cancelar-deudas-hacienda-barcelona'
     | '/consulta-gratuita'
     | '/ley-segunda-oportunidad-barcelona'
@@ -134,12 +142,13 @@ export interface FileRouteTypes {
     | '/politica-privacidad'
     | '/preguntas-frecuentes'
     | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/autonomos-ley-segunda-oportunidad-barcelona'
     | '/aviso-legal'
-    | '/blog'
     | '/cancelar-deudas-hacienda-barcelona'
     | '/consulta-gratuita'
     | '/ley-segunda-oportunidad-barcelona'
@@ -147,12 +156,13 @@ export interface FileRouteTypes {
     | '/politica-privacidad'
     | '/preguntas-frecuentes'
     | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/blog'
   id:
     | '__root__'
     | '/'
     | '/autonomos-ley-segunda-oportunidad-barcelona'
     | '/aviso-legal'
-    | '/blog'
     | '/cancelar-deudas-hacienda-barcelona'
     | '/consulta-gratuita'
     | '/ley-segunda-oportunidad-barcelona'
@@ -160,13 +170,14 @@ export interface FileRouteTypes {
     | '/politica-privacidad'
     | '/preguntas-frecuentes'
     | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AutonomosLeySegundaOportunidadBarcelonaRoute: typeof AutonomosLeySegundaOportunidadBarcelonaRoute
   AvisoLegalRoute: typeof AvisoLegalRoute
-  BlogRoute: typeof BlogRoute
   CancelarDeudasHaciendaBarcelonaRoute: typeof CancelarDeudasHaciendaBarcelonaRoute
   ConsultaGratuitaRoute: typeof ConsultaGratuitaRoute
   LeySegundaOportunidadBarcelonaRoute: typeof LeySegundaOportunidadBarcelonaRoute
@@ -174,71 +185,17 @@ export interface RootRouteChildren {
   PoliticaPrivacidadRoute: typeof PoliticaPrivacidadRoute
   PreguntasFrecuentesRoute: typeof PreguntasFrecuentesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/preguntas-frecuentes': {
-      id: '/preguntas-frecuentes'
-      path: '/preguntas-frecuentes'
-      fullPath: '/preguntas-frecuentes'
-      preLoaderRoute: typeof PreguntasFrecuentesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/politica-privacidad': {
-      id: '/politica-privacidad'
-      path: '/politica-privacidad'
-      fullPath: '/politica-privacidad'
-      preLoaderRoute: typeof PoliticaPrivacidadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/politica-cookies': {
-      id: '/politica-cookies'
-      path: '/politica-cookies'
-      fullPath: '/politica-cookies'
-      preLoaderRoute: typeof PoliticaCookiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ley-segunda-oportunidad-barcelona': {
-      id: '/ley-segunda-oportunidad-barcelona'
-      path: '/ley-segunda-oportunidad-barcelona'
-      fullPath: '/ley-segunda-oportunidad-barcelona'
-      preLoaderRoute: typeof LeySegundaOportunidadBarcelonaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/consulta-gratuita': {
-      id: '/consulta-gratuita'
-      path: '/consulta-gratuita'
-      fullPath: '/consulta-gratuita'
-      preLoaderRoute: typeof ConsultaGratuitaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cancelar-deudas-hacienda-barcelona': {
-      id: '/cancelar-deudas-hacienda-barcelona'
-      path: '/cancelar-deudas-hacienda-barcelona'
-      fullPath: '/cancelar-deudas-hacienda-barcelona'
-      preLoaderRoute: typeof CancelarDeudasHaciendaBarcelonaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/aviso-legal': {
-      id: '/aviso-legal'
-      path: '/aviso-legal'
-      fullPath: '/aviso-legal'
-      preLoaderRoute: typeof AvisoLegalRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/autonomos-ley-segunda-oportunidad-barcelona': {
@@ -248,11 +205,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AutonomosLeySegundaOportunidadBarcelonaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/aviso-legal': {
+      id: '/aviso-legal'
+      path: '/aviso-legal'
+      fullPath: '/aviso-legal'
+      preLoaderRoute: typeof AvisoLegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cancelar-deudas-hacienda-barcelona': {
+      id: '/cancelar-deudas-hacienda-barcelona'
+      path: '/cancelar-deudas-hacienda-barcelona'
+      fullPath: '/cancelar-deudas-hacienda-barcelona'
+      preLoaderRoute: typeof CancelarDeudasHaciendaBarcelonaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consulta-gratuita': {
+      id: '/consulta-gratuita'
+      path: '/consulta-gratuita'
+      fullPath: '/consulta-gratuita'
+      preLoaderRoute: typeof ConsultaGratuitaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ley-segunda-oportunidad-barcelona': {
+      id: '/ley-segunda-oportunidad-barcelona'
+      path: '/ley-segunda-oportunidad-barcelona'
+      fullPath: '/ley-segunda-oportunidad-barcelona'
+      preLoaderRoute: typeof LeySegundaOportunidadBarcelonaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-cookies': {
+      id: '/politica-cookies'
+      path: '/politica-cookies'
+      fullPath: '/politica-cookies'
+      preLoaderRoute: typeof PoliticaCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-privacidad': {
+      id: '/politica-privacidad'
+      path: '/politica-privacidad'
+      fullPath: '/politica-privacidad'
+      preLoaderRoute: typeof PoliticaPrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/preguntas-frecuentes': {
+      id: '/preguntas-frecuentes'
+      path: '/preguntas-frecuentes'
+      fullPath: '/preguntas-frecuentes'
+      preLoaderRoute: typeof PreguntasFrecuentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -263,7 +283,6 @@ const rootRouteChildren: RootRouteChildren = {
   AutonomosLeySegundaOportunidadBarcelonaRoute:
     AutonomosLeySegundaOportunidadBarcelonaRoute,
   AvisoLegalRoute: AvisoLegalRoute,
-  BlogRoute: BlogRoute,
   CancelarDeudasHaciendaBarcelonaRoute: CancelarDeudasHaciendaBarcelonaRoute,
   ConsultaGratuitaRoute: ConsultaGratuitaRoute,
   LeySegundaOportunidadBarcelonaRoute: LeySegundaOportunidadBarcelonaRoute,
@@ -271,6 +290,8 @@ const rootRouteChildren: RootRouteChildren = {
   PoliticaPrivacidadRoute: PoliticaPrivacidadRoute,
   PreguntasFrecuentesRoute: PreguntasFrecuentesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
