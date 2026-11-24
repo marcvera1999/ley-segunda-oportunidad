@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ChevronDown, Phone, Search, FileText, Sunrise, Check } from "lucide-react";
+import { ChevronDown, Phone, Search, FileText, Sunrise, Check, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { EligibilityQuiz } from "@/components/site/EligibilityQuiz";
 import { ContactForm } from "@/components/site/ContactForm";
@@ -10,6 +10,7 @@ import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { ExitIntent } from "@/components/site/ExitIntent";
 import { TrustBar } from "@/components/site/TrustBar";
 import { seo, SITE, PHONE_HREF, localBusinessJsonLd } from "@/lib/seo";
+import { getPosts, formatDate } from "@/lib/blog";
 
 const TITLE = "Abogados Ley Segunda Oportunidad Barcelona | Deuda Eliminada";
 const DESC =
@@ -92,6 +93,7 @@ function Landing() {
       <ComoFunciona />
       <Eligibilidad />
       <FAQ />
+      <BlogPreview />
       <SeoContent />
       <StickyCTA />
       <WhatsAppFab />
@@ -380,6 +382,50 @@ function FAQ() {
               </Reveal>
             );
           })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ BLOG (últimos artículos) ============ */
+function BlogPreview() {
+  const posts = getPosts().slice(0, 3);
+  if (posts.length === 0) return null;
+  return (
+    <section id="blog" className="py-24 md:py-36 bg-secondary/40">
+      <div className="max-w-5xl mx-auto px-5 md:px-8">
+        <Reveal className="mb-10 md:mb-12">
+          <p className="text-xs uppercase tracking-[0.18em] text-gold-ink font-semibold mb-3">Blog</p>
+          <h2 className="font-display text-3xl md:text-5xl text-primary leading-tight">
+            Respuestas claras a tus dudas
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-2xl">
+            Artículos sencillos sobre deudas y la Ley de la Segunda Oportunidad, sin tecnicismos.
+          </p>
+        </Reveal>
+        <div className="grid md:grid-cols-3 gap-6">
+          {posts.map((p) => (
+            <Link
+              key={p.slug}
+              to="/blog/$slug"
+              params={{ slug: p.slug }}
+              className="group block rounded-2xl bg-card border border-border p-6 hover:shadow-[var(--shadow-soft)] hover:-translate-y-1 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              {p.category && <p className="text-xs uppercase tracking-widest text-gold-ink mb-2">{p.category}</p>}
+              <h3 className="font-display text-xl text-primary leading-snug group-hover:underline decoration-gold/60 underline-offset-4">{p.title}</h3>
+              <p className="mt-3 text-xs text-muted-foreground">{formatDate(p.date)}</p>
+              <span className="mt-4 inline-flex text-sm text-gold-ink font-medium">Leer artículo →</span>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 rounded-full border border-gold/60 text-primary px-6 py-3 font-semibold hover:bg-gold/10 transition"
+          >
+            Ver todos los artículos <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

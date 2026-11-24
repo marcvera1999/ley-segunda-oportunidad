@@ -5,7 +5,7 @@ import { getPosts, formatDate } from "@/lib/blog";
 const TITLE = "Blog | Deuda Eliminada — Ley Segunda Oportunidad Barcelona";
 const DESC = "Artículos sobre la Ley de la Segunda Oportunidad, casos prácticos y consejos para personas con deudas en Barcelona.";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => seo({ title: TITLE, description: DESC, path: "/blog" }),
   component: Page,
 });
@@ -25,16 +25,21 @@ function Page() {
       ) : (
         <div className="mt-12 grid md:grid-cols-3 gap-6">
           {posts.map((p) => (
-            <article key={p.slug} className="rounded-2xl bg-card border border-border p-6 hover:shadow-[var(--shadow-soft)] hover:-translate-y-1 transition">
-              <div className="h-40 -mx-6 -mt-6 mb-5 rounded-t-2xl bg-gradient-to-br from-gold/30 via-sage/20 to-primary/10" />
-              {p.category && <p className="text-xs uppercase tracking-widest text-gold-ink mb-2">{p.category}</p>}
-              <h2 className="font-display text-xl text-primary leading-snug">{p.title}</h2>
-              <p className="mt-3 text-sm text-muted-foreground">{p.description}</p>
-              <p className="mt-3 text-xs text-muted-foreground">{formatDate(p.date)}</p>
-              <Link to="/blog/$slug" params={{ slug: p.slug }} className="mt-5 inline-flex text-sm text-gold-ink font-medium">
-                Leer artículo →
-              </Link>
-            </article>
+            <Link
+              key={p.slug}
+              to="/blog/$slug"
+              params={{ slug: p.slug }}
+              className="group block rounded-2xl bg-card border border-border p-6 hover:shadow-[var(--shadow-soft)] hover:-translate-y-1 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              <article>
+                <div className="h-40 -mx-6 -mt-6 mb-5 rounded-t-2xl bg-gradient-to-br from-gold/30 via-sage/20 to-primary/10" />
+                {p.category && <p className="text-xs uppercase tracking-widest text-gold-ink mb-2">{p.category}</p>}
+                <h2 className="font-display text-xl text-primary leading-snug group-hover:underline decoration-gold/60 underline-offset-4">{p.title}</h2>
+                <p className="mt-3 text-sm text-muted-foreground">{p.description}</p>
+                <p className="mt-3 text-xs text-muted-foreground">{formatDate(p.date)}</p>
+                <span className="mt-5 inline-flex text-sm text-gold-ink font-medium">Leer artículo →</span>
+              </article>
+            </Link>
           ))}
         </div>
       )}
