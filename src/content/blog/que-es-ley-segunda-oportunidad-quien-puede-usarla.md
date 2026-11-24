@@ -2,7 +2,7 @@
 title: "¿Qué es la Ley de la Segunda Oportunidad y quién puede usarla?"
 slug: "que-es-ley-segunda-oportunidad-quien-puede-usarla"
 description: "Qué es la Ley de la Segunda Oportunidad, quién puede pedirla y qué requisitos pide el juez para cancelar deudas, explicado en palabras sencillas y sin rodeos."
-date: 2026-12-28
+date: 2026-11-24
 category: "Primeros pasos"
 keyword: "qué es la ley de la segunda oportunidad"
 status: published
