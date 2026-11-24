@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { absUrl } from "@/lib/seo";
+import { getPosts } from "@/lib/blog";
 
 // Solo páginas indexables (las legales llevan noindex y se omiten aquí).
 const routes = [
@@ -17,10 +18,17 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async () => {
         const lastmod = new Date().toISOString().slice(0, 10);
-        const urls = routes.map(
-          (r) =>
-            `  <url><loc>${absUrl(r.path)}</loc><lastmod>${lastmod}</lastmod><changefreq>${r.changefreq}</changefreq><priority>${r.priority}</priority></url>`
-        );
+        const urls = [
+          ...routes.map(
+            (r) =>
+              `  <url><loc>${absUrl(r.path)}</loc><lastmod>${lastmod}</lastmod><changefreq>${r.changefreq}</changefreq><priority>${r.priority}</priority></url>`
+          ),
+          // Artículos del blog (solo los publicados)
+          ...getPosts().map(
+            (p) =>
+              `  <url><loc>${absUrl(`/blog/${p.slug}`)}</loc><lastmod>${p.date}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>`
+          ),
+        ];
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,
           `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,

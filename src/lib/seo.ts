@@ -55,7 +55,10 @@ export const LEGAL = {
   /** NIF / CIF del titular. */
   nif: "",
   /** Abogados colegiados que prestan el servicio: nombre y nº de colegiado del ICAB. */
-  colegiados: [] as ReadonlyArray<{ nombre: string; numero: string }>,
+  colegiados: [
+    { nombre: "Javier Massana", numero: "32376" },
+    { nombre: "Silvia González", numero: "27065" },
+  ] as ReadonlyArray<{ nombre: string; numero: string }>,
 } as const;
 
 /** Convierte una ruta relativa en URL absoluta sobre el dominio. */
