@@ -8,7 +8,7 @@ Claude toma el primer tema "pendiente". Javier cambia a "publicado" al aprobar.
 | 2026-12-07 | ¿Cuánto tarda la Ley de la Segunda Oportunidad? | cuánto tarda la ley de la segunda oportunidad | Primeros pasos | borrador |
 | 2026-12-14 | ¿Puedo salvar mi casa? | salvar mi casa ley segunda oportunidad | Mi casa y mi familia | borrador |
 | 2026-12-21 | Autónomos con deudas: empezar de cero | autónomos deudas segunda oportunidad | Autónomos | borrador |
-| 2026-12-28 | ¿Qué es la Ley de la Segunda Oportunidad y quién puede usarla? | qué es la ley de la segunda oportunidad | Primeros pasos | borrador |
+| 2026-12-28 | ¿Qué es la Ley de la Segunda Oportunidad y quién puede usarla? | qué es la ley de la segunda oportunidad | Primeros pasos | publicado |
 | 2027-01-04 | ¿Puedo cancelar mis deudas con tarjetas y préstamos rápidos? | cancelar deudas tarjetas préstamos | Primeros pasos | pendiente |
 | 2027-01-11 | ¿Qué pasa con mis deudas con Hacienda? | deudas con hacienda segunda oportunidad | Deudas con Hacienda y Seguridad Social | pendiente |
 | 2027-01-18 | ¿Puedo acogerme si estoy en un fichero de morosos (ASNEF)? | asnef segunda oportunidad | Dudas y mitos | pendiente |
