@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lock, Check, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { track } from "@/lib/analytics";
+import { submitLead } from "@/lib/api/lead.functions";
 
 // Rate limiting en cliente: máx. envíos por ventana de tiempo (primera barrera;
 // la barrera real va en Supabase, ver migración SQL del proyecto).
@@ -42,6 +42,7 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
   const [nombre, setNombre] = useState("");
   const [gdpr, setGdpr] = useState(false);
   const [website, setWebsite] = useState(""); // honeypot
+  const [startedAt] = useState(() => Date.now()); // trampa de tiempo (se valida en servidor)
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -68,23 +69,11 @@ export function ContactForm({ bare = false }: { bare?: boolean }) {
     setLoading(true);
     try {
       // Solo recogemos nombre + teléfono. La cualificación se hace en la llamada.
-      const leadData = { nombre, contacto_valor: telefono };
-
-      // 1) Guardar el lead en Supabase (proyecto A). RLS: anon solo puede INSERT.
-      const { error: insertError } = await supabase.from("leads").insert(leadData);
-      if (insertError) throw new Error(insertError.message);
-
-      // 2) Avisar a Make (Google Sheets + email + SMS). Fire-and-forget:
-      //    si Make falla, el lead ya está guardado en Supabase.
-      try {
-        await fetch("https://hook.eu1.make.com/s1xr4wtekgngfmq7dyr3wls27wkx1mhx", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...leadData, created_at: new Date().toISOString() }),
-        });
-      } catch (whErr) {
-        console.error("[ContactForm] Make webhook error:", whErr);
-      }
+      // El envío lo hace el servidor (Vercel): guarda en Supabase y avisa a Make.
+      // Así la URL del webhook de Make no aparece en el código de la web.
+      await submitLead({
+        data: { nombre: nombre.trim(), contacto_valor: telefono.trim(), website, startedAt },
+      });
 
       recordSubmit();
       setDone(true);
