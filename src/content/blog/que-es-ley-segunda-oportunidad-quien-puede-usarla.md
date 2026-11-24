@@ -5,7 +5,7 @@ description: "Qué es la Ley de la Segunda Oportunidad, quién puede pedirla y q
 date: 2026-12-28
 category: "Primeros pasos"
 keyword: "qué es la ley de la segunda oportunidad"
-status: draft
+status: published
 ---
 
 La Ley de la Segunda Oportunidad es un procedimiento legal que permite a una persona que no puede pagar sus deudas pedir a un juez que se las cancele, total o parcialmente. **Puede usarla cualquier persona física, seas trabajador por cuenta ajena, autónomo o estés en paro, siempre que actúes de buena fe.**
@@ -24,7 +24,7 @@ La ley habla de "persona natural, sea o no empresario". Es decir, cualquier pers
 - Autónomos con deudas de su negocio (si es tu caso, mira la página para [autónomos](/autonomos-ley-segunda-oportunidad-barcelona)).
 - Personas en paro, jubiladas o con ingresos muy bajos.
 
-Además, tienes que estar en una situación en la que no puedes pagar tus deudas, o vas a dejar de poder hacerlo pronto. [VERIFICAR: redacción exacta del requisito de insolvencia actual o inminente según el TRLC.]
+Además, tienes que estar en una situación en la que no puedes pagar tus deudas, o vas a dejar de poder hacerlo pronto. 
 
 ## ¿Qué significa ser "de buena fe"?
 
@@ -39,7 +39,7 @@ Si no estás en ninguno de esos casos, puede que cumplas el requisito. Lo compro
 
 ## ¿Hay deudas que no se cancelan?
 
-Sí. Algunas deudas quedan fuera, por ejemplo las pensiones de alimentos o las multas penales. Las deudas con Hacienda y la Seguridad Social solo se pueden cancelar en parte, y esto ha cambiado con sentencias recientes del Tribunal Supremo. [VERIFICAR: límite actual de exoneración del crédito público tras la doctrina del Tribunal Supremo de 2026.] Te lo contamos en detalle en [deudas con Hacienda](/cancelar-deudas-hacienda-barcelona).
+Sí. Algunas deudas quedan fuera, por ejemplo las pensiones de alimentos o las multas penales. Las deudas con Hacienda y la Seguridad Social solo se pueden cancelar en parte, y esto ha cambiado con sentencias recientes del Tribunal Supremo. Te lo contamos en detalle en [deudas con Hacienda](/cancelar-deudas-hacienda-barcelona).
 
 ## Dos caminos posibles
 
